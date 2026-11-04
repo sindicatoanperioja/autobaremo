@@ -185,6 +185,9 @@ select.sel-corto{width:auto; min-width:150px;}
 .p-nuevo .campo{flex:1 1 140px;}
 .p-nuevo .campo label{font-size:.75rem; font-weight:700; color:var(--ink-muted); text-transform:uppercase; letter-spacing:.04em;}
 .p-err{margin:0; font-size:.85rem; font-weight:600; color:var(--bad);}
+.t-manual{display:flex; flex-direction:column; align-items:flex-end; gap:4px;}
+@container (max-width:620px){ .t-manual{align-items:flex-start;} }
+.periodos:empty{display:none;}
 .t-total{font-weight:700; font-size:.88rem; color:var(--ink-2);}
 @container (max-width:620px){ .periodo{grid-template-columns:minmax(0,1fr) auto;} .periodo .p-du{grid-column:1; text-align:left;} .periodo .quitar{grid-column:2; grid-row:1 / span 2;} }
 .fechas{grid-column:1 / -1; background:var(--accent-soft); border-radius:14px; padding:12px 14px; display:flex; flex-wrap:wrap; gap:10px 14px; align-items:end;}
@@ -662,7 +665,7 @@ function controles(it){
   const t = it.tipo, c = it.campo;
   if (t === 'tiempo'){
     const v = (S.am || {})[c] || {};
-    return `<div class="tiempo" id="tm-${c}"><label>Años <input type="number" inputmode="numeric" min="0" id="${c}-a" value="${v.a || 0}"></label><label>Meses <input type="number" inputmode="numeric" min="0" max="11" id="${c}-m" value="${v.m || 0}"></label></div><span class="t-total" id="tt-${c}" hidden>0 años y 0 meses</span>`;
+    return `<div class="t-manual" id="tm-${c}"><div class="tiempo"><label>Años <input type="number" inputmode="numeric" min="0" id="${c}-a" value="${v.a || 0}"></label><label>Meses <input type="number" inputmode="numeric" min="0" max="11" id="${c}-m" value="${v.m || 0}"></label></div><button type="button" class="btn-link" data-modo="${c}">Prefiero meter los periodos con fechas</button></div><span class="t-total" id="tt-${c}" hidden>0 años y 0 meses</span>`;
   }
   if (t === 'num') return stepper(c, S[c], it.lab);
   if (t === 'num2') return `<label class="switch" style="gap:6px">${esc(it.l1)} ${stepper(c, S[c], it.lab + ', ' + it.l1)}</label><label class="switch" style="gap:6px">${esc(it.l2)} ${stepper(it.campo2, S[it.campo2], it.lab + ', ' + it.l2)}</label>`;
@@ -832,7 +835,7 @@ document.addEventListener('click', e => {
 const fecha = x => { const [y, m, d] = x.split('-'); return `${d}/${m}/${y}`; };
 const ymTxt = (mm, dd) => `${Math.floor(mm / 12)} ${Math.floor(mm / 12) === 1 ? 'año' : 'años'} y ${mm % 12} ${mm % 12 === 1 ? 'mes' : 'meses'}` + (dd ? ` y ${dd} ${dd === 1 ? 'día' : 'días'}` : '');
 function htmlPeriodos(c){
-  if ((S.modo || {})[c] !== 'fechas') return `<div><button type="button" class="btn-link" data-modo="${c}">Prefiero meter los periodos con fechas</button></div>`;
+  if ((S.modo || {})[c] !== 'fechas') return '';
   const lista = S[c] || [];
   const lineas = lista.map((p, i) => {
     const r = ymd(dnum(p.d), Math.min(dnum(p.h), FIN));
