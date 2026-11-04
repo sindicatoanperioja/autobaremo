@@ -485,10 +485,12 @@ const APARTADOS = [
       val:'4 puntos el 1.º y 2.º año, 6 el 3.º y 8 del 4.º en adelante',
       hint:'Seguidos, como funcionario/a de carrera, en el centro desde el que concursas. Se pierden al cambiar de centro.',
       ver: s => s.situacion !== 'expectativa' },
-    { id:'pd', tipo:'check', campo:'primerDestino', lab:'Es mi primer destino definitivo, conseguido por concurso',
-      hint:'Si concursas voluntariamente desde él, también te suman los años que estuviste antes en expectativa (1.1.2).',
+    { id:'pd', tipo:'check', campo:'primerDestino', lab:'Es mi primer destino definitivo y lo conseguí por concurso',
+      hint:'Si concursas voluntariamente desde ese primer destino, se te suman también los años que pasaste antes como funcionario/a de carrera sin destino definitivo (1.1.2). Cuando consigues otro destino, esos años ya no se suman.',
       ver: s => s.situacion !== 'expectativa' },
-    { id:'112', cod:'1.1.2', tipo:'tiempo', campo:'t112', lab:'Años como funcionario/a de carrera en expectativa de destino',
+    { id:'112', cod:'1.1.2', tipo:'tiempo', campo:'t112',
+      lab: s => s.situacion === 'expectativa' ? 'Años como funcionario/a de carrera en expectativa de destino' : 'Años como funcionario/a de carrera antes de tener tu primer destino definitivo',
+      hint: s => s.situacion === 'expectativa' ? 'Desde que eres funcionario/a de carrera. El año de prácticas no cuenta aquí.' : 'Los años de expectativa o con destino provisional entre el nombramiento como funcionario/a de carrera y tu primer destino definitivo. El año de prácticas no cuenta aquí.',
       val:'4 puntos por año · 0,3333 por mes', ver: s => s.situacion === 'expectativa' || s.primerDestino },
     { id:'113', cod:'1.1.3', tipo:'tiempo', campo:'t113', lab:'Años en un centro de especial dificultad', val:'4 puntos por año · 0,3333 por mes', hint:ESP },
     { grupo:'1.2 Antigüedad en el cuerpo' },
@@ -615,7 +617,7 @@ function fila(it){
   if (it.tipo === 'nota') return `<p class="nota-ref" style="padding:10px 0 2px; border-top:1px dashed var(--border)">${esc(it.txt)}</p>`;
   const cod = it.cod ? `<span class="cod">${esc(it.cod)}</span>` : '';
   const enl = it.enlace ? ` <a href="${it.enlace}">Ir a los idiomas</a>` : '';
-  const txt = `<div class="fila-txt">${cod}<span class="lab">${esc(it.lab)}</span>${it.val ? `<span class="val">${esc(it.val)}</span>` : ''}<span class="hint" data-hint="${it.id}">${esc(val(it.hint, S) || '')}${enl}</span></div>`;
+  const txt = `<div class="fila-txt">${cod}<span class="lab" data-lab="${it.id}">${esc(val(it.lab, S))}</span>${it.val ? `<span class="val">${esc(it.val)}</span>` : ''}<span class="hint" data-hint="${it.id}">${esc(val(it.hint, S) || '')}${enl}</span></div>`;
   const pts = (it.tipo === 'check' && !it.puntua) ? '<div></div>' : `<div class="fila-pts" id="p-${it.id}">0,0000</div>`;
   let extra = '';
   if (it.tipo === 'tiempo') extra = `<div class="periodos" id="pl-${it.campo}">${htmlPeriodos(it.campo)}</div>`;
@@ -661,6 +663,8 @@ function actualizar(){
     if (f && it.ver) f.hidden = !it.ver(S);
     const h = document.querySelector(`[data-hint="${it.id}"]`);
     if (h && typeof it.hint === 'function') h.textContent = it.hint(S);
+    const lb = document.querySelector(`[data-lab="${it.id}"]`);
+    if (lb && typeof it.lab === 'function') lb.textContent = it.lab(S);
   }));
   r.aps.forEach(a => {
     a.subs.forEach(s => {
@@ -826,7 +830,7 @@ function ejemplo(){
 
 function copiar(){
   const r = calcular(S);
-  const nom = {}; APARTADOS.forEach(a => a.items.forEach(it => { if (it.id && it.cod) nom[it.id] = it.cod + ' ' + it.lab; }));
+  const nom = {}; APARTADOS.forEach(a => a.items.forEach(it => { if (it.id && it.cod) nom[it.id] = it.cod + ' ' + val(it.lab, S); }));
   const lineas = ['Autobaremo Concurso de Traslados 2026-2027 (ANPE La Rioja)', ''];
   r.aps.forEach((a, i) => {
     const A = APARTADOS[i];
