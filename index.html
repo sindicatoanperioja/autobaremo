@@ -133,6 +133,12 @@ details.doc[open] summary::before{transform:rotate(45deg);}
 details.doc summary:hover{text-decoration:underline; text-underline-offset:3px;}
 details.doc ul{margin:6px 0 0; padding:10px 14px 10px 28px; background:var(--bg); border:1px solid var(--border); border-radius:12px; color:var(--ink); display:grid; gap:4px; max-width:70ch;}
 details.doc-general{font-size:.88rem;}
+/* En cada mérito, la justificación va aparte: al final de la fila, debajo de controles y fechas. */
+details.doc-fila{grid-column:1 / -1; margin-top:4px; border-top:1px solid var(--border); padding-top:8px;}
+details.doc-fila summary{border:1px solid var(--border); border-radius:999px; padding:4px 12px 4px 10px; background:var(--surface-2); font-size:.8rem;}
+details.doc-fila summary::before{display:none;}
+details.doc-fila summary:hover{text-decoration:none; border-color:var(--ink-muted);}
+details.doc-fila[open] summary{background:var(--ink-2); color:var(--surface); border-color:var(--ink-2);}
 details.doc-general .nota-ref{margin-top:6px;}
 .fila-txt .hint{display:block; font-size:.82rem; color:var(--ink-2); margin-top:4px;}
 .fila-in{display:flex; gap:8px; align-items:center; justify-content:flex-end; flex-wrap:wrap;}
@@ -667,19 +673,21 @@ function controles(it){
   if (t === 'check') return `<label class="switch"><input type="checkbox" id="${c}"${S[c] ? ' checked' : ''}> Sí</label>`;
   return '';
 }
+const ICONO_DOC = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>';
 function fila(it){
   if (it.grupo) return `<p class="grupo-tit">${esc(it.grupo)}</p>`;
   if (it.tipo === 'nota') return `<p class="nota-ref" style="padding:10px 0 2px; border-top:1px dashed var(--border)">${esc(it.txt)}</p>`;
   const cod = it.cod ? `<span class="cod">${esc(it.cod)}</span>` : '';
   const enl = it.enlace ? ` <a href="${it.enlace}">Ir a los idiomas</a>` : '';
-  const txt = `<div class="fila-txt">${cod}<span class="lab" data-lab="${it.id}">${esc(val(it.lab, S))}</span>${it.val ? `<span class="val">${esc(it.val)}</span>` : ''}<span class="hint" data-hint="${it.id}">${esc(val(it.hint, S) || '')}${enl}</span>${it.doc ? `<details class="doc"><summary>Cómo se justifica</summary><ul>${it.doc.map(d => `<li>${esc(d)}</li>`).join('')}</ul></details>` : ''}</div>`;
+  const txt = `<div class="fila-txt">${cod}<span class="lab" data-lab="${it.id}">${esc(val(it.lab, S))}</span>${it.val ? `<span class="val">${esc(it.val)}</span>` : ''}<span class="hint" data-hint="${it.id}">${esc(val(it.hint, S) || '')}${enl}</span></div>`;
   const pts = (it.tipo === 'check' && !it.puntua) ? '<div></div>' : `<div class="fila-pts" id="p-${it.id}">0,0000</div>`;
   let extra = '';
   if (it.tipo === 'tiempo') extra = `<div class="periodos" id="pl-${it.campo}">${htmlPeriodos(it.campo)}</div>`;
   if (it.tipo === 'idiomas') extra = `<div class="idiomas" id="idiomas-${it.origen}"></div>`;
   if (it.tipo === 'pubs') extra = `<div class="pubs">${PUBS.map(([k, l]) => `<div class="pub"><span>${l} <small style="color:var(--ink-muted)">· ${fmtC(PUB[k])}</small></span>${stepper('pub-' + k, (S.pub || {})[k], l)}</div>`).join('')}</div>`;
   const ctl = (it.tipo === 'idiomas' || it.tipo === 'pubs' || it.tipo === 'info') ? '<div class="fila-in"></div>' : `<div class="fila-in">${controles(it)}</div>`;
-  return `<div class="fila" id="f-${it.id}">${txt}${ctl}${pts}${extra}</div>`;
+  const doc = it.doc ? `<details class="doc doc-fila"><summary>${ICONO_DOC}Cómo se justifica</summary><ul>${it.doc.map(d => `<li>${esc(d)}</li>`).join('')}</ul></details>` : '';
+  return `<div class="fila" id="f-${it.id}">${txt}${ctl}${pts}${extra}${doc}</div>`;
 }
 function render(){
   document.getElementById('apartados').innerHTML = APARTADOS.map(a => `
