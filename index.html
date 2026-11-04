@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Autobaremo Concurso de Traslados</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="ANPE La Rioja: calcula tu puntuación en el Concurso de Traslados 2026-2027 con el baremo oficial y sus topes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Identidad de ANPE La Rioja, la misma que Retribuciones y Buscaopos: paleta del logo y del banner
+   (azul #1b619c, ondas #5b9bce y #c6dbec, niebla #e4eef6, verde #6cb195), Bebas Neue para titulares
+   y cifras grandes, Raleway para el texto. Formulario a la izquierda y marcador fijo a la derecha;
+   en móvil, una columna y una barra con el total abajo. */
+:root{
+  --bg:#f5f8fb; --surface:#ffffff; --surface-2:#eaf1f7; --border:#d9e4ee;
+  --cielo:#c6dbec; --medio:#5b9bce;
+  --ink:#334155; --ink-2:#475569; --ink-muted:#5a6b80; --head:#1b4f7d;
+  --accent:#1b619c; --accent-ink:#ffffff; --accent-soft:#e4eef6;
+  --verde:#6cb195; --verde-texto:#3d7a62; --verde-niebla:#e6f2ec;
+  --bad:#c0392b; --focus:#1b619c;
+  --shadow:0 1px 2px rgba(27,79,125,.06), 0 4px 14px rgba(27,79,125,.06);
+  --display:'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+  --text:Raleway, Arial, sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f161c; --surface:#16202a; --surface-2:#1e2a36; --border:#2b3a4a;
+    --cielo:#2a4560; --medio:#5b9bce;
+    --ink:#e2e8f0; --ink-2:#b7c2cb; --ink-muted:#9aa9bb; --head:#c6dbec;
+    --accent:#8dbbe4; --accent-ink:#0f161c; --accent-soft:#1a2a3a;
+    --verde:#6cb195; --verde-texto:#8fd0b3; --verde-niebla:#1d3a30;
+    --bad:#f08a80; --focus:#8dbbe4;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f161c; --surface:#16202a; --surface-2:#1e2a36; --border:#2b3a4a;
+  --cielo:#2a4560; --medio:#5b9bce;
+  --ink:#e2e8f0; --ink-2:#b7c2cb; --ink-muted:#9aa9bb; --head:#c6dbec;
+  --accent:#8dbbe4; --accent-ink:#0f161c; --accent-soft:#1a2a3a;
+  --verde:#6cb195; --verde-texto:#8fd0b3; --verde-niebla:#1d3a30;
+  --bad:#f08a80; --focus:#8dbbe4;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;}
+[hidden]{display:none !important;}
+@media (prefers-reduced-motion: reduce){ *,*::before,*::after{transition-duration:.01ms !important; animation-duration:.01ms !important;} }
+html{-webkit-text-size-adjust:100%; font-size:15px;}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--text); line-height:1.45; font-variant-numeric:lining-nums tabular-nums;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+a{color:var(--accent);}
+button, input, select{font:inherit; color:inherit;}
+:focus-visible{outline:2px solid var(--focus); outline-offset:2px;}
+
+/* Cabecera con logo y onda del banner */
+header.top{background:var(--surface); position:relative; padding-block:18px 46px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px));}
+.brand-row{display:flex; align-items:center; gap:18px; max-width:1240px; margin:0 auto;}
+.anpe-logo{height:96px; width:auto; flex:0 0 auto; display:block;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .anpe-logo{background:#fff; border-radius:12px; padding:6px 8px;}}
+:root[data-theme="dark"] .anpe-logo{background:#fff; border-radius:12px; padding:6px 8px;}
+.brand-txt{border-left:2px solid var(--cielo); padding-left:18px; min-width:0;}
+.antetitulo{margin:0; font-size:.82rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--verde-texto);}
+h1{font-family:var(--display); font-weight:400; letter-spacing:.02em; font-size:clamp(2.5rem, 1.9rem + 3vw, 3.8rem); line-height:.95; color:var(--accent);}
+.brand-txt .sub{color:var(--ink-muted); margin:6px 0 0; max-width:62ch; font-size:.95rem;}
+.onda{position:absolute; left:0; right:0; bottom:0; width:100%; height:40px; display:block;}
+@media (max-width:600px){ .anpe-logo{height:64px;} .brand-row{gap:12px;} .brand-txt{padding-left:12px;} }
+
+.wrap{max-width:1240px; margin:0 auto; padding-block:18px 80px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px));}
+.layout{display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:24px; align-items:start;}
+@media (max-width:960px){ .layout{grid-template-columns:minmax(0,1fr);} }
+.form-col{display:grid; gap:18px; min-width:0;}
+
+.card{background:var(--surface); border:1px solid var(--border); border-radius:20px; box-shadow:var(--shadow);}
+
+/* Tu situación */
+.perfil{padding:18px 22px; display:grid; gap:14px;}
+.perfil h2{font-family:var(--display); font-weight:400; font-size:1.7rem; letter-spacing:.02em; color:var(--head); line-height:1;}
+.perfil-grid{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px 20px;}
+.campo{display:grid; gap:6px; min-width:0;}
+.campo > label, .campo > .lbl{font-size:.8rem; font-weight:700; color:var(--ink-muted); letter-spacing:.04em; text-transform:uppercase;}
+select, input[type="number"], input[type="text"], input[type="date"]{
+  background:var(--surface); border:1.5px solid var(--border); border-radius:12px; padding:8px 12px; min-height:40px; width:100%;
+}
+select:hover, input:hover{border-color:var(--medio);}
+.pills{display:flex; flex-wrap:wrap; gap:3px; padding:3px; border:1.5px solid var(--cielo); border-radius:999px; width:fit-content; max-width:100%; background:var(--surface);}
+.pills label{position:relative; cursor:pointer;}
+.pills input{position:absolute; opacity:0; inset:0; margin:0; cursor:pointer;}
+.pills span{display:block; padding:7px 16px; border-radius:999px; font-weight:700; font-size:.88rem; color:var(--ink-muted); transition:background .15s, color .15s;}
+.pills label:hover span{color:var(--accent); background:var(--accent-soft);}
+.pills input:checked + span{background:var(--accent); color:var(--accent-ink);}
+.pills input:focus-visible + span{outline:2px solid var(--focus); outline-offset:2px;}
+.nota-ref{font-size:.85rem; color:var(--ink-muted); margin:0;}
+.nota-ref strong{color:var(--ink-2);}
+
+/* Apartados */
+.apartado{overflow:hidden;}
+.ap-head{display:flex; align-items:center; gap:14px; padding:16px 22px 14px; border-bottom:1px solid var(--border);}
+.ap-num{flex:0 0 auto; width:38px; height:38px; border-radius:50%; background:var(--accent); color:var(--accent-ink);
+  display:grid; place-items:center; font-family:var(--display); font-size:1.45rem; line-height:1; padding-top:2px;}
+.ap-tit{flex:1 1 auto; min-width:0;}
+.ap-tit h2{font-family:var(--display); font-weight:400; letter-spacing:.02em; font-size:1.7rem; line-height:1; color:var(--head);}
+.ap-tit .tope{font-size:.8rem; font-weight:700; color:var(--ink-muted); margin-top:3px;}
+.ap-score{text-align:right; flex:0 0 auto;}
+.ap-score .v{font-family:var(--display); font-size:1.9rem; line-height:1; color:var(--accent);}
+.ap-score .de{font-size:.78rem; color:var(--ink-muted); font-weight:600;}
+.barra{height:6px; background:var(--surface-2); border-radius:999px; overflow:hidden; margin:0 22px;}
+.barra > i{display:block; height:100%; width:0; background:var(--accent); border-radius:999px; transition:width .25s;}
+.barra.llena > i{background:var(--verde);}
+.ap-aviso{margin:10px 22px 0; font-size:.85rem; font-weight:600; color:var(--verde-texto); background:var(--verde-niebla); border-radius:12px; padding:8px 12px;}
+.ap-body{padding:6px 22px 14px;}
+.grupo-tit{font-size:.78rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--verde-texto); margin:14px 0 2px;}
+
+.fila{display:grid; grid-template-columns:minmax(0,1fr) auto 96px; gap:8px 18px; align-items:center; padding:12px 0; border-top:1px dashed var(--border);}
+.grupo-tit + .fila, .ap-body > .fila:first-child{border-top:0;}
+.fila-txt{min-width:0;}
+.fila-txt .cod{font-weight:800; color:var(--accent); margin-right:6px;}
+.fila-txt .lab{font-weight:700;}
+.fila-txt .val{display:block; font-size:.82rem; color:var(--ink-muted); margin-top:2px;}
+.fila-txt .hint{display:block; font-size:.82rem; color:var(--ink-2); margin-top:4px;}
+.fila-in{display:flex; gap:8px; align-items:center; justify-content:flex-end; flex-wrap:wrap;}
+.fila-pts{text-align:right; font-weight:800; font-size:1.02rem; color:var(--ink);}
+.fila-pts.cero{color:var(--ink-muted); font-weight:600;}
+.fila-pts .excede{display:block; font-size:.74rem; font-weight:700; color:var(--verde-texto);}
+/* Por ancho de la tarjeta, no de la pantalla: con el marcador al lado la columna del formulario es estrecha. */
+.apartado, .perfil{container-type:inline-size;}
+@container (max-width:620px){
+  .fila{grid-template-columns:minmax(0,1fr) auto;}
+  .fila-txt{grid-column:1 / -1;}
+  .fila-in{justify-content:flex-start;}
+  .perfil-grid{grid-template-columns:minmax(0,1fr);}
+  .idioma{grid-template-columns:minmax(0,1fr) auto auto; grid-auto-flow:row dense;}
+  .idioma .i-nom, .idioma .i-ori{grid-column:1 / -1;}
+}
+
+/* Controles */
+.tiempo{display:flex; gap:6px; align-items:center;}
+.tiempo label{display:flex; align-items:center; gap:5px; font-size:.82rem; color:var(--ink-muted); font-weight:600;}
+.tiempo input{width:64px; text-align:center; padding:8px 6px;}
+.stepper{display:inline-flex; align-items:center; border:1.5px solid var(--border); border-radius:999px; overflow:hidden; background:var(--surface);}
+.stepper button{appearance:none; border:0; background:transparent; width:36px; height:38px; cursor:pointer; font-size:1.15rem; font-weight:700; color:var(--accent);}
+.stepper button:hover{background:var(--accent-soft);}
+.stepper input{border:0; border-radius:0; width:46px; min-height:38px; text-align:center; padding:0; -moz-appearance:textfield;}
+.stepper input::-webkit-outer-spin-button, .stepper input::-webkit-inner-spin-button{-webkit-appearance:none; margin:0;}
+.num-corto{width:110px !important; text-align:right;}
+.switch{display:inline-flex; align-items:center; gap:10px; cursor:pointer; font-weight:600; font-size:.9rem;}
+.switch input{appearance:none; width:44px; height:26px; border-radius:999px; background:var(--surface-2); border:1.5px solid var(--border); position:relative; cursor:pointer; margin:0; transition:background .15s;}
+.switch input::after{content:""; position:absolute; top:2px; left:2px; width:18px; height:18px; border-radius:50%; background:var(--surface); box-shadow:0 1px 2px rgba(0,0,0,.25); transition:transform .15s;}
+.switch input:checked{background:var(--accent); border-color:var(--accent);}
+.switch input:checked::after{transform:translateX(18px);}
+select.sel-corto{width:auto; min-width:150px;}
+
+.btn-link{appearance:none; border:0; background:none; padding:2px 0; color:var(--accent); font-weight:700; font-size:.82rem; cursor:pointer; text-decoration:underline; text-underline-offset:3px;}
+.fechas{grid-column:1 / -1; background:var(--accent-soft); border-radius:14px; padding:12px 14px; display:flex; flex-wrap:wrap; gap:10px 14px; align-items:end;}
+.fechas .campo{flex:1 1 150px;}
+.fechas .res{flex:1 1 100%; font-size:.85rem; color:var(--ink-2); margin:0;}
+.btn{appearance:none; text-decoration:none; display:inline-flex; align-items:center; border:1.5px solid var(--accent); background:var(--accent); color:var(--accent-ink); font-weight:700; border-radius:999px; padding:8px 18px; cursor:pointer; min-height:40px;}
+.btn:hover{filter:brightness(1.08);}
+.btn.sec{background:var(--surface); color:var(--accent);}
+.btn.sec:hover{background:var(--accent-soft); filter:none;}
+
+/* Idiomas */
+.idiomas{grid-column:1 / -1; display:grid; gap:8px;}
+.idioma{display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr) minmax(0,1.5fr) auto auto; gap:8px; align-items:center;}
+.idioma .pts{font-weight:800; min-width:56px; text-align:right;}
+.idioma .pts.no{color:var(--ink-muted); font-weight:600; text-decoration:line-through;}
+.idioma .quitar{appearance:none; border:0; background:none; color:var(--ink-muted); cursor:pointer; font-size:1.3rem; width:32px; height:32px; border-radius:50%;}
+.idioma .quitar:hover{background:var(--surface-2); color:var(--bad);}
+.idioma-aviso{font-size:.82rem; color:var(--verde-texto); font-weight:600; margin:0;}
+
+.pubs{grid-column:1 / -1; display:grid; grid-template-columns:repeat(auto-fill, minmax(170px, 1fr)); gap:8px 14px;}
+.pub{display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:.88rem; background:var(--bg); border-radius:12px; padding:6px 6px 6px 12px;}
+.pub .stepper button{width:30px; height:32px;} .pub .stepper input{width:36px; min-height:32px;}
+
+/* Marcador */
+.resumen{position:sticky; top:16px; padding:20px 22px; display:grid; gap:14px;}
+.res-tit{font-size:.8rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--verde-texto); margin:0;}
+.total{font-family:var(--display); font-size:4.2rem; line-height:.9; color:var(--accent); letter-spacing:.01em;}
+.total small{font-family:var(--text); font-size:.95rem; font-weight:700; color:var(--ink-muted); letter-spacing:0; margin-left:4px;}
+.res-list{list-style:none; margin:0; padding:0; display:grid; gap:10px;}
+.res-list li{display:grid; gap:4px;}
+.res-row{display:flex; justify-content:space-between; gap:10px; font-size:.9rem;}
+.res-row a{color:var(--ink); text-decoration:none; font-weight:600;}
+.res-row a:hover{color:var(--accent); text-decoration:underline;}
+.res-row b{white-space:nowrap;}
+.res-row b span{color:var(--ink-muted); font-weight:600; font-size:.8rem;}
+.res-list .barra{margin:0; height:5px;}
+.perdidos{font-size:.85rem; color:var(--verde-texto); background:var(--verde-niebla); border-radius:12px; padding:8px 12px; margin:0; font-weight:600;}
+.acciones{display:flex; flex-wrap:wrap; gap:8px;}
+.letra{font-size:.8rem; color:var(--ink-muted); margin:0;}
+.confirmar{display:flex; flex-wrap:wrap; gap:8px; align-items:center; font-size:.85rem; font-weight:600; background:var(--accent-soft); border-radius:12px; padding:8px 12px;}
+
+/* Barra inferior móvil */
+.barra-movil{display:none;}
+@media (max-width:960px){
+  .resumen{position:static;}
+  .barra-movil{display:flex; position:fixed; left:0; right:0; bottom:0; z-index:20; align-items:center; justify-content:space-between; gap:12px;
+    background:var(--surface); border-top:1px solid var(--border); box-shadow:0 -4px 14px rgba(27,79,125,.08);
+    padding-block:10px calc(10px + env(safe-area-inset-bottom, 0px));
+    padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px));}
+  .barra-movil .t{font-family:var(--display); font-size:2rem; line-height:1; color:var(--accent);}
+  .barra-movil .l{font-size:.75rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-muted);}
+}
+
+footer.pie{border-top:1px solid var(--border); margin-top:28px; padding-top:18px; font-size:.85rem; color:var(--ink-muted); display:grid; gap:6px;}
+footer.pie p{margin:0;}
+footer.pie .contacto{font-weight:700; color:var(--ink-2); user-select:all;}
+@media print{ .barra-movil, .acciones, .btn-link, header .onda{display:none !important;} .layout{grid-template-columns:1fr;} .card{box-shadow:none;} }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand-row">
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIxNTcuMiIgaGVpZ2h0PSIxNjYuNiIgdmlld0JveD0iNjMuMCAxNS42IDE1Ny4yIDE2Ni42Ij4KPGRlZnM+CjxjbGlwUGF0aCBpZD0iY2xpcF8xIj4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMCwxOTguNDI1KSIgZD0iTTAgMTk4LjQyNUgyODMuNDY1VjBIMFoiPjwvcGF0aD4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8Zz4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXBfMSkiPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSw2NS4wOTI4LDE1OS4yODUpIiBkPSJNMCAwSDIuNDNDMi40OTUtLjI0MiAyLjYxOC0uNDE3IDIuNzk0LS41MjIgMi45Ny0uNjI4IDMuMjMyLS42ODIgMy41ODEtLjY4MiAzLjg3NC0uNjgyIDQuMTAzLS42MzggNC4yNzEtLjU1MiA0LjQzNy0uNDY2IDQuNTIxLS4zNDggNC41MjEtLjE5NSA0LjUyMSAuMDQ4IDQuMTcxIC4yNDQgMy40NyAuMzk1IDMuMzI4IC40MjYgMy4yMjEgLjQ0OCAzLjE0NyAuNDYzIDIuNTc0IC41OSAyLjExNyAuNzA1IDEuNzc3IC44MSAxLjQzNyAuOTE0IDEuMTkgMS4wMTMgMS4wMzQgMS4xMDIgLjczNSAxLjI4NyAuNTExIDEuNTA4IC4zNjEgMS43NjYgLjIxMSAyLjAyMiAuMTM3IDIuMzE2IC4xMzcgMi42NDYgLjEzNyAzLjMwOSAuNDI3IDMuODI4IDEuMDA4IDQuMjA3IDEuNTg4IDQuNTg2IDIuMzg5IDQuNzc0IDMuNDA4IDQuNzc0IDQuNDA2IDQuNzc0IDUuMTkzIDQuNTk0IDUuNzY4IDQuMjMxIDYuMzQyIDMuODcxIDYuNjY2IDMuMzUyIDYuNzM5IDIuNjc3SDQuMzY5QzQuMzI4IDIuODc1IDQuMjI3IDMuMDIxIDQuMDYzIDMuMTE3IDMuOSAzLjIxNSAzLjY2NyAzLjI2NCAzLjM2NCAzLjI2NCAzLjA5NiAzLjI2NCAyLjg5NyAzLjIyNiAyLjc2OCAzLjE0OSAyLjYzNyAzLjA3NCAyLjU3MSAyLjk1OSAyLjU3MSAyLjgwNSAyLjU3MSAyLjU4NCAyLjkxNCAyLjM5OSAzLjU5NiAyLjI1MSAzLjY1NSAyLjIzNiAzLjcwMiAyLjIyNSAzLjczNSAyLjIyIDMuODMzIDIuMTk4IDMuOTgyIDIuMTY3IDQuMTg0IDIuMTI0IDUuMDg4IDEuOTI4IDUuNjggMS43NDggNS45NTggMS41ODggNi4zMDMgMS4zOTIgNi41NTYgMS4xNjggNi43MTMgLjkxNyA2Ljg3MiAuNjY1IDYuOTUxIC4zNjkgNi45NTEgLjAyNiA2Ljk1MS0uNzEyIDYuNjUxLTEuMjc4IDYuMDUxLTEuNjc1IDUuNDUtMi4wNzIgNC41OS0yLjI3IDMuNDctMi4yNyAyLjQzOC0yLjI3IDEuNjItMi4wNzIgMS4wMTctMS42NzUgLjQxMy0xLjI3OCAuMDczLS43MjEgMCAwIiBmaWxsPSIjMWI2MTljIj48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDAsMTk4LjQyNSkiIGQ9Ik03Mi42NyA0My43NDJINzUuMjE1VjM3LjA1Nkg3Mi42N1oiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsNzYuMTk2MywxNjEuMzY4OSkiIGQ9Ik0wIDBWNi42ODZIMi4zNzNMNC41NTUgMy41NzhDNC42MjIgMy40ODkgNC42OTEgMy4zNjYgNC43NjggMy4yMDUgNC44NDQgMy4wNDUgNC45MjQgMi44NTEgNS4wMDggMi42MjUgNC45ODcgMi43NDEgNC45NyAyLjg3MSA0Ljk2MSAzLjAxNCA0Ljk1IDMuMTU2IDQuOTQ1IDMuMzI4IDQuOTQ1IDMuNTMxVjYuNjg2SDcuMzI3VjBINC45NDVMMi43NjMgMy4wODZDMi42OTYgMy4xNzggMi42MjMgMy4zMDYgMi41NDMgMy40NzQgMi40NjYgMy42MzkgMi4zODUgMy44MjkgMi4zMDQgNC4wNDQgMi4zMjkgMy45MjcgMi4zNDYgMy44MDQgMi4zNTcgMy42NzUgMi4zNjggMy41NDYgMi4zNzMgMy4zNjYgMi4zNzMgMy4xMzJWMFoiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsODYuOTYwOSwxNTkuNjc0NikiIGQ9Ik0wIDBILjY2OUMxLjI5NCAwIDEuNzI2IC4xMTggMS45NjcgLjM1NyAyLjIwOCAuNTk3IDIuMzMgMS4wMjUgMi4zMyAxLjY0MiAyLjMzIDIuMjQ0IDIuMjA2IDIuNjcxIDEuOTU5IDIuOTIyIDEuNzEzIDMuMTc0IDEuMjk0IDMuMjk5IC43MDIgMy4yOTlIMFpNLTIuNDk5LTEuNjk0VjQuOTkxSC41MjFDMS4yOTEgNC45OTEgMS44NjMgNC45NjMgMi4yMzYgNC45MDIgMi42MTIgNC44NDQgMi45MzkgNC43NDcgMy4yMTYgNC42MSAzLjc1NSA0LjMzOCA0LjE2IDMuOTU2IDQuNDMxIDMuNDYzIDQuNzA0IDIuOTY5IDQuODM5IDIuMzYyIDQuODM5IDEuNjQyIDQuODM5IC44ODYgNC42NjkgLjI1IDQuMzM0LS4yNjYgMy45OTctLjc4MiAzLjUwMy0xLjE2NSAyLjg0Ny0xLjQxNiAyLjU5My0xLjUxNyAyLjI3NS0xLjU4OCAxLjg5NC0xLjYzMSAxLjUxMS0xLjY3MyAuODk4LTEuNjk0IC4wNTgtMS42OTRaIiBmaWxsPSIjMWI2MTljIj48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDAsMTk4LjQyNSkiIGQ9Ik05Mi40NDcgNDMuNzQySDk0Ljk5M1YzNy4wNTZIOTIuNDQ3WiIgZmlsbD0iIzFiNjE5YyI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxMDEuMDE5NSwxNTguNzc2MikiIGQ9Ik0wIDBIMi4zNjZDMi4yOTYtLjg4MSAxLjkzNS0xLjU2NCAxLjI4My0yLjA1IC42MzItMi41MzYtLjI1MS0yLjc3OC0xLjM2NS0yLjc3OC0yLjYxMS0yLjc3OC0zLjU5LTIuNDY1LTQuMzA1LTEuODM2LTUuMDIyLTEuMjA5LTUuMzc4LS4zNDktNS4zNzggLjc0NC01LjM3OCAxLjgzMy01LjAyNSAyLjY5Mi00LjMxOCAzLjMyMS0zLjYwOSAzLjk1MS0yLjY0NCA0LjI2Ni0xLjQyMiA0LjI2Ni0uMjk0IDQuMjY2IC41OTIgNC4wMzIgMS4yMzYgMy41NjQgMS44ODQgMy4wOTcgMi4yNDYgMi40MjkgMi4zMjQgMS41NjFILS4wNjlDLS4xMDQgMS45MDItLjIzNCAyLjE2MS0uNDU1IDIuMzM1LS42NzggMi41MDktLjk4OSAyLjU5Ni0xLjM5MSAyLjU5Ni0xLjg4IDIuNTk2LTIuMjQ2IDIuNDQxLTIuNDkxIDIuMTM1LTIuNzM3IDEuODI4LTIuODU4IDEuMzYzLTIuODU4IC43NDQtMi44NTggLjEzNi0yLjcyOS0uMzIzLTIuNDY3LS42MzYtMi4yMDctLjk0OC0xLjgyNi0xLjEwNC0xLjMyMS0xLjEwNC0uOTM1LTEuMTA0LS42MjgtMS4wMDktLjM5OS0uODE4LS4xNzMtLjYyNy0uMDM5LS4zNTQgMCAwIiBmaWxsPSIjMWI2MTljIj48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDEwNi4zMzk4LDE1OS4wODA5KSIgZD0iTTAgMEgxLjU3TC43OTMgMi4zMTRaTS0zLjIxMS0yLjI4Ny0uNDc1IDQuMzk3SDIuMDU2TDQuNzkzLTIuMjg3SDIuMzE1TDIuMDI1LTEuNDAxSC0uNDUzTC0uNzUzLTIuMjg3WiIgZmlsbD0iIzFiNjE5YyI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxMTIuNTU2MiwxNjEuMzY4OSkiIGQ9Ik0wIDBWNC45MjVILTIuMjRWNi42ODZINC43MzhWNC45MjVIMi40OTlWMFoiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTE5Ljc0OSwxNTguMDMyKSIgZD0iTTAgMEMwLS42MzMgLjEyMy0xLjA5NyAuMzY5LTEuMzk1IC42MTctMS42OSAxLjAwMy0xLjgzOSAxLjUyOC0xLjgzOSAyLjA0OC0xLjgzOSAyLjQzLTEuNjkxIDIuNjczLTEuMzk2IDIuOTE2LTEuMTAxIDMuMDM5LS42MzYgMy4wMzkgMCAzLjAzOSAuNjM4IDIuOTE2IDEuMTA0IDIuNjczIDEuMzk4IDIuNDMgMS42OTUgMi4wNDggMS44NDMgMS41MjggMS44NDMgMS4wMDMgMS44NDMgLjYxNyAxLjY5NCAuMzY5IDEuMzk4IC4xMjMgMS4xMDEgMCAuNjM1IDAgME0tMi41MiAwQy0yLjUyIDEuMDg5LTIuMTU3IDEuOTQ4LTEuNDMzIDIuNTc3LS43MSAzLjIwNyAuMjc3IDMuNTIxIDEuNTI4IDMuNTIxIDIuNzc0IDMuNTIxIDMuNzU4IDMuMjA3IDQuNDc5IDIuNTc3IDUuMjAyIDEuOTQ4IDUuNTYzIDEuMDg5IDUuNTYzIDAgNS41NjMtMS4wODcgNS4yMDItMS45NDUgNC40NzktMi41NzcgMy43NTgtMy4yMDggMi43NzQtMy41MjIgMS41MjgtMy41MjIgLjI3Ny0zLjUyMi0uNzEtMy4yMDgtMS40MzMtMi41NzctMi4xNTctMS45NDUtMi41Mi0xLjA4Ny0yLjUyIDAiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMCwxOTguNDI1KSIgZD0iTTEyOC45NzMgNDMuNzQySDEzMS41MTkwMlYzNy4wNTZIMTI4Ljk3M1oiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTMyLjUwMSwxNjEuMzY4OSkiIGQ9Ik0wIDBWNi42ODZIMi4zNzJMNC41NTQgMy41NzhDNC42MiAzLjQ4OSA0LjY5MSAzLjM2NiA0Ljc2NiAzLjIwNSA0Ljg0MiAzLjA0NSA0LjkyMiAyLjg1MSA1LjAwNyAyLjYyNSA0Ljk4NiAyLjc0MSA0Ljk3IDIuODcxIDQuOTYxIDMuMDE0IDQuOTQ4IDMuMTU2IDQuOTQ0IDMuMzI4IDQuOTQ0IDMuNTMxVjYuNjg2SDcuMzI1VjBINC45NDRMMi43NjEgMy4wODZDMi42OTYgMy4xNzggMi42MjMgMy4zMDYgMi41NDIgMy40NzQgMi40NjQgMy42MzkgMi4zODMgMy44MjkgMi4zMDQgNC4wNDQgMi4zMjcgMy45MjcgMi4zNDQgMy44MDQgMi4zNTUgMy42NzUgMi4zNjcgMy41NDYgMi4zNzIgMy4zNjYgMi4zNzIgMy4xMzJWMFoiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTQzLjI2MzcsMTU5LjY3NDYpIiBkPSJNMCAwSC42NzFDMS4yOTQgMCAxLjcyOCAuMTE4IDEuOTY5IC4zNTcgMi4yMDkgLjU5NyAyLjMzIDEuMDI1IDIuMzMgMS42NDIgMi4zMyAyLjI0NCAyLjIwNSAyLjY3MSAxLjk2MSAyLjkyMiAxLjcxNSAzLjE3NCAxLjI5NCAzLjI5OSAuNzAyIDMuMjk5SDBaTS0yLjQ5OS0xLjY5NFY0Ljk5MUguNTIzQzEuMjkxIDQuOTkxIDEuODYzIDQuOTYzIDIuMjM4IDQuOTAyIDIuNjEyIDQuODQ0IDIuOTM5IDQuNzQ3IDMuMjE3IDQuNjEgMy43NTUgNC4zMzggNC4xNiAzLjk1NiA0LjQzMiAzLjQ2MyA0LjcwNCAyLjk2OSA0LjgzOSAyLjM2MiA0LjgzOSAxLjY0MiA0LjgzOSAuODg2IDQuNjcxIC4yNSA0LjMzNS0uMjY2IDMuOTk4LS43ODIgMy41MDMtMS4xNjUgMi44NDgtMS40MTYgMi41OTQtMS41MTcgMi4yNzUtMS41ODggMS44OTQtMS42MzEgMS41MTMtMS42NzMgLjktMS42OTQgLjA2LTEuNjk0WiIgZmlsbD0iIzFiNjE5YyI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxNDguNzA5LDE2MS4zNjg5KSIgZD0iTTAgMFY2LjY4Nkg2LjIxNlY1LjA4NEgyLjQ5OFY0LjE5M0g1LjY0MlYyLjY1OUgyLjQ5OFYxLjYyNUg2LjM3VjBaIiBmaWxsPSIjMWI2MTljIj48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDE1OC4yMDQxLDE1Ny42ODczKSIgZD0iTTAgMEguODA0QzEuMzIzIDAgMS42NzMgLjA1IDEuODQ5IC4xNSAyLjAyNCAuMjQ5IDIuMTEzIC40MjcgMi4xMTMgLjY4MSAyLjExMyAuOTM3IDIuMDI3IDEuMTE2IDEuODU5IDEuMjE2IDEuNjg5IDEuMzE1IDEuMzM4IDEuMzY1IC44MDQgMS4zNjVIMFpNLTIuNDk5LTMuNjgyVjMuMDA0SC43MDJDMS40MTEgMy4wMDQgMS45NyAyLjk2OSAyLjM4NSAyLjg5NyAyLjc5OSAyLjgyNiAzLjE0NSAyLjcxMiAzLjQyMiAyLjU1NSAzLjc4MyAyLjM0NiA0LjA1IDIuMDg4IDQuMjI2IDEuNzc5IDQuNDAxIDEuNDcgNC40OSAxLjEwNCA0LjQ5IC42ODEgNC40OS0uMDY2IDQuMjMzLS42NCAzLjcxOS0xLjAzOCAzLjIwNS0xLjQzNSAyLjQ2NC0xLjYzNCAxLjQ5NS0xLjYzNEgwVi0zLjY4MloiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTYzLjE0NzUsMTYxLjM2ODkpIiBkPSJNMCAwVjYuNjg2SDYuMjE2VjUuMDg0SDIuNDk4VjQuMTkzSDUuNjQyVjIuNjU5SDIuNDk4VjEuNjI1SDYuMzdWMFoiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTcwLjE0NDUsMTYxLjM2ODkpIiBkPSJNMCAwVjYuNjg2SDIuMzcyTDQuNTUzIDMuNTc4QzQuNjE5IDMuNDg5IDQuNjkxIDMuMzY2IDQuNzY2IDMuMjA1IDQuODQyIDMuMDQ1IDQuOTIzIDIuODUxIDUuMDA3IDIuNjI1IDQuOTg1IDIuNzQxIDQuOTcgMi44NzEgNC45NTkgMy4wMTQgNC45NDkgMy4xNTYgNC45NDMgMy4zMjggNC45NDMgMy41MzFWNi42ODZINy4zMjZWMEg0Ljk0M0wyLjc2MyAzLjA4NkMyLjY5NSAzLjE3OCAyLjYyMSAzLjMwNiAyLjU0MSAzLjQ3NCAyLjQ2NCAzLjYzOSAyLjM4MyAzLjgyOSAyLjMwMyA0LjA0NCAyLjMyNiAzLjkyNyAyLjM0NCAzLjgwNCAyLjM1NCAzLjY3NSAyLjM2NSAzLjU0NiAyLjM3MiAzLjM2NiAyLjM3MiAzLjEzMlYwWiIgZmlsbD0iIzFiNjE5YyI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxODAuOTA3MiwxNTkuNjc0NikiIGQ9Ik0wIDBILjY3MUMxLjI5NCAwIDEuNzI3IC4xMTggMS45NjkgLjM1NyAyLjIwOCAuNTk3IDIuMzMgMS4wMjUgMi4zMyAxLjY0MiAyLjMzIDIuMjQ0IDIuMjA3IDIuNjcxIDEuOTU5IDIuOTIyIDEuNzEzIDMuMTc0IDEuMjk0IDMuMjk5IC43MDIgMy4yOTlIMFpNLTIuNDk5LTEuNjk0VjQuOTkxSC41MjJDMS4yOTEgNC45OTEgMS44NjIgNC45NjMgMi4yMzggNC45MDIgMi42MTEgNC44NDQgMi45MzggNC43NDcgMy4yMTYgNC42MSAzLjc1NSA0LjMzOCA0LjE2IDMuOTU2IDQuNDMxIDMuNDYzIDQuNzAzIDIuOTY5IDQuODM5IDIuMzYyIDQuODM5IDEuNjQyIDQuODM5IC44ODYgNC42NzEgLjI1IDQuMzM0LS4yNjYgMy45OTgtLjc4MiAzLjUwMy0xLjE2NSAyLjg0Ny0xLjQxNiAyLjU5My0xLjUxNyAyLjI3NS0xLjU4OCAxLjg5NC0xLjYzMSAxLjUxMi0xLjY3MyAuODk5LTEuNjk0IC4wNTgtMS42OTRaIiBmaWxsPSIjMWI2MTljIj48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDAsMTk4LjQyNSkiIGQ9Ik0xODYuMzk1IDQzLjc0MkgxODguOTRWMzcuMDU2SDE4Ni4zOTVaIiBmaWxsPSIjMWI2MTljIj48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDE4OS45MjA5LDE2MS4zNjg5KSIgZD0iTTAgMFY2LjY4Nkg2LjIxNlY1LjA4NEgyLjQ5OFY0LjE5M0g1LjY0M1YyLjY1OUgyLjQ5OFYxLjYyNUg2LjM3VjBaIiBmaWxsPSIjMWI2MTljIj48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDE5Ni45MTcsMTYxLjM2ODkpIiBkPSJNMCAwVjYuNjg2SDIuMzcyTDQuNTU1IDMuNTc4QzQuNjIxIDMuNDg5IDQuNjkxIDMuMzY2IDQuNzY4IDMuMjA1IDQuODQzIDMuMDQ1IDQuOTI0IDIuODUxIDUuMDA5IDIuNjI1IDQuOTg3IDIuNzQxIDQuOTcxIDIuODcxIDQuOTYxIDMuMDE0IDQuOTUgMy4xNTYgNC45NDUgMy4zMjggNC45NDUgMy41MzFWNi42ODZINy4zMjdWMEg0Ljk0NUwyLjc2MyAzLjA4NkMyLjY5NiAzLjE3OCAyLjYyMyAzLjMwNiAyLjU0NCAzLjQ3NCAyLjQ2NCAzLjYzOSAyLjM4NSAzLjgyOSAyLjMwNCA0LjA0NCAyLjMyOSAzLjkyNyAyLjM0NiAzLjgwNCAyLjM1NiAzLjY3NSAyLjM2NyAzLjU0NiAyLjM3MiAzLjM2NiAyLjM3MiAzLjEzMlYwWiIgZmlsbD0iIzFiNjE5YyI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwyMDYuODIwMywxNjEuMzY4OSkiIGQ9Ik0wIDBWNC45MjVILTIuMjRWNi42ODZINC43MzhWNC45MjVIMi41VjBaIiBmaWxsPSIjMWI2MTljIj48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDIxMS44MjYyLDE2MS4zNjg5KSIgZD0iTTAgMFY2LjY4Nkg2LjIxOFY1LjA4NEgyLjVWNC4xOTNINS42NDNWMi42NTlIMi41VjEuNjI1SDYuMzdWMFoiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsODEuNzg5NiwxMzguNDU4OCkiIGQ9Ik0wIDAgNC4xMzEgMTMuMzA1IDguMTc5IDBaTTQ4LjgzIDcuMTQ3QzQ4LjgzIDUuOTgyIDQ4Ljg1NiA0Ljk5MiA0OC45MTIgNC4xNzUgNDguOTY3IDMuMzU1IDQ5LjA0OSAyLjYwOCA0OS4xNiAxLjkzMSA0OC43MTkgMy4yMzUgNDguMyA0LjM0OCA0Ny45MDYgNS4yNzEgNDcuNTExIDYuMTkxIDQ3LjE0IDYuOTA0IDQ2Ljc5MSA3LjQwOUwzNS40MTkgMjUuMjhIMjMuMDU0Vi03Ljk3MkwxMC43MTEgMjUuMjhILTIuNDc4TC0xNi43NDItMTMuMTQ4SC0zLjkzOEwtMi4zNjctOC4wNjJIMTAuNTQ2TDEyLjA2Mi0xMy4xNDhIMjMuMDU0IDI0Ljk3NiAzNS40MTlWNC44NTNDMzUuNDE5IDYuMTkxIDM1LjM5MSA3LjIzIDM1LjMzNiA3Ljk3IDM1LjI4IDguNzA5IDM1LjE4OCA5LjQxOCAzNS4wNjEgMTAuMDk3IDM1LjQ4MSA4Ljg2MSAzNS45IDcuNzY3IDM2LjMxMyA2LjgwOSAzNi43MjYgNS44NTMgMzcuMTA3IDUuMTEyIDM3LjQ1NyA0LjU5Mkw0OC44My0xMy4xNDhINjEuMjQ5VjI1LjI4SDQ4LjgzWiIgZmlsbD0iIzFiNjE5YyI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxNjkuMTY2LDEyOS41ODg3KSIgZD0iTTAgMEMtLjk2OC0uNTc0LTIuODgtLjg2MS01LjczOS0uODYxSC0xMC4xNDZWNi45OTJILTUuNzM5Qy0yLjgwMiA2Ljk5Mi0uODcxIDYuNzA1IC4wNTggNi4xMzEgLjk4NSA1LjU1NyAxLjQ0OCA0LjUzIDEuNDQ4IDMuMDUzIDEuNDQ4IDEuNTkyIC45NjYgLjU3NCAwIDBNMjcuNzE1LTEyLjY3OVYtNi43MzFINDQuOTY5VjIuMDg4SDI3LjcxNVY3LjIwMUg0OC4xMjRWMTYuNDFIMTQuMDA2VjYuOTMyQzEzLjc2OSA3LjgwMSAxMy40NTIgOC42MTUgMTMuMDQzIDkuMzY2IDEyLjA3NiAxMS4xNDEgMTAuNjA4IDEyLjYyOCA4LjYzOSAxMy44MjcgNy4xMTEgMTQuNzMxIDUuMjEyIDE1LjM4OSAyLjk0MiAxNS43OTggLjY3IDE2LjIwNS0yLjQwNiAxNi40MS02LjI5MSAxNi40MUgtMjMuODU3Vi0yMi4wMTlILTEwLjE0NlYtMTAuMjUzSC0xLjk0NEMzLjM3LTEwLjI1MyA3LjQzOC05LjEwOSAxMC4yNjEtNi44MjIgMTIuMTQtNS4zIDEzLjM3OC0zLjMyMSAxNC4wMDYtLjkwN1YtMjIuMDE5SDQ4Ljk2NFYtMTIuNjc5WiIgZmlsbD0iIzFiNjE5YyI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxMTQuOTk4NSwyNy44OTM0MDMpIiBkPSJNMCAwQy0yLjY0LTEuOTA1LTguMTEzLTcuNDQxLTQuNzMtMTkuMDk4LTQuNzMtMTkuMDk4LTQuNTctMTkuNDE1LTQuNTExLTE5LjkyLTExLjIxMS0yOC4wMjMtMTYuODAzLTM5LjAxNy0xOC4yNzEtNTMuNy0xOC4yNzEtNTMuNy0yNS41NjktNDguNTYtMzAuMTA4LTMzLjk4NS0yNC42MDktMTkuMjkyLTEzLjc4OC03LjE3NyAwIDBNMTAuNDQgNC4yOTJDMTUuMjI1IDMuMzM0IDIzLjE1NSAxLjYyNyAyNS4wNjQgLjQ3OCAyNS4wNjQgLjQ3OCAxMC43MjItMy43NTMtMS41MzEtMTYuNTczLTEuNjE0LTE2LjQ2Ni0xLjY5Ni0xNi4zMzUtMS43NzctMTYuMTY3LTIuNTExLTE0LjYwOS01LjQ3Mi03LjQ3MiAxLjEgLjU1OCA0LjA4OCAyLjAzOSA3LjIwOCAzLjI5MyAxMC40NCA0LjI5Mk0yOC41NjMgNy4wODdDMjguNTYzIDcuMDg3IDI4LjEzMSAzLjgyNyAyOC4wNjMgMi45NSAyOC4wNjMgMi45NSAyOC4wNDIgMS43NDYgMjYuNDY5IDIuMjEzIDI1LjQxOSAyLjUyNiAxOC43NDIgNC4zNjUgMTMuMjQyIDUuMDg4IDE4LjE0NCA2LjM1NyAyMy4yNzggNy4wNDYgMjguNTYzIDcuMDg3TTI1LjcyOS0yOC45NjRWLTI4Ljk2NEwyNS43MTItMjkuMzExQzI1LjcxMi0yOS4zMTEgMjUuNjY3LTI5Ljg3NSAyNS41NTctMzAuMzQzIDI1LjMyNC0zMS4yMDYgMjQuNzg2LTMyLjEzNyAyMy41NC0zMi4wNDIgMjMuNTM2LTMyLjA0MiAyMy41MjctMzIuMDQgMjMuNTI3LTMyLjA0IDE4LjAwNC0zMS42MjcgMTMuNzQ3LTMwLjM2MiAxMC41ODUtMjlWLTI5LjAwMkMxMC41NC0yOC45ODIgMTAuNDk4LTI4Ljk2MiAxMC40NTMtMjguOTQzIDkuNzc0LTI4LjY0NiA5LjE0Ni0yOC4zNDcgOC41NjgtMjguMDUxIDcuOTg3LTI3Ljc2MiA3LjQ4MS0yNy41IDcuMDc0LTI3LjI4MiA2LjcwMS0yNy4xMDQgNi4zMjQtMjYuODkyIDUuOTYxLTI2LjY2NiA1Ljk1OC0yNi42NjUgNS45NTItMjYuNjYgNS45NTItMjYuNjZINS45NTNDNC41ODEtMjUuODA2IDMuNDExLTI0Ljc3MiAzLjQxMS0yNC43NzIgMi44OTgtMjQuMjggMi4zMjItMjMuMzIyIDMuMzE5LTIxLjkxNiAzLjk0NS0yMS4xMDMgNC44NTQtMjAuMjE2IDQuODU0LTIwLjIxNkg0Ljg1OEMxMC4yNzMtMTQuMjY3IDE3LjQzNy04LjQ5NCAyNi45NDQtMy41NzFaTTIzLjI3MS03MC44OTlDMjIuMjg3LTcwLjk2NiAxMi40MTgtNzAuMTk3IDMuOTU5LTY3LjgwOS0zLjAxMi02NS44MzktOC41MTctNjIuNDA0LTExLjc0Ny02MC42MDEtMTEuNzU1LTYwLjU5Ni0xMS44NzktNjAuNTE2LTExLjg4Ni02MC41MTEtMTEuOTItNTguNTc2LTExLjY3NC00OC4yMTEtNS43NDgtMzUuODc1LTQuNjIzLTMzLjY2Ni0zLjMxLTMxLjM0Ny0xLjc4NS0yOC45NTItMS41NTMtMjguNjI0LS45MDctMjcuODY3LS4xNzYtMjguMzA3IC4wNDEtMjguNDU5IC4yODgtMjguNjc2IC41Ny0yOC45ODYgMi4zNzctMzAuOTY0IDkuMTIxLTM2LjI1NiAyMi4zNS0zNy42ODJWLTM3LjY4NUMyMi4zNS0zNy42ODUgMjUuMjU5LTM3Ljg2NyAyNS4yNDQtMzkuOTA2Vi0zOS45MDVDMjUuMjA2LTQzLjIxMyAyNS4xMTMtNjkuMzMzIDI1LjExMy02OS4zMzMgMjUuMTEzLTY5LjMzMyAyNS4zOTItNzAuNzU1IDIzLjI3MS03MC44OTlNNDUuODUzIDUuMDg4QzQwLjM1MiA0LjM2NSAzMy42NzQgMi41MjYgMzIuNjI1IDIuMjEzIDMxLjA1MSAxLjc0NiAzMS4wMzIgMi45NSAzMS4wMzIgMi45NSAzMC45NjIgMy44MjcgMzAuNTMzIDcuMDg3IDMwLjUzMyA3LjA4NyAzNS44MTYgNy4wNDYgNDAuOTUgNi4zNTcgNDUuODUzIDUuMDg4TTU3Ljk5NSAuNTU4QzY0LjU2Ni03LjQ3MiA2MS42MDUtMTQuNjA5IDYwLjg3Mi0xNi4xNjcgNjAuNzkyLTE2LjMzNSA2MC43MDktMTYuNDY2IDYwLjYyNS0xNi41NzMgNDguMzcyLTMuNzUzIDM0LjAzMSAuNDc4IDM0LjAzMSAuNDc4IDM1LjkzOSAxLjYyNyA0My44NjkgMy4zMzQgNDguNjU0IDQuMjkyIDUxLjg4NSAzLjI5MyA1NS4wMDUgMi4wMzkgNTcuOTk1IC41NThNODkuMjAyLTMzLjk4NUM4NC42NjMtNDguNTYgNzcuMzY0LTUzLjcgNzcuMzY0LTUzLjcgNzUuODk3LTM5LjAxNyA3MC4zMDctMjguMDIzIDYzLjYwNS0xOS45MiA2My42NjYtMTkuNDE1IDYzLjgyNS0xOS4wOTggNjMuODI1LTE5LjA5OCA2Ny4yMDgtNy40NDEgNjEuNzM0LTEuOTA1IDU5LjA5NCAwIDcyLjg4MS03LjE3NyA4My43MDQtMTkuMjkyIDg5LjIwMi0zMy45ODVNNzAuOTgxLTYwLjUxMUM3MC45NzMtNjAuNTE2IDcwLjg1LTYwLjU5NiA3MC44NDItNjAuNjAxIDY3LjYxMS02Mi40MDQgNjIuMTA2LTY1LjgzOSA1NS4xMzYtNjcuODA5IDQ2LjY3Ny03MC4xOTcgMzYuODA3LTcwLjk2NiAzNS44MjQtNzAuODk5IDMzLjcwNS03MC43NTUgMzMuOTgxLTY5LjMzMyAzMy45ODEtNjkuMzMzIDMzLjk4MS02OS4zMzMgMzMuODg4LTQzLjIxMyAzMy44NS0zOS45MDVWLTM5LjkwNkMzMy44MzQtMzcuODY3IDM2Ljc0NS0zNy42ODUgMzYuNzQ1LTM3LjY4NVYtMzcuNjgyQzQ5Ljk3My0zNi4yNTYgNTYuNzE4LTMwLjk2NCA1OC41MjQtMjguOTg2IDU4LjgwNy0yOC42NzYgNTkuMDUzLTI4LjQ1OSA1OS4yNzItMjguMzA3IDYwLTI3Ljg2NyA2MC42NDctMjguNjI0IDYwLjg3OC0yOC45NTIgNjIuNDA0LTMxLjM0NyA2My43MTgtMzMuNjY2IDY0Ljg0My0zNS44NzUgNzAuNzY4LTQ4LjIxMSA3MS4wMTQtNTguNTc2IDcwLjk4MS02MC41MTFNMzMuNTM4LTMwLjM0M0MzMy40MjctMjkuODc1IDMzLjM4MS0yOS4zMTEgMzMuMzgxLTI5LjMxMUwzMy4zNjUtMjguOTY0IDMyLjE1LTMuNTcxQzQxLjY1OS04LjQ5NCA0OC44Mi0xNC4yNjcgNTQuMjM2LTIwLjIxNkg1NC4yNDFDNTQuMjQxLTIwLjIxNiA1NS4xNDktMjEuMTAzIDU1Ljc3NS0yMS45MTYgNTYuNzcyLTIzLjMyMiA1Ni4xOTctMjQuMjggNTUuNjg0LTI0Ljc3MiA1NS42ODQtMjQuNzcyIDU0LjUxMy0yNS44MDYgNTMuMTQyLTI2LjY2IDUzLjE0Mi0yNi42NiA1My4xMzYtMjYuNjY1IDUzLjEzMy0yNi42NjYgNTIuNzctMjYuODkyIDUyLjM5My0yNy4xMDQgNTIuMDIxLTI3LjI4MiA1MS42MTMtMjcuNSA1MS4xMDgtMjcuNzYyIDUwLjUyNi0yOC4wNTEgNDkuOTUtMjguMzQ3IDQ5LjMyLTI4LjY0NiA0OC42NDMtMjguOTQzIDQ4LjU5Ny0yOC45NjIgNDguNTU0LTI4Ljk4MiA0OC41MS0yOS4wMDJWLTI5QzQ1LjM0Ny0zMC4zNjIgNDEuMDktMzEuNjI3IDM1LjU2Ny0zMi4wNCAzNS41NjctMzIuMDQgMzUuNTU4LTMyLjA0MiAzNS41NTYtMzIuMDQyIDM0LjMwOC0zMi4xMzcgMzMuNzY5LTMxLjIwNiAzMy41MzgtMzAuMzQzTS0zNC4wODctNTYuMDQ5Qy0zNC4wODctNDkuNjI5LTMzLjEyMi00My40My0zMS4zMzMtMzcuNTg5LTMwLjQzMy00Mi45NC0yNy40NTQtNTAuODMzLTE4Ljk0Ni02MC40NjktMTguODczLTYwLjU1LTE4LjgwOS02MC42MzEtMTguNzM2LTYwLjcxMi0xOC43MzYtNjAuNzEyLTE4Ljg3My03Mi4xMDktMTQuMDU0LTgzLjY0NkgtMTAuMDUxQy0xMy40MjYtNzIuMTY4LTEyLjUwNy02NS42MTMtMTIuNTA3LTY1LjYxMy05Ljk2LTY3LjMyNiA0LjQ5NS03Ni40NDkgMjMuNTgyLTc2LjU2MyAyMy41ODItNzYuNTYzIDI1LjQyNC03Ni40NzkgMjUuNTExLTc4LjM5NiAyNS41MzMtNzguODg4IDI1LjY1MS04MC45MDcgMjUuODQ1LTgzLjY0NkgzMy4yNUMzMy40NDQtODAuOTA3IDMzLjU2Mi03OC44ODggMzMuNTg0LTc4LjM5NiAzMy42NjktNzYuNDc5IDM1LjUxMi03Ni41NjMgMzUuNTEyLTc2LjU2MyA1NC41OTktNzYuNDQ5IDY5LjA1Ni02Ny4zMjYgNzEuNjAxLTY1LjYxMyA3MS42MDEtNjUuNjEzIDcyLjUyLTcyLjE2OCA2OS4xNDUtODMuNjQ2SDczLjE0OEM3Ny45NjctNzIuMTA5IDc3LjgzMi02MC43MTIgNzcuODMyLTYwLjcxMiA3Ny45MDMtNjAuNjMxIDc3Ljk2OC02MC41NSA3OC4wNDEtNjAuNDY5IDg2LjU0Ny01MC44MzMgODkuNTI3LTQyLjk0IDkwLjQyNy0zNy41ODkgOTIuMjE1LTQzLjQzIDkzLjE4My00OS42MjkgOTMuMTgzLTU2LjA0OSA5My4xODMtNjUuOTM5IDkwLjg5My03NS4zMDUgODYuODI0LTgzLjY0Nkg5MC4zMjJDOTQuMTg2LTc1LjIzOCA5Ni4zNDQtNjUuODkyIDk2LjM0NC01Ni4wNDkgOTYuMzQ0LTE5LjQ4OCA2Ni42MDEgMTAuMjU2IDMwLjA0MSAxMC4yNTYgMjkuODc1IDEwLjI1NiAyOS43MTIgMTAuMjUyIDI5LjU0NyAxMC4yNSAyOS4zODMgMTAuMjUyIDI5LjIxOCAxMC4yNTYgMjkuMDU1IDEwLjI1Ni03LjUwNiAxMC4yNTYtMzcuMjUtMTkuNDg4LTM3LjI1LTU2LjA0OS0zNy4yNS02NS44OTItMzUuMDktNzUuMjM4LTMxLjIyNi04My42NDZILTI3LjcyOEMtMzEuNzk5LTc1LjMwNS0zNC4wODctNjUuOTM5LTM0LjA4Ny01Ni4wNDkiIGZpbGw9IiM2Y2IxOTUiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTA3LjkzOSwxNzEuMzY2KSIgZD0iTTAgMEgzLjA5OFYtNi4zNThINy41NDZWLTguNTVIMFoiIGZpbGw9IiM2Y2IxOTUiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTIyLjAzNTYsMTc2Ljg2MjEpIiBkPSJNMCAwLS45MDEgMi42MzRILS45MjlMLTEuOSAwWk0tMi40MzYgNS40OTZILjU5Mkw0LjI1Mi0zLjA1NEgxLjA0MkwuNjItMS44MzJILTIuNTc2TC0zLjAyNi0zLjA1NEgtNi4xMzlaIiBmaWxsPSIjNmNiMTk1Ij48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDEzNC43ODM3LDE3NS4xMDIzKSIgZD0iTTAgMEgxLjYxOUMyLjE5NiAwIDIuOTg0IC4wODQgMi45ODQgLjg1IDIuOTg0IDEuMzg5IDIuNjMyIDEuNyAxLjQ1IDEuN0gwWk0tMy4wOTggMy43MzZIMi44MDFDNC41NjEgMy43MzYgNi4wODEgMi45MSA2LjA4MSAxLjI5MyA2LjA4MSAuNDA3IDUuNjAzLS41MjYgNC41NzUtLjg1IDUuNDItMS4xMjUgNS45NDEtMS45MTUgNi4wNTMtMi45ODEgNi4wOTUtMy40IDYuMTEtNC40MTggNi4zOTEtNC44MTNIMy4yOTRDMy4xMzktNC4zODIgMy4wODMtMy45MzkgMy4wNDEtMy40OTYgMi45NTYtMi42ODIgMi44NzItMS44MzIgMS42NDctMS44MzJIMFYtNC44MTNILTMuMDk4WiIgZmlsbD0iIzZjYjE5NSI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwwLDE5OC40MjUpIiBkPSJNMTQyLjEyMiAyNy4wNTlIMTQ1LjIyVjE4LjUwODk5OUgxNDIuMTIyWiIgZmlsbD0iIzZjYjE5NSI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxNTEuNjEzMywxNzcuOTg4MSkiIGQ9Ik0wIDBDLjc4OCAwIDEuOTk5IC40NDMgMS45OTkgMi4zNDggMS45OTkgNC4yNTEgLjc4OCA0LjY5MyAwIDQuNjkzLS43ODggNC42OTMtMS45OTkgNC4yNTEtMS45OTkgMi4zNDgtMS45OTkgLjQ0My0uNzg4IDAgMCAwTTAgNi44MjVDMy4wNTUgNi44MjUgNS4wOTYgNC45NTggNS4wOTYgMi4zNDggNS4wOTYtLjI2NCAzLjA1NS0yLjEzMSAwLTIuMTMxLTMuMDU2LTIuMTMxLTUuMDk3LS4yNjQtNS4wOTcgMi4zNDgtNS4wOTcgNC45NTgtMy4wNTYgNi44MjUgMCA2LjgyNSIgZmlsbD0iIzZjYjE5NSI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxNjUuMDM0MiwxNzYuODM4NykiIGQ9Ik0wIDBDMC0yLjM1OS0xLjI1My0zLjI4LTMuNzcyLTMuMjgtNi4zMjEtMy4yOC03LjQ2MS0yLjA3LTcuNDYxLS4yMDNWLjUxNUgtNC42NzRWLjAyNEMtNC42NzQtLjYzNS00LjY3NC0xLjI0NS0zLjg0My0xLjI0NS0zLjA0MS0xLjI0NS0zLjA5Ny0uNDE5LTMuMDk3LS4wMzZWNS40NzNIMFoiIGZpbGw9IiM2Y2IxOTUiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTcxLjg1MTYsMTc2Ljg2MjEpIiBkPSJNMCAwLS45IDIuNjM0SC0uOTI5TC0xLjg5OSAwWk0tMi40MzUgNS40OTZILjU5Mkw0LjI1My0zLjA1NEgxLjA0MkwuNjItMS44MzJILTIuNTc2TC0zLjAyNi0zLjA1NEgtNi4xMzhaIiBmaWxsPSIjNmNiMTk1Ij48L3BhdGg+CjwvZz4KPC9nPgo8L3N2Zz4=" alt="ANPE La Rioja" class="anpe-logo" width="90" height="96">
+    <div class="brand-txt">
+      <p class="antetitulo">Concurso de Traslados 2026-2027 · La Rioja</p>
+      <h1>Autobaremo</h1>
+      <p class="sub">Mete tus años, títulos y cursos y la web va sumando tu puntuación con el baremo oficial. Los topes de cada apartado se aplican solos.</p>
+    </div>
+  </div>
+  <svg class="onda" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 22 C 260 4, 520 4, 760 18 S 1220 36, 1440 12 L1440 40 L0 40Z" fill="var(--cielo)"/>
+    <path d="M0 30 C 300 16, 560 18, 820 28 S 1240 38, 1440 22 L1440 40 L0 40Z" fill="var(--verde)" opacity=".55"/>
+    <path d="M0 35 C 320 26, 620 28, 900 34 S 1260 40, 1440 30 L1440 40 L0 40Z" fill="var(--bg)"/>
+  </svg>
+</header>
+
+<div class="wrap">
+  <div class="layout">
+    <main class="form-col" id="form">
+      <section class="card perfil" aria-labelledby="perfil-h">
+        <h2 id="perfil-h">Tu situación</h2>
+        <div class="perfil-grid">
+          <div class="campo">
+            <label for="cuerpo">Cuerpo desde el que concursas</label>
+            <select id="cuerpo">
+              <option value="A2">Maestros</option>
+              <option value="A1" selected>Profesores de Secundaria, EOI, Música y Artes Escénicas o Artes Plásticas</option>
+              <option value="CAT">Catedráticos (Secundaria, EOI, Música o Artes Plásticas)</option>
+              <option value="A2o">PTFP a extinguir, Especialistas en Sectores Singulares de FP o Maestros de Taller</option>
+            </select>
+          </div>
+          <div class="campo">
+            <span class="lbl" id="sit-lbl">Participas desde</span>
+            <div class="pills" role="radiogroup" aria-labelledby="sit-lbl">
+              <label><input type="radio" name="situacion" id="sit-def" value="definitivo" checked><span>Destino definitivo</span></label>
+              <label><input type="radio" name="situacion" id="sit-prov" value="provisional"><span>Provisionalidad</span></label>
+            </div>
+          </div>
+        </div>
+        <p class="nota-ref">Los méritos se cuentan hasta el <strong>26 de noviembre de 2026</strong>, último día del plazo de solicitudes. Solo cuentan los meses completos.</p>
+      </section>
+      <div id="apartados" class="form-col"></div>
+      <div class="card perfil">
+        <p class="nota-ref" style="margin:0">Con el ejemplo ves cómo funciona la web con un perfil inventado: un profesor de Secundaria con 7 años en su centro, un máster y 640 horas de formación. Sustituye lo que tengas guardado.</p>
+        <div class="acciones"><button type="button" class="btn sec" id="btn-ejemplo">Cargar el ejemplo</button></div>
+      </div>
+    </main>
+
+    <aside class="card resumen" id="resumen" aria-label="Tu puntuación">
+      <p class="res-tit">Tu puntuación</p>
+      <div class="total" id="total" aria-live="polite">0,0000<small>puntos</small></div>
+      <ul class="res-list" id="res-list"></ul>
+      <p class="perdidos" id="perdidos" hidden></p>
+      <div class="acciones">
+        <button type="button" class="btn" id="btn-copiar">Copiar el desglose</button>
+        <button type="button" class="btn sec" id="btn-borrar">Borrar todo</button>
+      </div>
+      <div class="confirmar" id="confirmar" hidden>
+        <span>¿Borrar todos los datos?</span>
+        <button type="button" class="btn" id="btn-si">Sí, borrar</button>
+        <button type="button" class="btn sec" id="btn-no">Cancelar</button>
+      </div>
+      <p class="letra" id="copiado" hidden></p>
+      <p class="letra">Cálculo orientativo con el Anexo XI de la convocatoria (BOR n.º 208, 28-10-2026). La puntuación oficial la da la comisión de baremación. Los apartados 1 y 2 los valora de oficio la Administración con tu hoja de servicios.</p>
+      <p class="letra">Los datos se guardan solo en este navegador.</p>
+    </aside>
+  </div>
+
+  <footer class="pie">
+    <p>Si hay empate, se mira la puntuación de cada apartado por orden (1, 2, 3…), después la de cada subapartado y, al final, el año de la oposición por la que ingresaste y la nota que sacaste.</p>
+    <p>¿Dudas con tu baremo? Escríbenos o llámanos: <span class="contacto">rioja@anpe.es · 941 26 26 87 · WhatsApp 601 10 02 93</span> · <a href="https://www.anperioja.es" target="_blank" rel="noopener">www.anperioja.es</a></p>
+  </footer>
+</div>
+
+<div class="barra-movil" aria-hidden="true">
+  <div><div class="l">Total</div><div class="t" id="total-movil">0,0000</div></div>
+  <a class="btn sec" href="#resumen">Ver desglose</a>
+</div>
+
+<script>
+/* ===== MOTOR (baremo del Anexo XI, Resolución 88/2026, BOR 28-10-2026) ===== */
+/*ENGINE-START*/
+const R4 = x => Math.round(x * 10000) / 10000;
+const meses = t => Math.max(0, Math.floor(+((t && t.a) || 0))) * 12 + Math.max(0, Math.floor(+((t && t.m) || 0)));
+const n = v => Math.max(0, +v || 0);
+const ent = v => Math.max(0, Math.floor(+v || 0));
+// Años completos a precio por año y el resto de meses a precio por mes.
+const lineal = (t, porAnio, porMes) => { const mm = meses(t); return R4(Math.floor(mm / 12) * porAnio + (mm % 12) * porMes); };
+// 1.1.1: 4 puntos el 1.º y 2.º año, 6 el 3.º y 8 del 4.º en adelante. La fracción va al precio del año en curso.
+function pts111(t){
+  const mm = meses(t), y = Math.floor(mm / 12), m = mm % 12;
+  let p = 0;
+  for (let i = 1; i <= y; i++) p += i <= 2 ? 4 : i === 3 ? 6 : 8;
+  p += m * (y < 2 ? 0.3333 : y === 2 ? 0.5 : 0.6666);
+  return R4(p);
+}
+const NIVEL_IDIOMA = { C2:4, C1:3, B2:2, B1:1 };
+const NIVEL_CDD = { '':0, A1:0.5, A2:1, B1:1.5, B2:2, C1:2.5, C2:3 };
+const PUB = { lAutor:1, lCo:0.5, l3:0.4, l4:0.3, l5:0.2, l6:0.1, rAutor:0.2, rCo:0.1, r3:0.05 };
+// Un solo certificado por idioma (el de nivel más alto), en 3.3 si es de EOI o DLSE y en 5.5 si es otro.
+function idiomasValorados(lista){
+  const mejor = {};
+  (lista || []).forEach((it, i) => {
+    const pts = NIVEL_IDIOMA[it.nivel] || 0;
+    const clave = (it.idioma || '').trim().toLowerCase() || ('#' + i);
+    if (!pts) return;
+    if (!mejor[clave] || pts > mejor[clave].pts) mejor[clave] = { i, pts };
+  });
+  return (lista || []).map((it, i) => {
+    const pts = NIVEL_IDIOMA[it.nivel] || 0;
+    const clave = (it.idioma || '').trim().toLowerCase() || ('#' + i);
+    const cuenta = pts > 0 && mejor[clave] && mejor[clave].i === i;
+    return { pts, cuenta, ap: it.origen === 'otro' ? '5.5' : '3.3' };
+  });
+}
+function sub(id, bruto, tope){
+  bruto = R4(bruto);
+  const valor = tope != null ? Math.min(bruto, tope) : bruto;
+  return { id, bruto, valor: R4(valor), tope: tope != null ? tope : null };
+}
+function apartado(id, subs, max){
+  const bruto = R4(subs.reduce((a, s) => a + s.valor, 0));
+  const total = max != null ? Math.min(bruto, max) : bruto;
+  return { id, subs, bruto, total: R4(total), max: max != null ? max : null };
+}
+function calcular(s){
+  const def = s.situacion !== 'provisional';
+  const idi = idiomasValorados(s.idiomas);
+  const sumIdi = ap => R4(idi.filter(x => x.cuenta && x.ap === ap).reduce((a, x) => a + x.pts, 0));
+  const p = s.pub || {};
+  const ap1 = apartado('1', [
+    sub('111', def ? pts111(s.t111) : 0),
+    sub('112', (!def || s.primerDestino) ? lineal(s.t112, 4, 0.3333) : 0),
+    sub('113', lineal(s.t113, 4, 0.3333)),
+    sub('121', lineal(s.t121, 2, 0.1666)),
+    sub('122', lineal(s.t122, 1.5, 0.125)),
+    sub('123', lineal(s.t123, 0.75, 0.0625)),
+  ]);
+  const ap2 = apartado('2', [ sub('2', s.cuerpo === 'CAT' ? 5 : 0) ]);
+  const ap3 = apartado('3', [
+    sub('311', ent(s.n311) * 6),
+    sub('312', ent(s.n312) * 3),
+    sub('313', ent(s.n313) * 2),
+    sub('314', ent(s.n314) * 1),
+    sub('321', ent(s.n321) * 5 + ent(s.n321c) * 2.5),
+    sub('322', ent(s.n322) * 3),
+    sub('323', ent(s.n323) * 3),
+    sub('33i', sumIdi('3.3')),
+    sub('33e', ent(s.n33e) * 2),
+    sub('33f', ent(s.n33f) * 2),
+  ], 10);
+  const ap4 = apartado('4', [
+    sub('41', lineal(s.t41, 4.5, 0.375)),
+    sub('42', lineal(s.t42, 3, 0.25)),
+    sub('43', lineal(s.t43, 1.5, 0.125), 10),
+  ], 30);
+  const h51 = n(s.h51) + n(s.c51) * 10, h52 = n(s.h52) + n(s.c52) * 10;
+  const ap5 = apartado('5', [
+    sub('51', Math.floor(h51 / 10) / 10, 9),
+    sub('52', Math.floor(h52 / 3) / 10, 3),
+    sub('53', ent(s.n53) * 1),
+    sub('54', NIVEL_CDD[s.cdd || ''] || 0, 3),
+    sub('55', sumIdi('5.5')),
+  ], 15);
+  const libros = Object.keys(PUB).reduce((a, k) => a + ent(p[k]) * PUB[k], 0);
+  const ap6 = apartado('6', [
+    sub('61', libros, 8),
+    sub('62', n(s.e62), 2.5),
+    sub('63', (s.deporte === 'nivel' ? 1 : s.deporte === 'rend' ? 0.5 : 0) + n(s.e63), 2.5),
+    sub('64', lineal(s.t64, 1.5, 0.125)),
+    sub('65', ent(s.n65) * 0.5),
+    sub('66', ent(s.n66a) * 0.1 + ent(s.n66b) * 0.2),
+  ], 15);
+  const aps = [ap1, ap2, ap3, ap4, ap5, ap6];
+  const total = R4(aps.reduce((a, x) => a + x.total, 0));
+  const sinTope = R4(aps.reduce((a, x) => a + x.subs.reduce((b, y) => b + y.bruto, 0), 0));
+  return { aps, total, perdidos: R4(sinTope - total), idiomas: idi };
+}
+/*ENGINE-END*/
+
+/* ===== DEFINICIÓN DEL FORMULARIO ===== */
+const ESP = 'El centro tiene la calificación de especial dificultad. Se suma a 1.1.1 o 1.1.2.';
+const APARTADOS = [
+  { id:'1', titulo:'Antigüedad', tope:'Sin máximo', items:[
+    { grupo:'1.1 Antigüedad en el centro' },
+    { id:'111', cod:'1.1.1', tipo:'tiempo', campo:'t111', lab:'Años con destino definitivo en tu centro actual',
+      val:'4 puntos el 1.º y 2.º año, 6 el 3.º y 8 del 4.º en adelante',
+      hint:'Seguidos, como funcionario/a de carrera, en el centro desde el que concursas. Se pierden al cambiar de centro.',
+      ver: s => s.situacion !== 'provisional' },
+    { id:'pd', tipo:'check', campo:'primerDestino', lab:'Es mi primer destino definitivo, conseguido por concurso',
+      hint:'Si concursas voluntariamente desde él, también te suman los años que estuviste antes en provisionalidad (1.1.2).',
+      ver: s => s.situacion !== 'provisional' },
+    { id:'112', cod:'1.1.2', tipo:'tiempo', campo:'t112', lab:'Años como funcionario/a de carrera en provisionalidad',
+      val:'4 puntos por año · 0,3333 por mes', ver: s => s.situacion === 'provisional' || s.primerDestino },
+    { id:'113', cod:'1.1.3', tipo:'tiempo', campo:'t113', lab:'Años en un centro de especial dificultad', val:'4 puntos por año · 0,3333 por mes', hint:ESP },
+    { grupo:'1.2 Antigüedad en el cuerpo' },
+    { id:'121', cod:'1.2.1', tipo:'tiempo', campo:'t121', lab:'Años de servicio en tu cuerpo', val:'2 puntos por año · 0,1666 por mes',
+      hint:'Como funcionario/a de carrera, en prácticas o interino.' },
+    { id:'122', cod:'1.2.2', tipo:'tiempo', campo:'t122', lab:'Años en otros cuerpos docentes del mismo subgrupo o superior', val:'1,5 puntos por año · 0,125 por mes',
+      hint:'Solo los años que no coinciden con los de 1.1 ni con los de 1.2.3.' },
+    { id:'123', cod:'1.2.3', tipo:'tiempo', campo:'t123', lab:'Años en otros cuerpos docentes de subgrupo inferior', val:'0,75 puntos por año · 0,0625 por mes',
+      hint: s => s.cuerpo === 'A2' ? 'Para Maestros casi nunca se da: no hay cuerpos docentes de subgrupo inferior.' : 'Por ejemplo, los años como Maestro/a si ahora eres profesor/a de Secundaria. Sin solaparse con 1.1 ni 1.2.2.' },
+  ]},
+  { id:'2', titulo:'Pertenencia a Catedráticos', tope:'5 puntos', items:[
+    { id:'2', cod:'2', tipo:'info', lab:'Funcionario/a de carrera de un cuerpo de Catedráticos', val:'5 puntos',
+      hint: s => s.cuerpo === 'CAT' ? 'Contado porque has elegido Catedráticos arriba.' : 'Se activa al elegir Catedráticos en «Tu situación».' },
+  ]},
+  { id:'3', titulo:'Méritos académicos', tope:'Máximo 10 puntos', max:10, items:[
+    { grupo:'3.1 Doctorado, postgrados y premios' },
+    { id:'311', cod:'3.1.1', tipo:'num', campo:'n311', lab:'Títulos de Doctor/a', val:'6 puntos cada uno' },
+    { id:'312', cod:'3.1.2', tipo:'num', campo:'n312', lab:'Másteres oficiales de 60 créditos o más', val:'3 puntos cada uno',
+      hint:'No cuentan el máster exigido para entrar (el de profesorado) ni el que usaste para acceder al doctorado.' },
+    { id:'313', cod:'3.1.3', tipo:'num', campo:'n313', lab:'Suficiencia investigadora o DEA', val:'2 puntos cada uno', hint:'No cuenta si lo usaste para conseguir el doctorado.' },
+    { id:'314', cod:'3.1.4', tipo:'num', campo:'n314', lab:'Premios extraordinarios', val:'1 punto cada uno', hint:'De doctorado, licenciatura o grado, o mención honorífica en el grado superior de Conservatorio.' },
+    { grupo:'3.2 Otras titulaciones universitarias' },
+    { id:'321', cod:'3.2.1', tipo:'num2', campo:'n321', campo2:'n321c', lab:'Grados distintos del exigido para entrar en tu cuerpo', val:'5 puntos cada uno · 2,5 si lo sacaste convalidando créditos de otra titulación',
+      l1:'Completos', l2:'Convalidando' },
+    { id:'322', cod:'3.2.2', tipo:'num', campo:'n322', lab:'Diplomaturas, ingenierías técnicas o primeros ciclos', val:'3 puntos cada uno',
+      hint: s => /^A2/.test(s.cuerpo) ? 'No cuentes la primera diplomatura o primer ciclo que presentes: en tu subgrupo nunca se valora.' : 'No cuentes el primer ciclo de la licenciatura con la que entraste.' },
+    { id:'323', cod:'3.2.3', tipo:'num', campo:'n323', lab:'Segundos ciclos de licenciatura, ingeniería o arquitectura', val:'3 puntos cada uno',
+      hint: s => /^A2/.test(s.cuerpo) ? 'Si tienes una licenciatura entera, cuenta su primer ciclo en 3.2.2 y su segundo ciclo aquí.' : 'No cuentes el segundo ciclo de la primera licenciatura o grado que presentes.' },
+    { grupo:'3.3 Idiomas, FP y enseñanzas artísticas' },
+    { id:'33i', cod:'3.3 a-d', tipo:'idiomas', lab:'Certificados de idiomas', val:'C2: 4 · C1: 3 · B2: 2 · B1: 1',
+      hint:'Mete aquí todos tus idiomas. Los de la Escuela Oficial de Idiomas (o el diploma de lengua de signos) puntúan en 3.3; los demás certificados reconocidos por ACLES, en 5.5. De cada idioma solo cuenta uno, el de nivel más alto. No se valoran el español ni el exigido para entrar.' },
+    { id:'33e', cod:'3.3 e', tipo:'num', campo:'n33e', lab:'Títulos de Técnico Superior', val:'2 puntos cada uno', hint:'De FP, de Artes Plásticas y Diseño o Técnico Deportivo Superior, si no fueron requisito de ingreso.' },
+    { id:'33f', cod:'3.3 f', tipo:'num', campo:'n33f', lab:'Títulos Profesionales de Música o Danza', val:'2 puntos cada uno' },
+  ]},
+  { id:'4', titulo:'Cargos directivos y otras funciones', tope:'Máximo 30 puntos', max:30, items:[
+    { id:'41', cod:'4.1', tipo:'tiempo', campo:'t41', lab:'Director/a', val:'4,5 puntos por año · 0,375 por mes', hint:'De centros públicos, CPR o Agrupaciones de Lengua y Cultura.' },
+    { id:'42', cod:'4.2', tipo:'tiempo', campo:'t42', lab:'Jefatura de estudios, secretaría, vicedirección o asimilados', val:'3 puntos por año · 0,25 por mes', hint:'También jefe/a de estudios adjunto, secretario/a adjunto y jefe/a de residencia.' },
+    { id:'43', cod:'4.3', tipo:'tiempo', campo:'t43', lab:'Tutoría, jefatura de departamento, coordinación de ciclo', val:'1,5 puntos por año · 0,125 por mes · máximo 10 puntos',
+      hint:'También asesor/a de formación o dirección de un equipo de orientación. Tutorías desde mayo de 2006 (LOE).' },
+    { id:'4n', tipo:'nota', txt:'Cuenta como funcionario/a de carrera, en prácticas o interino. Si tuviste dos cargos a la vez, mete ese tiempo solo en el que más puntúa.' },
+  ]},
+  { id:'5', titulo:'Formación y perfeccionamiento', tope:'Máximo 15 puntos', max:15, items:[
+    { id:'51', cod:'5.1', tipo:'horas', campo:'h51', campo2:'c51', lab:'Cursos de formación recibidos', val:'0,1 puntos por cada 10 horas · máximo 9 puntos (900 horas)',
+      hint:'Suma las horas de todos los cursos. Si vienen en créditos, cada crédito son 10 horas.' },
+    { id:'52', cod:'5.2', tipo:'horas', campo:'h52', campo2:'c52', lab:'Cursos de formación impartidos', val:'0,1 puntos por cada 3 horas · máximo 3 puntos (90 horas)' },
+    { id:'53', cod:'5.3', tipo:'num', campo:'n53', lab:'Especialidades adquiridas por el procedimiento de nuevas especialidades', val:'1 punto cada una' },
+    { id:'54', cod:'5.4', tipo:'sel', campo:'cdd', lab:'Competencia Digital Docente', val:'Solo cuenta el nivel más alto · máximo 3 puntos',
+      ops:[['','Sin acreditar'],['A1','A1 · 0,5'],['A2','A2 · 1'],['B1','B1 · 1,5'],['B2','B2 · 2'],['C1','C1 · 2,5'],['C2','C2 · 3']] },
+    { id:'55', cod:'5.5', tipo:'info', lab:'Idiomas con certificado reconocido por ACLES (no EOI)', val:'C2: 4 · C1: 3 · B2: 2 · B1: 1',
+      hint:'Se calcula con los idiomas que metas en el apartado 3.3 con origen «Otro certificado».', enlace:'#f-33i' },
+  ]},
+  { id:'6', titulo:'Otros méritos', tope:'Máximo 15 puntos', max:15, items:[
+    { id:'61', cod:'6.1', tipo:'pubs', lab:'Publicaciones con ISBN, ISSN o ISMN', val:'Máximo 8 puntos. Se calcula con la puntuación más alta posible de cada tipo; la comisión puede dar menos.' },
+    { id:'62', cod:'6.2', tipo:'pts', campo:'e62', max:2.5, lab:'Premios educativos y proyectos de investigación o innovación', val:'Hasta 2,5 puntos',
+      hint:'La comisión decide cuánto vale cada uno. Mete los puntos que calculas.' },
+    { id:'63', cod:'6.3', tipo:'deporte', campo:'deporte', campo2:'e63', lab:'Méritos artísticos y deportivos', val:'Hasta 2,5 puntos',
+      hint:'Premios, estrenos, conciertos, exposiciones, restauración. Deportista de alto nivel: 1 punto; de alto rendimiento: 0,5.' },
+    { id:'64', cod:'6.4', tipo:'tiempo', campo:'t64', lab:'Puestos en la administración educativa', val:'1,5 puntos por año · 0,125 por mes', hint:'Con nivel de complemento de destino igual o superior al de tu cuerpo.' },
+    { id:'65', cod:'6.5', tipo:'num', campo:'n65', lab:'Convocatorias como miembro de tribunal', val:'0,5 puntos cada una', hint:'De oposiciones docentes desde 2007. En las de La Rioja basta con alegarlo.' },
+    { id:'66', cod:'6.6', tipo:'num2', campo:'n66a', campo2:'n66b', lab:'Cursos tutorizando prácticas', val:'Máster o grado: 0,1 por curso · funcionarios en prácticas (desde 2023-24): 0,2 por curso',
+      l1:'Máster o grado', l2:'Func. en prácticas' },
+    { id:'6n', tipo:'nota', txt:'El 6.7 (hasta 5 puntos por lenguas cooficiales) solo se aplica a plazas de Navarra, País Vasco, Comunitat Valenciana, Illes Balears y Cataluña.' },
+  ]},
+];
+const PUBS = [
+  ['lAutor','Libros · autor/a'],['lCo','Libros · coautor/a'],['l3','Libros · 3 autores'],['l4','Libros · 4 autores'],['l5','Libros · 5 autores'],['l6','Libros · más de 5'],
+  ['rAutor','Revistas · autor/a'],['rCo','Revistas · coautor/a'],['r3','Revistas · 3 o más'],
+];
+const IDIOMAS_SUG = ['Inglés','Francés','Alemán','Italiano','Portugués','Chino','Árabe','Ruso','Euskera','Catalán / Valenciano','Gallego','Lengua de signos española'];
+
+/* ===== ESTADO ===== */
+const CLAVE = 'anpe-autobaremo-ct-2026';
+const VACIO = () => ({ cuerpo:'A1', situacion:'definitivo', primerDestino:false, idiomas:[], pub:{} });
+let S = VACIO();
+try { const g = JSON.parse(localStorage.getItem(CLAVE) || 'null'); if (g && typeof g === 'object') S = Object.assign(VACIO(), g); } catch(e) {}
+const guardar = () => { try { localStorage.setItem(CLAVE, JSON.stringify(S)); } catch(e) {} };
+
+const fmt = x => (+x).toLocaleString('es-ES', { minimumFractionDigits:4, maximumFractionDigits:4 });
+const fmtC = x => (+x).toLocaleString('es-ES', { maximumFractionDigits:4 });
+const esc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const val = (v, s) => typeof v === 'function' ? v(s) : v;
+
+/* ===== RENDER ===== */
+function stepper(id, valor, etiqueta){
+  return `<span class="stepper"><button type="button" data-step="-1" data-for="${id}" aria-label="Quitar uno: ${esc(etiqueta)}">−</button><input type="number" inputmode="numeric" min="0" step="1" id="${id}" value="${valor || 0}" aria-label="${esc(etiqueta)}"><button type="button" data-step="1" data-for="${id}" aria-label="Añadir uno: ${esc(etiqueta)}">+</button></span>`;
+}
+function controles(it){
+  const t = it.tipo, c = it.campo;
+  if (t === 'tiempo'){
+    const v = S[c] || {};
+    return `<div class="tiempo"><label>Años <input type="number" inputmode="numeric" min="0" id="${c}-a" value="${v.a || 0}"></label><label>Meses <input type="number" inputmode="numeric" min="0" max="11" id="${c}-m" value="${v.m || 0}"></label></div><button type="button" class="btn-link" data-fechas="${c}">Calcular con fechas</button>`;
+  }
+  if (t === 'num') return stepper(c, S[c], it.lab);
+  if (t === 'num2') return `<label class="switch" style="gap:6px">${esc(it.l1)} ${stepper(c, S[c], it.lab + ', ' + it.l1)}</label><label class="switch" style="gap:6px">${esc(it.l2)} ${stepper(it.campo2, S[it.campo2], it.lab + ', ' + it.l2)}</label>`;
+  if (t === 'horas') return `<div class="tiempo"><label>Horas <input type="number" inputmode="numeric" min="0" id="${c}" value="${S[c] || 0}" style="width:84px"></label><label>Créditos <input type="number" inputmode="decimal" min="0" step="0.1" id="${it.campo2}" value="${S[it.campo2] || 0}"></label></div>`;
+  if (t === 'sel') return `<select id="${c}" class="sel-corto" aria-label="${esc(it.lab)}">${it.ops.map(o => `<option value="${o[0]}"${(S[c] || '') === o[0] ? ' selected' : ''}>${o[1]}</option>`).join('')}</select>`;
+  if (t === 'pts') return `<label class="tiempo">Puntos <input type="number" inputmode="decimal" min="0" max="${it.max}" step="0.1" id="${c}" value="${S[c] || 0}" class="num-corto"></label>`;
+  if (t === 'deporte') return `<select id="${c}" class="sel-corto" aria-label="Deportista"><option value="">Sin condición de deportista</option><option value="nivel"${S[c] === 'nivel' ? ' selected' : ''}>Alto nivel · 1</option><option value="rend"${S[c] === 'rend' ? ' selected' : ''}>Alto rendimiento · 0,5</option></select><label class="tiempo">Otros <input type="number" inputmode="decimal" min="0" max="2.5" step="0.1" id="${it.campo2}" value="${S[it.campo2] || 0}" style="width:76px" aria-label="Puntos por otros méritos artísticos"></label>`;
+  if (t === 'check') return `<label class="switch"><input type="checkbox" id="${c}"${S[c] ? ' checked' : ''}> Sí</label>`;
+  return '';
+}
+function fila(it){
+  if (it.grupo) return `<p class="grupo-tit">${esc(it.grupo)}</p>`;
+  if (it.tipo === 'nota') return `<p class="nota-ref" style="padding:10px 0 2px; border-top:1px dashed var(--border)">${esc(it.txt)}</p>`;
+  const cod = it.cod ? `<span class="cod">${esc(it.cod)}</span>` : '';
+  const enl = it.enlace ? ` <a href="${it.enlace}">Ir a los idiomas</a>` : '';
+  const txt = `<div class="fila-txt">${cod}<span class="lab">${esc(it.lab)}</span>${it.val ? `<span class="val">${esc(it.val)}</span>` : ''}<span class="hint" data-hint="${it.id}">${esc(val(it.hint, S) || '')}${enl}</span></div>`;
+  const pts = it.tipo === 'check' ? '<div></div>' : `<div class="fila-pts" id="p-${it.id}">0,0000</div>`;
+  let extra = '';
+  if (it.tipo === 'tiempo') extra = `<div class="fechas" id="fx-${it.campo}" hidden></div>`;
+  if (it.tipo === 'idiomas') extra = `<div class="idiomas" id="idiomas"></div>`;
+  if (it.tipo === 'pubs') extra = `<div class="pubs">${PUBS.map(([k, l]) => `<div class="pub"><span>${l} <small style="color:var(--ink-muted)">· ${fmtC(PUB[k])}</small></span>${stepper('pub-' + k, (S.pub || {})[k], l)}</div>`).join('')}</div>`;
+  const ctl = (it.tipo === 'idiomas' || it.tipo === 'pubs' || it.tipo === 'info') ? '<div class="fila-in"></div>' : `<div class="fila-in">${controles(it)}</div>`;
+  return `<div class="fila" id="f-${it.id}">${txt}${ctl}${pts}${extra}</div>`;
+}
+function render(){
+  document.getElementById('apartados').innerHTML = APARTADOS.map(a => `
+    <section class="card apartado" id="ap-${a.id}" aria-labelledby="h-${a.id}">
+      <div class="ap-head"><div class="ap-num" aria-hidden="true">${a.id}</div>
+        <div class="ap-tit"><h2 id="h-${a.id}">${esc(a.titulo)}</h2><div class="tope">${esc(a.tope)}</div></div>
+        <div class="ap-score"><div class="v" id="v-${a.id}">0</div><div class="de">${a.max ? 'de ' + a.max : 'puntos'}</div></div></div>
+      ${a.max ? `<div class="barra" style="margin-top:12px" id="b-${a.id}"><i></i></div><p class="ap-aviso" id="av-${a.id}" hidden></p>` : ''}
+      <div class="ap-body">${a.items.map(fila).join('')}</div>
+    </section>`).join('');
+  document.getElementById('res-list').innerHTML = APARTADOS.map(a => `
+    <li><div class="res-row"><a href="#ap-${a.id}">${a.id}. ${esc(a.titulo)}</a><b id="r-${a.id}">0${a.max ? ` <span>/ ${a.max}</span>` : ''}</b></div>${a.max ? `<div class="barra" id="rb-${a.id}"><i></i></div>` : ''}</li>`).join('');
+  renderIdiomas();
+  document.getElementById('cuerpo').value = S.cuerpo;
+  document.querySelector(`input[name="situacion"][value="${S.situacion}"]`).checked = true;
+}
+function renderIdiomas(){
+  const box = document.getElementById('idiomas');
+  const filas = S.idiomas.map((it, i) => `
+    <div class="idioma" data-i="${i}">
+      <input type="text" class="i-nom" list="idiomas-sug" placeholder="Idioma" value="${esc(it.idioma || '')}" data-k="idioma" aria-label="Idioma ${i + 1}">
+      <select data-k="nivel" aria-label="Nivel del idioma ${i + 1}">${['C2','C1','B2','B1'].map(l => `<option${it.nivel === l ? ' selected' : ''}>${l}</option>`).join('')}</select>
+      <select class="i-ori" data-k="origen" aria-label="Certificado del idioma ${i + 1}"><option value="eoi"${it.origen !== 'otro' ? ' selected' : ''}>Escuela Oficial de Idiomas o DLSE (3.3)</option><option value="otro"${it.origen === 'otro' ? ' selected' : ''}>Otro certificado ACLES (5.5)</option></select>
+      <span class="pts" id="ip-${i}">0</span>
+      <button type="button" class="quitar" data-quitar="${i}" aria-label="Quitar idioma ${i + 1}">×</button>
+    </div>`).join('');
+  box.innerHTML = `${filas}<p class="idioma-aviso" id="idioma-aviso" hidden></p><div><button type="button" class="btn sec" id="add-idioma">Añadir idioma</button></div><datalist id="idiomas-sug">${IDIOMAS_SUG.map(x => `<option value="${x}">`).join('')}</datalist>`;
+}
+
+/* ===== ACTUALIZAR ===== */
+function actualizar(){
+  const r = calcular(S);
+  APARTADOS.forEach(a => a.items.forEach(it => {
+    if (!it.id) return;
+    const f = document.getElementById('f-' + it.id);
+    if (f && it.ver) f.hidden = !it.ver(S);
+    const h = document.querySelector(`[data-hint="${it.id}"]`);
+    if (h && typeof it.hint === 'function') h.textContent = it.hint(S);
+  }));
+  r.aps.forEach(a => {
+    a.subs.forEach(s => {
+      const el = document.getElementById('p-' + s.id);
+      if (!el) return;
+      const excede = s.tope != null && s.bruto > s.tope;
+      el.className = 'fila-pts' + (s.valor ? '' : ' cero');
+      el.innerHTML = fmt(s.valor) + (excede ? `<span class="excede">tope ${fmtC(s.tope)} · tenías ${fmtC(s.bruto)}</span>` : '');
+    });
+    const v = document.getElementById('v-' + a.id);
+    v.textContent = fmtC(a.total);
+    const rr = document.getElementById('r-' + a.id);
+    rr.innerHTML = fmt(a.total) + (a.max ? ` <span>/ ${a.max}</span>` : '');
+    if (a.max){
+      const pc = Math.min(100, a.total / a.max * 100);
+      ['b-', 'rb-'].forEach(p => { const b = document.getElementById(p + a.id); b.firstElementChild.style.width = pc + '%'; b.classList.toggle('llena', a.total >= a.max); });
+      const av = document.getElementById('av-' + a.id);
+      const sobra = R4(a.bruto - a.max);
+      av.hidden = sobra <= 0;
+      if (sobra > 0) av.textContent = `Tope alcanzado. Sumas ${fmtC(a.bruto)} y solo cuentan ${a.max}: ${fmtC(sobra)} puntos no suman.`;
+    }
+  });
+  // Idiomas
+  let repetido = false;
+  r.idiomas.forEach((x, i) => {
+    const el = document.getElementById('ip-' + i);
+    if (!el) return;
+    el.textContent = x.cuenta ? '+' + fmtC(x.pts) : fmtC(x.pts);
+    el.className = 'pts' + (x.cuenta ? '' : ' no');
+    el.title = x.cuenta ? `Cuenta en el ${x.ap}` : 'No cuenta: ya hay un certificado de este idioma con nivel igual o más alto';
+    if (!x.cuenta && x.pts) repetido = true;
+  });
+  const ia = document.getElementById('idioma-aviso');
+  ia.hidden = !repetido;
+  if (repetido) ia.textContent = 'Has metido un idioma dos veces: solo cuenta el certificado de nivel más alto.';
+  document.getElementById('total').innerHTML = fmt(r.total) + '<small>puntos</small>';
+  document.getElementById('total-movil').textContent = fmt(r.total);
+  const pe = document.getElementById('perdidos');
+  pe.hidden = r.perdidos <= 0;
+  if (r.perdidos > 0) pe.textContent = `Por los topes se quedan fuera ${fmtC(r.perdidos)} puntos. Aunque metas más en esos apartados, ya no suman.`;
+  guardar();
+  return r;
+}
+
+/* ===== EVENTOS ===== */
+function leerCampo(el){
+  const id = el.id;
+  if (!id) return;
+  if (id === 'cuerpo'){ S.cuerpo = el.value; return; }
+  let m = id.match(/^(t\w+)-(a|m)$/);
+  if (m){ S[m[1]] = S[m[1]] || {}; S[m[1]][m[2]] = Math.max(0, Math.floor(+el.value || 0)); return; }
+  m = id.match(/^pub-(\w+)$/);
+  if (m){ S.pub = S.pub || {}; S.pub[m[1]] = Math.max(0, Math.floor(+el.value || 0)); return; }
+  if (el.type === 'checkbox'){ S[id] = el.checked; return; }
+  if (el.tagName === 'SELECT' || el.type === 'text'){ S[id] = el.value; return; }
+  let v = Math.max(0, +el.value || 0);
+  if (el.max && v > +el.max) v = +el.max;
+  S[id] = v;
+}
+document.addEventListener('input', e => {
+  const el = e.target;
+  const fi = el.closest && el.closest('.idioma');
+  if (fi){ S.idiomas[+fi.dataset.i][el.dataset.k] = el.value; actualizar(); return; }
+  if (el.name === 'situacion'){ S.situacion = el.value; actualizar(); return; }
+  if (el.closest('.fechas')) return;
+  leerCampo(el); actualizar();
+});
+document.addEventListener('change', e => {
+  const el = e.target;
+  // Normaliza meses de 12 o más en años al salir del campo.
+  const m = el.id && el.id.match(/^(t\w+)-(a|m)$/);
+  if (m){ const t = S[m[1]] || {}; const mm = meses(t); S[m[1]] = { a:Math.floor(mm / 12), m:mm % 12 };
+    document.getElementById(m[1] + '-a').value = S[m[1]].a; document.getElementById(m[1] + '-m').value = S[m[1]].m; actualizar(); }
+  if (el.type === 'number' && el.max && +el.value > +el.max){ el.value = el.max; }
+});
+document.addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (!b) return;
+  if (b.dataset.step){
+    const inp = document.getElementById(b.dataset.for);
+    inp.value = Math.max(0, (Math.floor(+inp.value) || 0) + (+b.dataset.step));
+    leerCampo(inp); actualizar(); return;
+  }
+  if (b.dataset.fechas){ abrirFechas(b.dataset.fechas); return; }
+  if (b.dataset.sumar){ sumarPeriodo(b.dataset.sumar); return; }
+  if (b.dataset.quitar != null){ S.idiomas.splice(+b.dataset.quitar, 1); renderIdiomas(); actualizar(); return; }
+  if (b.id === 'add-idioma'){ S.idiomas.push({ idioma:'', nivel:'B2', origen:'eoi' }); renderIdiomas(); actualizar();
+    const ins = document.querySelectorAll('.idioma .i-nom'); if (ins.length) ins[ins.length - 1].focus(); return; }
+  if (b.id === 'btn-borrar'){ document.getElementById('confirmar').hidden = false; return; }
+  if (b.id === 'btn-no'){ document.getElementById('confirmar').hidden = true; return; }
+  if (b.id === 'btn-si'){ S = VACIO(); document.getElementById('confirmar').hidden = true; render(); actualizar(); return; }
+  if (b.id === 'btn-ejemplo'){ S = ejemplo(); render(); actualizar(); document.getElementById('resumen').scrollIntoView({ behavior:'smooth', block:'start' }); return; }
+  if (b.id === 'btn-copiar'){ copiar(); return; }
+});
+
+/* Calculadora de periodos por fechas: suma años y meses completos entre dos fechas (ambas incluidas). */
+const HASTA = '2026-11-26';
+function abrirFechas(c){
+  const box = document.getElementById('fx-' + c);
+  if (!box.hidden){ box.hidden = true; return; }
+  box.innerHTML = `<div class="campo"><label for="${c}-d">Desde</label><input type="date" id="${c}-d"></div><div class="campo"><label for="${c}-h">Hasta</label><input type="date" id="${c}-h" value="${HASTA}"></div><button type="button" class="btn" data-sumar="${c}">Sumar este periodo</button><p class="res" id="${c}-res">Si tienes varios periodos, súmalos uno a uno.</p>`;
+  box.hidden = false;
+  box.querySelector('input').focus();
+}
+function diffMeses(d, h){
+  const a = new Date(d + 'T00:00:00'), b = new Date(h + 'T00:00:00');
+  if (isNaN(a) || isNaN(b) || b < a) return null;
+  b.setDate(b.getDate() + 1);
+  let mm = (b.getFullYear() - a.getFullYear()) * 12 + (b.getMonth() - a.getMonth());
+  if (b.getDate() < a.getDate()) mm--;
+  return Math.max(0, mm);
+}
+function sumarPeriodo(c){
+  const d = document.getElementById(c + '-d').value, h = document.getElementById(c + '-h').value;
+  const res = document.getElementById(c + '-res');
+  const mm = diffMeses(d, h);
+  if (mm == null){ res.textContent = 'Pon una fecha de inicio anterior a la de fin.'; return; }
+  const tot = meses(S[c]) + mm;
+  S[c] = { a:Math.floor(tot / 12), m:tot % 12 };
+  document.getElementById(c + '-a').value = S[c].a;
+  document.getElementById(c + '-m').value = S[c].m;
+  res.textContent = `Sumados ${Math.floor(mm / 12)} años y ${mm % 12} meses. Ahora llevas ${S[c].a} años y ${S[c].m} meses.`;
+  document.getElementById(c + '-d').value = '';
+  actualizar();
+}
+
+function ejemplo(){
+  return Object.assign(VACIO(), {
+    cuerpo:'A1', situacion:'definitivo', primerDestino:false,
+    t111:{ a:7, m:2 }, t121:{ a:15, m:4 }, t43:{ a:9, m:0 }, t42:{ a:2, m:0 },
+    n312:1, n322:0, idiomas:[{ idioma:'Inglés', nivel:'C1', origen:'eoi' }, { idioma:'Francés', nivel:'B2', origen:'otro' }],
+    h51:640, c51:0, cdd:'B1', n65:2, n66a:3, pub:{ rAutor:2 },
+  });
+}
+
+function copiar(){
+  const r = calcular(S);
+  const nom = {}; APARTADOS.forEach(a => a.items.forEach(it => { if (it.id && it.cod) nom[it.id] = it.cod + ' ' + it.lab; }));
+  const lineas = ['Autobaremo Concurso de Traslados 2026-2027 (ANPE La Rioja)', ''];
+  r.aps.forEach((a, i) => {
+    const A = APARTADOS[i];
+    lineas.push(`${A.id}. ${A.titulo}: ${fmt(a.total)}${a.max ? ' de ' + a.max : ''}`);
+    a.subs.filter(s => s.valor > 0).forEach(s => lineas.push(`   ${nom[s.id] || s.id}: ${fmt(s.valor)}`));
+  });
+  lineas.push('', `TOTAL: ${fmt(r.total)} puntos`);
+  if (r.perdidos > 0) lineas.push(`(Por los topes se quedan fuera ${fmtC(r.perdidos)} puntos)`);
+  const txt = lineas.join('\n');
+  const aviso = document.getElementById('copiado');
+  const ok = () => { aviso.hidden = false; aviso.textContent = 'Desglose copiado. Puedes pegarlo en un correo o en WhatsApp.'; };
+  const fallo = () => { aviso.hidden = false; aviso.innerHTML = ''; const ta = document.createElement('textarea'); ta.value = txt; ta.rows = 8; ta.style.width = '100%'; aviso.append('Copia el texto a mano:', ta); ta.select(); };
+  try { navigator.clipboard.writeText(txt).then(ok, fallo); } catch(e) { fallo(); }
+}
+
+render();
+actualizar();
+</script>
+</body>
+</html>
