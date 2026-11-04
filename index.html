@@ -133,8 +133,8 @@ details.doc[open] summary::before{transform:rotate(45deg);}
 details.doc summary:hover{text-decoration:underline; text-underline-offset:3px;}
 details.doc ul{margin:6px 0 0; padding:10px 14px 10px 28px; background:var(--bg); border:1px solid var(--border); border-radius:12px; color:var(--ink); display:grid; gap:4px; max-width:70ch;}
 details.doc-general{font-size:.88rem;}
-/* En cada mérito, la justificación va aparte: al final de la fila, debajo de controles y fechas. */
-details.doc-fila{grid-column:1 / -1; margin-top:4px; border-top:1px solid var(--border); padding-top:8px;}
+/* En cada mérito, la justificación va al final de la fila, debajo de controles y fechas y antes de la raya que separa del siguiente. */
+details.doc-fila{grid-column:1 / -1; margin-top:2px;}
 details.doc-fila summary{border:1px solid var(--border); border-radius:999px; padding:4px 12px 4px 10px; background:var(--surface-2); font-size:.8rem;}
 details.doc-fila summary::before{display:none;}
 details.doc-fila summary:hover{text-decoration:none; border-color:var(--ink-muted);}
