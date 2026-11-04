@@ -9,3 +9,5 @@ Calculadora para que cada docente se autobaremara el Concurso de Traslados 2026-
 - Interinos cuentan en 1.2 y 4 (criterio del resumen de ANPE).
 - Identidad de ANPE La Rioja, la misma paleta y cabecera que Retribuciones. Textos humanizados (ver instrucciones globales).
 - Repo público en github.com/sindicatoanperioja/autobaremo, publicado con GitHub Pages (https://sindicatoanperioja.github.io/autobaremo/). No subir rutas de la unidad Z: ni enlaces privados. Cada commit va seguido de `git push`.
+- Tiempo: por defecto años y meses (`S.am`); quien quiera mete periodos con fechas (`S.modo[campo] = "fechas"`, lista en `S[campo]`). Solo con fechas se detectan solapes: en un mismo campo se rechazan; entre 4.1, 4.2 y 4.3 y entre 1.1, 1.2.2 y 1.2.3 se quitan los días del que menos puntúa.
+- Sin selector de cuerpo: Catedrático es un interruptor en el apartado 2. "Expectativa" = funcionario de carrera sin destino definitivo (1.1.2).

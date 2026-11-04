@@ -250,22 +250,14 @@ footer.pie .contacto{font-weight:700; color:var(--ink-2); user-select:all;}
     <main class="form-col" id="form">
       <section class="card perfil" aria-labelledby="perfil-h">
         <h2 id="perfil-h">Tu situación</h2>
-        <div class="perfil-grid">
-          <div class="campo">
-            <label for="cuerpo">Cuerpo desde el que concursas</label>
-            <select id="cuerpo">
-              <option value="A2">Maestros</option>
-              <option value="A1" selected>Profesores de Secundaria, EOI, Música y Artes Escénicas o Artes Plásticas</option>
-              <option value="CAT">Catedráticos (Secundaria, EOI, Música o Artes Plásticas)</option>
-              <option value="A2o">PTFP a extinguir, Especialistas en Sectores Singulares de FP o Maestros de Taller</option>
-            </select>
-          </div>
+        <div class="perfil-sit">
           <div class="campo">
             <span class="lbl" id="sit-lbl">Participas desde</span>
             <div class="pills" role="radiogroup" aria-labelledby="sit-lbl">
               <label><input type="radio" name="situacion" id="sit-def" value="definitivo" checked><span>Destino definitivo</span></label>
-              <label><input type="radio" name="situacion" id="sit-prov" value="provisional"><span>Provisionalidad</span></label>
+              <label><input type="radio" name="situacion" id="sit-prov" value="expectativa"><span>Expectativa</span></label>
             </div>
+            <p class="nota-ref">Expectativa: eres funcionario/a de carrera y todavía no tienes destino definitivo.</p>
           </div>
         </div>
         <p class="nota-ref">Los méritos se cuentan hasta el <strong>26 de noviembre de 2026</strong>, último día del plazo de solicitudes. Solo cuentan los meses completos.</p>
@@ -409,11 +401,14 @@ function apartado(id, subs, max){
   return { id, subs, bruto, total: R4(total), max: max != null ? max : null };
 }
 function calcular(s){
-  const def = s.situacion !== 'provisional';
+  const def = s.situacion !== 'expectativa';
   const idi = idiomasValorados(s.idiomas);
   const sumIdi = ap => R4(idi.filter(x => x.cuenta && x.ap === ap).reduce((a, x) => a + x.pts, 0));
   const p = s.pub || {};
-  const L = k => Array.isArray(s[k]) ? s[k] : [];
+  // Cada campo de tiempo va en años y meses (s.am) o, si se elige, en periodos con fechas (s[k]).
+  const L = k => (s.modo || {})[k] === 'fechas'
+    ? (Array.isArray(s[k]) ? s[k].filter(x => !x.sin) : [])
+    : ((s.am || {})[k] ? [{ sin:true, a:(s.am[k].a || 0), m:(s.am[k].m || 0) }] : []);
   const I = k => intervalos(L(k));
   const usa111 = def, usa112 = !def || !!s.primerDestino;
   const base11 = [].concat(usa111 ? [{ cod:'1.1.1', ints:I('t111') }] : [], usa112 ? [{ cod:'1.1.2', ints:I('t112') }] : []);
@@ -439,7 +434,7 @@ function calcular(s){
     sub('122', lineal(T.t122.meses, 1.5, 0.125)),
     sub('123', lineal(T.t123.meses, 0.75, 0.0625)),
   ]);
-  const ap2 = apartado('2', [ sub('2', s.cuerpo === 'CAT' ? 5 : 0) ]);
+  const ap2 = apartado('2', [ sub('2', s.catedratico ? 5 : 0) ]);
   const ap3 = apartado('3', [
     sub('311', ent(s.n311) * 6),
     sub('312', ent(s.n312) * 3),
@@ -489,24 +484,24 @@ const APARTADOS = [
     { id:'111', cod:'1.1.1', tipo:'tiempo', campo:'t111', lab:'Años con destino definitivo en tu centro actual',
       val:'4 puntos el 1.º y 2.º año, 6 el 3.º y 8 del 4.º en adelante',
       hint:'Seguidos, como funcionario/a de carrera, en el centro desde el que concursas. Se pierden al cambiar de centro.',
-      ver: s => s.situacion !== 'provisional' },
+      ver: s => s.situacion !== 'expectativa' },
     { id:'pd', tipo:'check', campo:'primerDestino', lab:'Es mi primer destino definitivo, conseguido por concurso',
-      hint:'Si concursas voluntariamente desde él, también te suman los años que estuviste antes en provisionalidad (1.1.2).',
-      ver: s => s.situacion !== 'provisional' },
-    { id:'112', cod:'1.1.2', tipo:'tiempo', campo:'t112', lab:'Años como funcionario/a de carrera en provisionalidad',
-      val:'4 puntos por año · 0,3333 por mes', ver: s => s.situacion === 'provisional' || s.primerDestino },
+      hint:'Si concursas voluntariamente desde él, también te suman los años que estuviste antes en expectativa (1.1.2).',
+      ver: s => s.situacion !== 'expectativa' },
+    { id:'112', cod:'1.1.2', tipo:'tiempo', campo:'t112', lab:'Años como funcionario/a de carrera en expectativa de destino',
+      val:'4 puntos por año · 0,3333 por mes', ver: s => s.situacion === 'expectativa' || s.primerDestino },
     { id:'113', cod:'1.1.3', tipo:'tiempo', campo:'t113', lab:'Años en un centro de especial dificultad', val:'4 puntos por año · 0,3333 por mes', hint:ESP },
     { grupo:'1.2 Antigüedad en el cuerpo' },
     { id:'121', cod:'1.2.1', tipo:'tiempo', campo:'t121', lab:'Años de servicio en tu cuerpo', val:'2 puntos por año · 0,1666 por mes',
       hint:'Como funcionario/a de carrera, en prácticas o interino.' },
     { id:'122', cod:'1.2.2', tipo:'tiempo', campo:'t122', lab:'Años en otros cuerpos docentes del mismo subgrupo o superior', val:'1,5 puntos por año · 0,125 por mes',
-      hint:'Los días que coinciden con 1.1.1 o 1.1.2 no cuentan; la web los quita sola.' },
+      hint:'Los días que coinciden con 1.1.1 o 1.1.2 no cuentan. Con fechas, la web los quita sola.' },
     { id:'123', cod:'1.2.3', tipo:'tiempo', campo:'t123', lab:'Años en otros cuerpos docentes de subgrupo inferior', val:'0,75 puntos por año · 0,0625 por mes',
-      hint: s => s.cuerpo === 'A2' ? 'Para Maestros casi nunca se da: no hay cuerpos docentes de subgrupo inferior.' : 'Por ejemplo, los años como Maestro/a si ahora eres profesor/a de Secundaria. Los días que coinciden con 1.1 o 1.2.2 se quitan solos.' },
+      hint:'Por ejemplo, los años como Maestro/a si ahora eres profesor/a de Secundaria. Con fechas, la web quita sola los días que coinciden con 1.1 o 1.2.2.' },
   ]},
   { id:'2', titulo:'Pertenencia a Catedráticos', tope:'5 puntos', items:[
-    { id:'2', cod:'2', tipo:'info', lab:'Funcionario/a de carrera de un cuerpo de Catedráticos', val:'5 puntos',
-      hint: s => s.cuerpo === 'CAT' ? 'Contado porque has elegido Catedráticos arriba.' : 'Se activa al elegir Catedráticos en «Tu situación».' },
+    { id:'2', cod:'2', tipo:'check', campo:'catedratico', puntua:true, lab:'Soy funcionario/a de carrera de un cuerpo de Catedráticos', val:'5 puntos',
+      hint:'De Enseñanza Secundaria, Música y Artes Escénicas, Escuelas Oficiales de Idiomas o Artes Plásticas y Diseño.' },
   ]},
   { id:'3', titulo:'Méritos académicos', tope:'Máximo 10 puntos', max:10, items:[
     { grupo:'3.1 Doctorado, postgrados y premios' },
@@ -519,9 +514,9 @@ const APARTADOS = [
     { id:'321', cod:'3.2.1', tipo:'num2', campo:'n321', campo2:'n321c', lab:'Grados distintos del exigido para entrar en tu cuerpo', val:'5 puntos cada uno · 2,5 si lo sacaste convalidando créditos de otra titulación',
       l1:'Completos', l2:'Convalidando' },
     { id:'322', cod:'3.2.2', tipo:'num', campo:'n322', lab:'Diplomaturas, ingenierías técnicas o primeros ciclos', val:'3 puntos cada uno',
-      hint: s => /^A2/.test(s.cuerpo) ? 'No cuentes la primera diplomatura o primer ciclo que presentes: en tu subgrupo nunca se valora.' : 'No cuentes el primer ciclo de la licenciatura con la que entraste.' },
+      hint:'Maestros y demás cuerpos A2: no cuentes la primera diplomatura o primer ciclo que presentes. Cuerpos A1: no cuentes el primer ciclo de la licenciatura con la que entraste.' },
     { id:'323', cod:'3.2.3', tipo:'num', campo:'n323', lab:'Segundos ciclos de licenciatura, ingeniería o arquitectura', val:'3 puntos cada uno',
-      hint: s => /^A2/.test(s.cuerpo) ? 'Si tienes una licenciatura entera, cuenta su primer ciclo en 3.2.2 y su segundo ciclo aquí.' : 'No cuentes el segundo ciclo de la primera licenciatura o grado que presentes.' },
+      hint:'Cuerpos A1: no cuentes el segundo ciclo de la primera licenciatura o grado que presentes. Maestros con una licenciatura entera: su primer ciclo va en 3.2.2 y el segundo aquí.' },
     { grupo:'3.3 Idiomas, FP y enseñanzas artísticas' },
     { id:'33i', cod:'3.3 a-d', tipo:'idiomas', lab:'Certificados de idiomas', val:'C2: 4 · C1: 3 · B2: 2 · B1: 1',
       hint:'Mete aquí todos tus idiomas. Los de la Escuela Oficial de Idiomas (o el diploma de lengua de signos) puntúan en 3.3; los demás certificados reconocidos por ACLES, en 5.5. De cada idioma solo cuenta uno, el de nivel más alto. No se valoran el español ni el exigido para entrar.' },
@@ -533,7 +528,7 @@ const APARTADOS = [
     { id:'42', cod:'4.2', tipo:'tiempo', campo:'t42', lab:'Jefatura de estudios, secretaría, vicedirección o asimilados', val:'3 puntos por año · 0,25 por mes', hint:'También jefe/a de estudios adjunto, secretario/a adjunto y jefe/a de residencia.' },
     { id:'43', cod:'4.3', tipo:'tiempo', campo:'t43', lab:'Tutoría, jefatura de departamento, coordinación de ciclo', val:'1,5 puntos por año · 0,125 por mes · máximo 10 puntos',
       hint:'También asesor/a de formación o dirección de un equipo de orientación. Tutorías desde mayo de 2006 (LOE).' },
-    { id:'4n', tipo:'nota', txt:'Cuenta como funcionario/a de carrera, en prácticas o interino. Mete cada cargo con sus fechas: si dos coinciden en el tiempo, la web cuenta esos días solo en el que más puntúa.' },
+    { id:'4n', tipo:'nota', txt:'Cuenta como funcionario/a de carrera, en prácticas o interino. Si dos cargos coincidieron en el tiempo, esos días solo cuentan en el que más puntúa. Mételos con fechas y la web lo hace sola.' },
   ]},
   { id:'5', titulo:'Formación y perfeccionamiento', tope:'Máximo 15 puntos', max:15, items:[
     { id:'51', cod:'5.1', tipo:'horas', campo:'h51', campo2:'c51', lab:'Cursos de formación recibidos', val:'0,1 puntos por cada 10 horas · máximo 9 puntos (900 horas)',
@@ -567,16 +562,24 @@ const IDIOMAS_SUG = ['Inglés','Francés','Alemán','Italiano','Portugués','Chi
 /* ===== ESTADO ===== */
 const CLAVE = 'anpe-autobaremo-ct-2026';
 const CAMPOS_T = ['t111','t112','t113','t121','t122','t123','t41','t42','t43','t64'];
-// Pasa los datos guardados con la versión anterior (años y meses sueltos) a listas de periodos.
+// Adapta datos guardados con versiones anteriores: años y meses sueltos van a s.am y los periodos con fecha activan el modo fechas.
 function normalizar(x){
+  x.am = x.am || {}; x.modo = x.modo || {};
+  if (x.cuerpo === 'CAT') x.catedratico = true;
+  delete x.cuerpo;
+  if (x.situacion === 'provisional') x.situacion = 'expectativa';
   CAMPOS_T.forEach(k => {
-    const v = x[k];
-    if (Array.isArray(v)) return;
-    x[k] = (v && (ent(v.a) || ent(v.m))) ? [{ sin:true, a:ent(v.a), m:ent(v.m) }] : [];
+    let v = x[k];
+    if (v && !Array.isArray(v)){ if (ent(v.a) || ent(v.m)) x.am[k] = { a:ent(v.a), m:ent(v.m) }; v = []; }
+    v = Array.isArray(v) ? v : [];
+    const sin = v.filter(q => q.sin);
+    if (sin.length && !x.am[k]){ const mm = sin.reduce((a, q) => a + ent(q.a) * 12 + ent(q.m), 0); x.am[k] = { a:Math.floor(mm / 12), m:mm % 12 }; }
+    x[k] = v.filter(q => !q.sin);
+    if (x[k].length && !x.modo[k]) x.modo[k] = 'fechas';
   });
   return x;
 }
-const VACIO = () => normalizar({ cuerpo:'A1', situacion:'definitivo', primerDestino:false, idiomas:[], pub:{} });
+const VACIO = () => normalizar({ situacion:'definitivo', primerDestino:false, catedratico:false, idiomas:[], pub:{} });
 let S = VACIO();
 try { const g = JSON.parse(localStorage.getItem(CLAVE) || 'null'); if (g && typeof g === 'object') S = Object.assign(VACIO(), g); } catch(e) {}
 S = normalizar(S);
@@ -593,7 +596,10 @@ function stepper(id, valor, etiqueta){
 }
 function controles(it){
   const t = it.tipo, c = it.campo;
-  if (t === 'tiempo') return `<span class="t-total" id="tt-${c}">0 años y 0 meses</span>`;
+  if (t === 'tiempo'){
+    const v = (S.am || {})[c] || {};
+    return `<div class="tiempo" id="tm-${c}"><label>Años <input type="number" inputmode="numeric" min="0" id="${c}-a" value="${v.a || 0}"></label><label>Meses <input type="number" inputmode="numeric" min="0" max="11" id="${c}-m" value="${v.m || 0}"></label></div><span class="t-total" id="tt-${c}" hidden>0 años y 0 meses</span>`;
+  }
   if (t === 'num') return stepper(c, S[c], it.lab);
   if (t === 'num2') return `<label class="switch" style="gap:6px">${esc(it.l1)} ${stepper(c, S[c], it.lab + ', ' + it.l1)}</label><label class="switch" style="gap:6px">${esc(it.l2)} ${stepper(it.campo2, S[it.campo2], it.lab + ', ' + it.l2)}</label>`;
   if (t === 'horas') return `<div class="tiempo"><label>Horas <input type="number" inputmode="numeric" min="0" id="${c}" value="${S[c] || 0}" style="width:84px"></label><label>Créditos <input type="number" inputmode="decimal" min="0" step="0.1" id="${it.campo2}" value="${S[it.campo2] || 0}"></label></div>`;
@@ -609,7 +615,7 @@ function fila(it){
   const cod = it.cod ? `<span class="cod">${esc(it.cod)}</span>` : '';
   const enl = it.enlace ? ` <a href="${it.enlace}">Ir a los idiomas</a>` : '';
   const txt = `<div class="fila-txt">${cod}<span class="lab">${esc(it.lab)}</span>${it.val ? `<span class="val">${esc(it.val)}</span>` : ''}<span class="hint" data-hint="${it.id}">${esc(val(it.hint, S) || '')}${enl}</span></div>`;
-  const pts = it.tipo === 'check' ? '<div></div>' : `<div class="fila-pts" id="p-${it.id}">0,0000</div>`;
+  const pts = (it.tipo === 'check' && !it.puntua) ? '<div></div>' : `<div class="fila-pts" id="p-${it.id}">0,0000</div>`;
   let extra = '';
   if (it.tipo === 'tiempo') extra = `<div class="periodos" id="pl-${it.campo}">${htmlPeriodos(it.campo)}</div>`;
   if (it.tipo === 'idiomas') extra = `<div class="idiomas" id="idiomas"></div>`;
@@ -629,8 +635,7 @@ function render(){
   document.getElementById('res-list').innerHTML = APARTADOS.map(a => `
     <li><div class="res-row"><a href="#ap-${a.id}">${a.id}. ${esc(a.titulo)}</a><b id="r-${a.id}">0${a.max ? ` <span>/ ${a.max}</span>` : ''}</b></div>${a.max ? `<div class="barra" id="rb-${a.id}"><i></i></div>` : ''}</li>`).join('');
   renderIdiomas();
-  document.getElementById('cuerpo').value = S.cuerpo;
-  document.querySelector(`input[name="situacion"][value="${S.situacion}"]`).checked = true;
+    document.querySelector(`input[name="situacion"][value="${S.situacion}"]`).checked = true;
 }
 function renderIdiomas(){
   const box = document.getElementById('idiomas');
@@ -703,7 +708,8 @@ function actualizar(){
 function leerCampo(el){
   const id = el.id;
   if (!id) return;
-  if (id === 'cuerpo'){ S.cuerpo = el.value; return; }
+  const mt = id.match(/^(t\w+)-(a|m)$/);
+  if (mt){ S.am[mt[1]] = S.am[mt[1]] || { a:0, m:0 }; S.am[mt[1]][mt[2]] = ent(el.value); return; }
   const m = id.match(/^pub-(\w+)$/);
   if (m){ S.pub = S.pub || {}; S.pub[m[1]] = Math.max(0, Math.floor(+el.value || 0)); return; }
   if (el.type === 'checkbox'){ S[id] = el.checked; return; }
@@ -723,6 +729,10 @@ document.addEventListener('input', e => {
 document.addEventListener('change', e => {
   const el = e.target;
   if (el.type === 'number' && el.max && +el.value > +el.max){ el.value = el.max; }
+  // 14 meses pasan a 1 año y 2 meses al salir del campo.
+  const mt = el.id && el.id.match(/^(t\w+)-(a|m)$/);
+  if (mt && S.am[mt[1]]){ const c = mt[1], mm = ent(S.am[c].a) * 12 + ent(S.am[c].m); S.am[c] = { a:Math.floor(mm / 12), m:mm % 12 };
+    document.getElementById(c + '-a').value = S.am[c].a; document.getElementById(c + '-m').value = S.am[c].m; actualizar(); }
 });
 document.addEventListener('click', e => {
   const b = e.target.closest('button');
@@ -733,8 +743,8 @@ document.addEventListener('click', e => {
     leerCampo(inp); actualizar(); return;
   }
   if (b.dataset.addp){ anadirPeriodo(b.dataset.addp); return; }
-  if (b.dataset.addsf){ anadirSinFechas(b.dataset.addsf); return; }
-  if (b.dataset.sinf){ const x = document.getElementById(b.dataset.sinf + '-sf'); x.hidden = !x.hidden; if (!x.hidden) x.querySelector('input').focus(); return; }
+  if (b.dataset.modo){ const c = b.dataset.modo; S.modo[c] = S.modo[c] === 'fechas' ? '' : 'fechas'; pintarPeriodos(c); actualizar();
+    if (S.modo[c] === 'fechas') document.getElementById(c + '-d').focus(); else document.getElementById(c + '-a').focus(); return; }
   if (b.dataset.quitarp){ const [c, i] = b.dataset.quitarp.split(':'); S[c].splice(+i, 1); pintarPeriodos(c); actualizar(); return; }
   if (b.dataset.quitar != null){ S.idiomas.splice(+b.dataset.quitar, 1); renderIdiomas(); actualizar(); return; }
   if (b.id === 'add-idioma'){ S.idiomas.push({ idioma:'', nivel:'B2', origen:'eoi' }); renderIdiomas(); actualizar();
@@ -751,26 +761,20 @@ document.addEventListener('click', e => {
 const fecha = x => { const [y, m, d] = x.split('-'); return `${d}/${m}/${y}`; };
 const ymTxt = (mm, dd) => `${Math.floor(mm / 12)} ${Math.floor(mm / 12) === 1 ? 'año' : 'años'} y ${mm % 12} ${mm % 12 === 1 ? 'mes' : 'meses'}` + (dd ? ` y ${dd} ${dd === 1 ? 'día' : 'días'}` : '');
 function htmlPeriodos(c){
+  if ((S.modo || {})[c] !== 'fechas') return `<div><button type="button" class="btn-link" data-modo="${c}">Prefiero meter los periodos con fechas</button></div>`;
   const lista = S[c] || [];
   const lineas = lista.map((p, i) => {
-    let txt, dur;
-    if (p.sin){ txt = 'Sin fechas'; dur = ymTxt(ent(p.a) * 12 + ent(p.m), 0); }
-    else { const r = ymd(dnum(p.d), Math.min(dnum(p.h), FIN)); txt = `Del ${fecha(p.d)} al ${fecha(p.h)}`; dur = ymTxt(r.m, r.d); }
-    return `<div class="periodo"><span class="p-fe">${txt}</span><span class="p-du">${dur}</span><button type="button" class="quitar" data-quitarp="${c}:${i}" aria-label="Quitar periodo ${i + 1}">×</button><span class="p-sol" id="ps-${c}-${i}" hidden></span></div>`;
+    const r = ymd(dnum(p.d), Math.min(dnum(p.h), FIN));
+    return `<div class="periodo"><span class="p-fe">Del ${fecha(p.d)} al ${fecha(p.h)}</span><span class="p-du">${ymTxt(r.m, r.d)}</span><button type="button" class="quitar" data-quitarp="${c}:${i}" aria-label="Quitar periodo ${i + 1}">×</button><span class="p-sol" id="ps-${c}-${i}" hidden></span></div>`;
   }).join('');
   return `${lineas}
     <div class="p-nuevo">
       <div class="campo"><label for="${c}-d">${lista.length ? 'Otro periodo: desde' : 'Desde'}</label><input type="date" id="${c}-d" max="${FIN_PLAZO}"></div>
       <div class="campo"><label for="${c}-h">Hasta</label><input type="date" id="${c}-h" value="${FIN_PLAZO}" max="${FIN_PLAZO}"></div>
       <button type="button" class="btn" data-addp="${c}">Añadir periodo</button>
-      <button type="button" class="btn-link" data-sinf="${c}">No sé las fechas</button>
     </div>
-    <div class="p-nuevo" id="${c}-sf" hidden>
-      <div class="tiempo"><label>Años <input type="number" inputmode="numeric" min="0" id="${c}-sa" value="0"></label><label>Meses <input type="number" inputmode="numeric" min="0" max="11" id="${c}-sm" value="0"></label></div>
-      <button type="button" class="btn sec" data-addsf="${c}">Añadir sin fechas</button>
-      <span class="letra">Sin fechas la web no puede comprobar si coincide con otros periodos.</span>
-    </div>
-    <p class="p-err" id="${c}-err" role="alert" hidden></p>`;
+    <p class="p-err" id="${c}-err" role="alert" hidden></p>
+    <div><button type="button" class="btn-link" data-modo="${c}">Volver a años y meses</button></div>`;
 }
 function pintarPeriodos(c){ document.getElementById('pl-' + c).innerHTML = htmlPeriodos(c); }
 function errorP(c, txt){ const e = document.getElementById(c + '-err'); e.textContent = txt; e.hidden = !txt; }
@@ -782,25 +786,19 @@ function anadirPeriodo(c){
   if (a > FIN) return errorP(c, 'Ese periodo empieza después del 26/11/2026, fin del plazo: no cuenta.');
   if (b < a) return errorP(c, 'La fecha de fin es anterior a la de inicio.');
   const hh = b > FIN ? FIN_PLAZO : h;
-  const choca = (S[c] || []).find(p => !p.sin && dnum(p.d) <= Math.min(b, FIN) && Math.min(dnum(p.h), FIN) >= a);
+  const choca = (S[c] || []).find(p => dnum(p.d) <= Math.min(b, FIN) && Math.min(dnum(p.h), FIN) >= a);
   if (choca) return errorP(c, `Coincide con el periodo del ${fecha(choca.d)} al ${fecha(choca.h)}. Un mismo día no puede contar dos veces: mete solo las fechas que faltan.`);
   S[c].push({ d, h: hh });
-  S[c].sort((x, y) => (x.sin ? 1 : 0) - (y.sin ? 1 : 0) || String(x.d).localeCompare(String(y.d)));
+  S[c].sort((x, y) => String(x.d).localeCompare(String(y.d)));
   pintarPeriodos(c); actualizar();
   document.getElementById(c + '-d').focus();
-}
-function anadirSinFechas(c){
-  const a = ent(document.getElementById(c + '-sa').value), m = ent(document.getElementById(c + '-sm').value);
-  if (!a && !m) return errorP(c, 'Pon los años o los meses.');
-  const tot = a * 12 + m;
-  S[c].push({ sin:true, a: Math.floor(tot / 12), m: tot % 12 });
-  pintarPeriodos(c); actualizar();
 }
 function pintarTiempos(r){
   Object.keys(r.T).forEach(c => {
     const tt = document.getElementById('tt-' + c);
     if (!tt) return;
-    const x = r.T[c];
+    const x = r.T[c], fx = (S.modo || {})[c] === 'fechas';
+    tt.hidden = !fx; document.getElementById('tm-' + c).hidden = fx;
     tt.textContent = ymTxt(x.meses, 0) + (x.solapes.length ? ', quitados los días que coinciden' : '');
     (S[c] || []).forEach((p, i) => {
       const el = document.getElementById(`ps-${c}-${i}`);
@@ -814,8 +812,8 @@ function pintarTiempos(r){
 
 function ejemplo(){
   return normalizar(Object.assign(VACIO(), {
-    cuerpo:'A1', situacion:'definitivo', primerDestino:false,
-    t111:[{ d:'2019-09-01', h:FIN_PLAZO }], t121:[{ d:'2011-09-01', h:FIN_PLAZO }],
+    situacion:'definitivo', primerDestino:false,
+    am:{ t111:{ a:7, m:2 }, t121:{ a:15, m:2 } }, modo:{ t42:'fechas', t43:'fechas' },
     t43:[{ d:'2015-09-01', h:'2024-06-30' }], t42:[{ d:'2022-09-01', h:'2024-08-31' }],
     n312:1, n322:0, idiomas:[{ idioma:'Inglés', nivel:'C1', origen:'eoi' }, { idioma:'Francés', nivel:'B2', origen:'otro' }],
     h51:640, c51:0, cdd:'B1', n65:2, n66a:3, pub:{ rAutor:2 },
