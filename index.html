@@ -118,7 +118,7 @@ select:hover, input:hover{border-color:var(--medio);}
 .ap-body{padding:6px 22px 14px;}
 .grupo-tit{font-size:.78rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--verde-texto); margin:14px 0 2px;}
 
-.fila{display:grid; grid-template-columns:minmax(0,1fr) auto 96px; gap:8px 18px; align-items:center; padding:12px 0; border-top:1px dashed var(--border);}
+.fila{display:grid; grid-template-columns:minmax(0,1fr) auto 96px; gap:8px 18px; align-items:center; padding:12px 0; border-top:2px dashed var(--cielo);}
 .grupo-tit + .fila, .ap-body > .fila:first-child{border-top:0;}
 .fila-txt{min-width:0;}
 .fila-txt .cod{font-weight:800; color:var(--accent); margin-right:6px;}
@@ -227,7 +227,7 @@ select.sel-corto{width:auto; min-width:150px;}
 .perdidos{font-size:.85rem; color:var(--verde-texto); background:var(--verde-niebla); border-radius:12px; padding:8px 12px; margin:0; font-weight:600;}
 .acciones{display:flex; flex-wrap:wrap; gap:8px;}
 .letra{font-size:.8rem; color:var(--ink-muted); margin:0;}
-.ejemplo{display:grid; gap:8px; justify-items:start; border-top:1px dashed var(--border); padding-top:14px;}
+.ejemplo{display:grid; gap:8px; justify-items:start; border-top:2px dashed var(--cielo); padding-top:14px;}
 .confirmar{display:flex; flex-wrap:wrap; gap:8px; align-items:center; font-size:.85rem; font-weight:600; background:var(--accent-soft); border-radius:12px; padding:8px 12px;}
 
 /* Barra inferior móvil */
@@ -679,7 +679,7 @@ function controles(it){
 const ICONO_DOC = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>';
 function fila(it){
   if (it.grupo) return `<p class="grupo-tit">${esc(it.grupo)}</p>`;
-  if (it.tipo === 'nota') return `<p class="nota-ref" style="padding:10px 0 2px; border-top:1px dashed var(--border)">${esc(it.txt)}</p>`;
+  if (it.tipo === 'nota') return `<p class="nota-ref" style="padding:10px 0 2px; border-top:2px dashed var(--cielo)">${esc(it.txt)}</p>`;
   const cod = it.cod ? `<span class="cod">${esc(it.cod)}</span>` : '';
   const enl = it.enlace ? ` <a href="${it.enlace}">Ir a los idiomas</a>` : '';
   const txt = `<div class="fila-txt">${cod}<span class="lab" data-lab="${it.id}">${esc(val(it.lab, S))}</span>${it.val ? `<span class="val">${esc(it.val)}</span>` : ''}<span class="hint" data-hint="${it.id}">${esc(val(it.hint, S) || '')}${enl}</span></div>`;
