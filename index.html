@@ -123,7 +123,7 @@ select:hover, input:hover{border-color:var(--medio);}
 .fila-txt{min-width:0;}
 .fila-txt .cod{font-weight:800; color:var(--accent); margin-right:6px;}
 .fila-txt .lab{font-weight:700;}
-.fila-txt .val{display:block; font-size:.84rem; font-weight:700; color:var(--accent); margin-top:3px; letter-spacing:.01em;}
+.fila-txt .val{display:block; font-size:.84rem; font-weight:700; color:var(--verde-texto); margin-top:3px; letter-spacing:.01em;}
 .fila-txt .hint{font-style:italic;}
 .fila-txt .hint{display:block; font-size:.82rem; color:var(--ink-2); margin-top:4px;}
 .fila-in{display:flex; gap:8px; align-items:center; justify-content:flex-end; flex-wrap:wrap;}
@@ -209,6 +209,7 @@ select.sel-corto{width:auto; min-width:150px;}
 .perdidos{font-size:.85rem; color:var(--verde-texto); background:var(--verde-niebla); border-radius:12px; padding:8px 12px; margin:0; font-weight:600;}
 .acciones{display:flex; flex-wrap:wrap; gap:8px;}
 .letra{font-size:.8rem; color:var(--ink-muted); margin:0;}
+.ejemplo{display:grid; gap:8px; justify-items:start; border-top:1px dashed var(--border); padding-top:14px;}
 .confirmar{display:flex; flex-wrap:wrap; gap:8px; align-items:center; font-size:.85rem; font-weight:600; background:var(--accent-soft); border-radius:12px; padding:8px 12px;}
 
 /* Barra inferior móvil */
@@ -263,10 +264,6 @@ footer.pie .contacto{font-weight:700; color:var(--ink-2); user-select:all;}
         <p class="nota-ref">Los méritos se cuentan hasta el <strong>26 de noviembre de 2026</strong>, último día del plazo de solicitudes. Solo cuentan los meses completos.</p>
       </section>
       <div id="apartados" class="form-col"></div>
-      <div class="card perfil">
-        <p class="nota-ref" style="margin:0">Con el ejemplo ves cómo funciona la web con un perfil inventado: un profesor de Secundaria con 7 años en su centro, dos cargos que coincidieron un tiempo, un máster y 640 horas de formación. Sustituye lo que tengas guardado.</p>
-        <div class="acciones"><button type="button" class="btn sec" id="btn-ejemplo">Cargar el ejemplo</button></div>
-      </div>
     </main>
 
     <aside class="card resumen" id="resumen" aria-label="Tu puntuación">
@@ -285,6 +282,10 @@ footer.pie .contacto{font-weight:700; color:var(--ink-2); user-select:all;}
       </div>
       <p class="letra" id="copiado" hidden></p>
       <p class="letra">Los datos se guardan solo en este navegador.</p>
+      <div class="ejemplo">
+        <button type="button" class="btn sec" id="btn-ejemplo">Cargar el ejemplo</button>
+        <p class="letra">Un profesor de Secundaria inventado: 7 años en su centro, dos cargos que coincidieron un tiempo, un máster y 640 horas de formación. Sustituye lo que tengas metido.</p>
+      </div>
     </aside>
   </div>
 
