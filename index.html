@@ -158,6 +158,19 @@ select:hover, input:hover{border-color:var(--medio);}
 select.sel-corto{width:auto; min-width:150px;}
 
 .btn-link{appearance:none; border:0; background:none; padding:2px 0; color:var(--accent); font-weight:700; font-size:.82rem; cursor:pointer; text-decoration:underline; text-underline-offset:3px;}
+.periodos{grid-column:1 / -1; display:grid; gap:6px;}
+.periodo{display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:2px 12px; align-items:center; background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:6px 6px 6px 12px; font-size:.88rem;}
+.periodo .p-fe{font-weight:700;}
+.periodo .p-du{color:var(--ink-2); text-align:right;}
+.periodo .p-sol{grid-column:1 / -1; font-size:.8rem; font-weight:600; color:var(--verde-texto);}
+.periodo .quitar{appearance:none; border:0; background:none; color:var(--ink-muted); cursor:pointer; font-size:1.3rem; width:32px; height:32px; border-radius:50%;}
+.periodo .quitar:hover{background:var(--surface-2); color:var(--bad);}
+.p-nuevo{display:flex; flex-wrap:wrap; gap:8px 12px; align-items:end; background:var(--accent-soft); border-radius:14px; padding:10px 12px;}
+.p-nuevo .campo{flex:1 1 140px;}
+.p-nuevo .campo label{font-size:.75rem; font-weight:700; color:var(--ink-muted); text-transform:uppercase; letter-spacing:.04em;}
+.p-err{margin:0; font-size:.85rem; font-weight:600; color:var(--bad);}
+.t-total{font-weight:700; font-size:.88rem; color:var(--ink-2);}
+@container (max-width:620px){ .periodo{grid-template-columns:minmax(0,1fr) auto;} .periodo .p-du{grid-column:1; text-align:left;} .periodo .quitar{grid-column:2; grid-row:1 / span 2;} }
 .fechas{grid-column:1 / -1; background:var(--accent-soft); border-radius:14px; padding:12px 14px; display:flex; flex-wrap:wrap; gap:10px 14px; align-items:end;}
 .fechas .campo{flex:1 1 150px;}
 .fechas .res{flex:1 1 100%; font-size:.85rem; color:var(--ink-2); margin:0;}
@@ -259,7 +272,7 @@ footer.pie .contacto{font-weight:700; color:var(--ink-2); user-select:all;}
       </section>
       <div id="apartados" class="form-col"></div>
       <div class="card perfil">
-        <p class="nota-ref" style="margin:0">Con el ejemplo ves cómo funciona la web con un perfil inventado: un profesor de Secundaria con 7 años en su centro, un máster y 640 horas de formación. Sustituye lo que tengas guardado.</p>
+        <p class="nota-ref" style="margin:0">Con el ejemplo ves cómo funciona la web con un perfil inventado: un profesor de Secundaria con 7 años en su centro, dos cargos que coincidieron un tiempo, un máster y 640 horas de formación. Sustituye lo que tengas guardado.</p>
         <div class="acciones"><button type="button" class="btn sec" id="btn-ejemplo">Cargar el ejemplo</button></div>
       </div>
     </main>
@@ -299,14 +312,68 @@ footer.pie .contacto{font-weight:700; color:var(--ink-2); user-select:all;}
 /* ===== MOTOR (baremo del Anexo XI, Resolución 88/2026, BOR 28-10-2026) ===== */
 /*ENGINE-START*/
 const R4 = x => Math.round(x * 10000) / 10000;
-const meses = t => Math.max(0, Math.floor(+((t && t.a) || 0))) * 12 + Math.max(0, Math.floor(+((t && t.m) || 0)));
 const n = v => Math.max(0, +v || 0);
 const ent = v => Math.max(0, Math.floor(+v || 0));
+/* Periodos de servicio. Cada campo de tiempo es una lista de periodos:
+   {d:'aaaa-mm-dd', h:'aaaa-mm-dd'} con fechas (ambas incluidas) o {sin:true, a, m} sin fechas.
+   Cada periodo se pasa a años, meses y días como en la hoja de servicios; los días sueltos se suman
+   y cada 30 hacen un mes. Los días que sobran no puntúan. */
+const DIA = 86400000;
+const FIN_PLAZO = '2026-11-26';
+const dnum = s => { const p = String(s || '').split('-').map(Number); if (p.length !== 3 || p.some(isNaN)) return NaN; return Math.round(Date.UTC(p[0], p[1] - 1, p[2]) / DIA); };
+const dstr = x => new Date(x * DIA).toISOString().slice(0, 10);
+const FIN = dnum(FIN_PLAZO);
+function ymd(a, b){
+  const s = new Date(a * DIA), e = new Date((b + 1) * DIA);
+  let mm = (e.getUTCFullYear() - s.getUTCFullYear()) * 12 + (e.getUTCMonth() - s.getUTCMonth());
+  if (e.getUTCDate() < s.getUTCDate()) mm--;
+  const ty = s.getUTCFullYear(), tm = s.getUTCMonth() + mm;
+  const dim = new Date(Date.UTC(ty, tm + 1, 0)).getUTCDate();
+  const anc = Math.round(Date.UTC(ty, tm, Math.min(s.getUTCDate(), dim)) / DIA);
+  return { m: mm, d: (b + 1) - anc };
+}
+const p_sin = p => !!(p && p.sin);
+// Periodos con fecha, recortados al fin de plazo: [{a, b, i}] en números de día.
+function intervalos(lista){
+  return (lista || []).map((p, i) => ({ a: dnum(p.d), b: Math.min(dnum(p.h), FIN), i }))
+    .filter(x => !p_sin(lista[x.i]) && !isNaN(x.a) && !isNaN(x.b) && x.a <= x.b);
+}
+function restar(piezas, quita){
+  let out = piezas;
+  quita.forEach(q => {
+    const sig = [];
+    out.forEach(x => {
+      if (q.b < x.a || q.a > x.b){ sig.push(x); return; }
+      if (q.a > x.a) sig.push({ a: x.a, b: q.a - 1, i: x.i });
+      if (q.b < x.b) sig.push({ a: q.b + 1, b: x.b, i: x.i });
+    });
+    out = sig;
+  });
+  return out;
+}
+// Tiempo de un campo quitando los días que ya cuentan en otro subapartado que puntúa más.
+// quitar: [{cod, ints}] en orden de preferencia.
+function tiempo(lista, quitar){
+  let piezas = intervalos(lista);
+  const solapes = [];
+  (quitar || []).forEach(q => {
+    piezas.forEach(x => q.ints.forEach(y => {
+      const a = Math.max(x.a, y.a), b = Math.min(x.b, y.b);
+      if (a <= b) solapes.push({ i: x.i, cod: q.cod, a, b, dias: b - a + 1 });
+    }));
+    piezas = restar(piezas, q.ints);
+  });
+  let mm = 0, dd = 0;
+  piezas.forEach(x => { const r = ymd(x.a, x.b); mm += r.m; dd += r.d; });
+  (lista || []).forEach(p => { if (p_sin(p)) mm += ent(p.a) * 12 + ent(p.m); });
+  mm += Math.floor(dd / 30);
+  return { meses: mm, dias: dd % 30, solapes };
+}
 // Años completos a precio por año y el resto de meses a precio por mes.
-const lineal = (t, porAnio, porMes) => { const mm = meses(t); return R4(Math.floor(mm / 12) * porAnio + (mm % 12) * porMes); };
+const lineal = (mm, porAnio, porMes) => R4(Math.floor(mm / 12) * porAnio + (mm % 12) * porMes);
 // 1.1.1: 4 puntos el 1.º y 2.º año, 6 el 3.º y 8 del 4.º en adelante. La fracción va al precio del año en curso.
-function pts111(t){
-  const mm = meses(t), y = Math.floor(mm / 12), m = mm % 12;
+function pts111(mm){
+  const y = Math.floor(mm / 12), m = mm % 12;
   let p = 0;
   for (let i = 1; i <= y; i++) p += i <= 2 ? 4 : i === 3 ? 6 : 8;
   p += m * (y < 2 ? 0.3333 : y === 2 ? 0.5 : 0.6666);
@@ -346,13 +413,31 @@ function calcular(s){
   const idi = idiomasValorados(s.idiomas);
   const sumIdi = ap => R4(idi.filter(x => x.cuenta && x.ap === ap).reduce((a, x) => a + x.pts, 0));
   const p = s.pub || {};
+  const L = k => Array.isArray(s[k]) ? s[k] : [];
+  const I = k => intervalos(L(k));
+  const usa111 = def, usa112 = !def || !!s.primerDestino;
+  const base11 = [].concat(usa111 ? [{ cod:'1.1.1', ints:I('t111') }] : [], usa112 ? [{ cod:'1.1.2', ints:I('t112') }] : []);
+  // 1.2.2 y 1.2.3 no cuentan los días que coinciden entre sí ni con 1.1.1 o 1.1.2.
+  // En 4.1, 4.2 y 4.3 los días a la vez solo cuentan en el cargo que más puntúa.
+  const T = {
+    t111: tiempo(usa111 ? L('t111') : []),
+    t112: tiempo(usa112 ? L('t112') : [], usa111 ? [{ cod:'1.1.1', ints:I('t111') }] : []),
+    t113: tiempo(L('t113')),
+    t121: tiempo(L('t121')),
+    t122: tiempo(L('t122'), base11),
+    t123: tiempo(L('t123'), base11.concat([{ cod:'1.2.2', ints:I('t122') }])),
+    t41: tiempo(L('t41')),
+    t42: tiempo(L('t42'), [{ cod:'4.1', ints:I('t41') }]),
+    t43: tiempo(L('t43'), [{ cod:'4.1', ints:I('t41') }, { cod:'4.2', ints:I('t42') }]),
+    t64: tiempo(L('t64')),
+  };
   const ap1 = apartado('1', [
-    sub('111', def ? pts111(s.t111) : 0),
-    sub('112', (!def || s.primerDestino) ? lineal(s.t112, 4, 0.3333) : 0),
-    sub('113', lineal(s.t113, 4, 0.3333)),
-    sub('121', lineal(s.t121, 2, 0.1666)),
-    sub('122', lineal(s.t122, 1.5, 0.125)),
-    sub('123', lineal(s.t123, 0.75, 0.0625)),
+    sub('111', pts111(T.t111.meses)),
+    sub('112', lineal(T.t112.meses, 4, 0.3333)),
+    sub('113', lineal(T.t113.meses, 4, 0.3333)),
+    sub('121', lineal(T.t121.meses, 2, 0.1666)),
+    sub('122', lineal(T.t122.meses, 1.5, 0.125)),
+    sub('123', lineal(T.t123.meses, 0.75, 0.0625)),
   ]);
   const ap2 = apartado('2', [ sub('2', s.cuerpo === 'CAT' ? 5 : 0) ]);
   const ap3 = apartado('3', [
@@ -368,9 +453,9 @@ function calcular(s){
     sub('33f', ent(s.n33f) * 2),
   ], 10);
   const ap4 = apartado('4', [
-    sub('41', lineal(s.t41, 4.5, 0.375)),
-    sub('42', lineal(s.t42, 3, 0.25)),
-    sub('43', lineal(s.t43, 1.5, 0.125), 10),
+    sub('41', lineal(T.t41.meses, 4.5, 0.375)),
+    sub('42', lineal(T.t42.meses, 3, 0.25)),
+    sub('43', lineal(T.t43.meses, 1.5, 0.125), 10),
   ], 30);
   const h51 = n(s.h51) + n(s.c51) * 10, h52 = n(s.h52) + n(s.c52) * 10;
   const ap5 = apartado('5', [
@@ -385,14 +470,14 @@ function calcular(s){
     sub('61', libros, 8),
     sub('62', n(s.e62), 2.5),
     sub('63', (s.deporte === 'nivel' ? 1 : s.deporte === 'rend' ? 0.5 : 0) + n(s.e63), 2.5),
-    sub('64', lineal(s.t64, 1.5, 0.125)),
+    sub('64', lineal(T.t64.meses, 1.5, 0.125)),
     sub('65', ent(s.n65) * 0.5),
     sub('66', ent(s.n66a) * 0.1 + ent(s.n66b) * 0.2),
   ], 15);
   const aps = [ap1, ap2, ap3, ap4, ap5, ap6];
   const total = R4(aps.reduce((a, x) => a + x.total, 0));
   const sinTope = R4(aps.reduce((a, x) => a + x.subs.reduce((b, y) => b + y.bruto, 0), 0));
-  return { aps, total, perdidos: R4(sinTope - total), idiomas: idi };
+  return { aps, total, perdidos: R4(sinTope - total), idiomas: idi, T };
 }
 /*ENGINE-END*/
 
@@ -415,9 +500,9 @@ const APARTADOS = [
     { id:'121', cod:'1.2.1', tipo:'tiempo', campo:'t121', lab:'Años de servicio en tu cuerpo', val:'2 puntos por año · 0,1666 por mes',
       hint:'Como funcionario/a de carrera, en prácticas o interino.' },
     { id:'122', cod:'1.2.2', tipo:'tiempo', campo:'t122', lab:'Años en otros cuerpos docentes del mismo subgrupo o superior', val:'1,5 puntos por año · 0,125 por mes',
-      hint:'Solo los años que no coinciden con los de 1.1 ni con los de 1.2.3.' },
+      hint:'Los días que coinciden con 1.1.1 o 1.1.2 no cuentan; la web los quita sola.' },
     { id:'123', cod:'1.2.3', tipo:'tiempo', campo:'t123', lab:'Años en otros cuerpos docentes de subgrupo inferior', val:'0,75 puntos por año · 0,0625 por mes',
-      hint: s => s.cuerpo === 'A2' ? 'Para Maestros casi nunca se da: no hay cuerpos docentes de subgrupo inferior.' : 'Por ejemplo, los años como Maestro/a si ahora eres profesor/a de Secundaria. Sin solaparse con 1.1 ni 1.2.2.' },
+      hint: s => s.cuerpo === 'A2' ? 'Para Maestros casi nunca se da: no hay cuerpos docentes de subgrupo inferior.' : 'Por ejemplo, los años como Maestro/a si ahora eres profesor/a de Secundaria. Los días que coinciden con 1.1 o 1.2.2 se quitan solos.' },
   ]},
   { id:'2', titulo:'Pertenencia a Catedráticos', tope:'5 puntos', items:[
     { id:'2', cod:'2', tipo:'info', lab:'Funcionario/a de carrera de un cuerpo de Catedráticos', val:'5 puntos',
@@ -448,7 +533,7 @@ const APARTADOS = [
     { id:'42', cod:'4.2', tipo:'tiempo', campo:'t42', lab:'Jefatura de estudios, secretaría, vicedirección o asimilados', val:'3 puntos por año · 0,25 por mes', hint:'También jefe/a de estudios adjunto, secretario/a adjunto y jefe/a de residencia.' },
     { id:'43', cod:'4.3', tipo:'tiempo', campo:'t43', lab:'Tutoría, jefatura de departamento, coordinación de ciclo', val:'1,5 puntos por año · 0,125 por mes · máximo 10 puntos',
       hint:'También asesor/a de formación o dirección de un equipo de orientación. Tutorías desde mayo de 2006 (LOE).' },
-    { id:'4n', tipo:'nota', txt:'Cuenta como funcionario/a de carrera, en prácticas o interino. Si tuviste dos cargos a la vez, mete ese tiempo solo en el que más puntúa.' },
+    { id:'4n', tipo:'nota', txt:'Cuenta como funcionario/a de carrera, en prácticas o interino. Mete cada cargo con sus fechas: si dos coinciden en el tiempo, la web cuenta esos días solo en el que más puntúa.' },
   ]},
   { id:'5', titulo:'Formación y perfeccionamiento', tope:'Máximo 15 puntos', max:15, items:[
     { id:'51', cod:'5.1', tipo:'horas', campo:'h51', campo2:'c51', lab:'Cursos de formación recibidos', val:'0,1 puntos por cada 10 horas · máximo 9 puntos (900 horas)',
@@ -481,9 +566,20 @@ const IDIOMAS_SUG = ['Inglés','Francés','Alemán','Italiano','Portugués','Chi
 
 /* ===== ESTADO ===== */
 const CLAVE = 'anpe-autobaremo-ct-2026';
-const VACIO = () => ({ cuerpo:'A1', situacion:'definitivo', primerDestino:false, idiomas:[], pub:{} });
+const CAMPOS_T = ['t111','t112','t113','t121','t122','t123','t41','t42','t43','t64'];
+// Pasa los datos guardados con la versión anterior (años y meses sueltos) a listas de periodos.
+function normalizar(x){
+  CAMPOS_T.forEach(k => {
+    const v = x[k];
+    if (Array.isArray(v)) return;
+    x[k] = (v && (ent(v.a) || ent(v.m))) ? [{ sin:true, a:ent(v.a), m:ent(v.m) }] : [];
+  });
+  return x;
+}
+const VACIO = () => normalizar({ cuerpo:'A1', situacion:'definitivo', primerDestino:false, idiomas:[], pub:{} });
 let S = VACIO();
 try { const g = JSON.parse(localStorage.getItem(CLAVE) || 'null'); if (g && typeof g === 'object') S = Object.assign(VACIO(), g); } catch(e) {}
+S = normalizar(S);
 const guardar = () => { try { localStorage.setItem(CLAVE, JSON.stringify(S)); } catch(e) {} };
 
 const fmt = x => (+x).toLocaleString('es-ES', { minimumFractionDigits:4, maximumFractionDigits:4 });
@@ -497,10 +593,7 @@ function stepper(id, valor, etiqueta){
 }
 function controles(it){
   const t = it.tipo, c = it.campo;
-  if (t === 'tiempo'){
-    const v = S[c] || {};
-    return `<div class="tiempo"><label>Años <input type="number" inputmode="numeric" min="0" id="${c}-a" value="${v.a || 0}"></label><label>Meses <input type="number" inputmode="numeric" min="0" max="11" id="${c}-m" value="${v.m || 0}"></label></div><button type="button" class="btn-link" data-fechas="${c}">Calcular con fechas</button>`;
-  }
+  if (t === 'tiempo') return `<span class="t-total" id="tt-${c}">0 años y 0 meses</span>`;
   if (t === 'num') return stepper(c, S[c], it.lab);
   if (t === 'num2') return `<label class="switch" style="gap:6px">${esc(it.l1)} ${stepper(c, S[c], it.lab + ', ' + it.l1)}</label><label class="switch" style="gap:6px">${esc(it.l2)} ${stepper(it.campo2, S[it.campo2], it.lab + ', ' + it.l2)}</label>`;
   if (t === 'horas') return `<div class="tiempo"><label>Horas <input type="number" inputmode="numeric" min="0" id="${c}" value="${S[c] || 0}" style="width:84px"></label><label>Créditos <input type="number" inputmode="decimal" min="0" step="0.1" id="${it.campo2}" value="${S[it.campo2] || 0}"></label></div>`;
@@ -518,7 +611,7 @@ function fila(it){
   const txt = `<div class="fila-txt">${cod}<span class="lab">${esc(it.lab)}</span>${it.val ? `<span class="val">${esc(it.val)}</span>` : ''}<span class="hint" data-hint="${it.id}">${esc(val(it.hint, S) || '')}${enl}</span></div>`;
   const pts = it.tipo === 'check' ? '<div></div>' : `<div class="fila-pts" id="p-${it.id}">0,0000</div>`;
   let extra = '';
-  if (it.tipo === 'tiempo') extra = `<div class="fechas" id="fx-${it.campo}" hidden></div>`;
+  if (it.tipo === 'tiempo') extra = `<div class="periodos" id="pl-${it.campo}">${htmlPeriodos(it.campo)}</div>`;
   if (it.tipo === 'idiomas') extra = `<div class="idiomas" id="idiomas"></div>`;
   if (it.tipo === 'pubs') extra = `<div class="pubs">${PUBS.map(([k, l]) => `<div class="pub"><span>${l} <small style="color:var(--ink-muted)">· ${fmtC(PUB[k])}</small></span>${stepper('pub-' + k, (S.pub || {})[k], l)}</div>`).join('')}</div>`;
   const ctl = (it.tipo === 'idiomas' || it.tipo === 'pubs' || it.tipo === 'info') ? '<div class="fila-in"></div>' : `<div class="fila-in">${controles(it)}</div>`;
@@ -583,6 +676,7 @@ function actualizar(){
       if (sobra > 0) av.textContent = `Tope alcanzado. Sumas ${fmtC(a.bruto)} y solo cuentan ${a.max}: ${fmtC(sobra)} puntos no suman.`;
     }
   });
+  pintarTiempos(r);
   // Idiomas
   let repetido = false;
   r.idiomas.forEach((x, i) => {
@@ -610,9 +704,7 @@ function leerCampo(el){
   const id = el.id;
   if (!id) return;
   if (id === 'cuerpo'){ S.cuerpo = el.value; return; }
-  let m = id.match(/^(t\w+)-(a|m)$/);
-  if (m){ S[m[1]] = S[m[1]] || {}; S[m[1]][m[2]] = Math.max(0, Math.floor(+el.value || 0)); return; }
-  m = id.match(/^pub-(\w+)$/);
+  const m = id.match(/^pub-(\w+)$/);
   if (m){ S.pub = S.pub || {}; S.pub[m[1]] = Math.max(0, Math.floor(+el.value || 0)); return; }
   if (el.type === 'checkbox'){ S[id] = el.checked; return; }
   if (el.tagName === 'SELECT' || el.type === 'text'){ S[id] = el.value; return; }
@@ -625,15 +717,11 @@ document.addEventListener('input', e => {
   const fi = el.closest && el.closest('.idioma');
   if (fi){ S.idiomas[+fi.dataset.i][el.dataset.k] = el.value; actualizar(); return; }
   if (el.name === 'situacion'){ S.situacion = el.value; actualizar(); return; }
-  if (el.closest('.fechas')) return;
+  if (el.closest('.p-nuevo')) return;
   leerCampo(el); actualizar();
 });
 document.addEventListener('change', e => {
   const el = e.target;
-  // Normaliza meses de 12 o más en años al salir del campo.
-  const m = el.id && el.id.match(/^(t\w+)-(a|m)$/);
-  if (m){ const t = S[m[1]] || {}; const mm = meses(t); S[m[1]] = { a:Math.floor(mm / 12), m:mm % 12 };
-    document.getElementById(m[1] + '-a').value = S[m[1]].a; document.getElementById(m[1] + '-m').value = S[m[1]].m; actualizar(); }
   if (el.type === 'number' && el.max && +el.value > +el.max){ el.value = el.max; }
 });
 document.addEventListener('click', e => {
@@ -644,8 +732,10 @@ document.addEventListener('click', e => {
     inp.value = Math.max(0, (Math.floor(+inp.value) || 0) + (+b.dataset.step));
     leerCampo(inp); actualizar(); return;
   }
-  if (b.dataset.fechas){ abrirFechas(b.dataset.fechas); return; }
-  if (b.dataset.sumar){ sumarPeriodo(b.dataset.sumar); return; }
+  if (b.dataset.addp){ anadirPeriodo(b.dataset.addp); return; }
+  if (b.dataset.addsf){ anadirSinFechas(b.dataset.addsf); return; }
+  if (b.dataset.sinf){ const x = document.getElementById(b.dataset.sinf + '-sf'); x.hidden = !x.hidden; if (!x.hidden) x.querySelector('input').focus(); return; }
+  if (b.dataset.quitarp){ const [c, i] = b.dataset.quitarp.split(':'); S[c].splice(+i, 1); pintarPeriodos(c); actualizar(); return; }
   if (b.dataset.quitar != null){ S.idiomas.splice(+b.dataset.quitar, 1); renderIdiomas(); actualizar(); return; }
   if (b.id === 'add-idioma'){ S.idiomas.push({ idioma:'', nivel:'B2', origen:'eoi' }); renderIdiomas(); actualizar();
     const ins = document.querySelectorAll('.idioma .i-nom'); if (ins.length) ins[ins.length - 1].focus(); return; }
@@ -656,44 +746,80 @@ document.addEventListener('click', e => {
   if (b.id === 'btn-copiar'){ copiar(); return; }
 });
 
-/* Calculadora de periodos por fechas: suma años y meses completos entre dos fechas (ambas incluidas). */
-const HASTA = '2026-11-26';
-function abrirFechas(c){
-  const box = document.getElementById('fx-' + c);
-  if (!box.hidden){ box.hidden = true; return; }
-  box.innerHTML = `<div class="campo"><label for="${c}-d">Desde</label><input type="date" id="${c}-d"></div><div class="campo"><label for="${c}-h">Hasta</label><input type="date" id="${c}-h" value="${HASTA}"></div><button type="button" class="btn" data-sumar="${c}">Sumar este periodo</button><p class="res" id="${c}-res">Si tienes varios periodos, súmalos uno a uno.</p>`;
-  box.hidden = false;
-  box.querySelector('input').focus();
+/* Periodos: cada uno queda fijo en su línea al añadirlo; debajo, una línea nueva para el siguiente.
+   Dentro de un mismo campo no se admite un periodo que coincida, ni un día, con otro ya metido. */
+const fecha = x => { const [y, m, d] = x.split('-'); return `${d}/${m}/${y}`; };
+const ymTxt = (mm, dd) => `${Math.floor(mm / 12)} ${Math.floor(mm / 12) === 1 ? 'año' : 'años'} y ${mm % 12} ${mm % 12 === 1 ? 'mes' : 'meses'}` + (dd ? ` y ${dd} ${dd === 1 ? 'día' : 'días'}` : '');
+function htmlPeriodos(c){
+  const lista = S[c] || [];
+  const lineas = lista.map((p, i) => {
+    let txt, dur;
+    if (p.sin){ txt = 'Sin fechas'; dur = ymTxt(ent(p.a) * 12 + ent(p.m), 0); }
+    else { const r = ymd(dnum(p.d), Math.min(dnum(p.h), FIN)); txt = `Del ${fecha(p.d)} al ${fecha(p.h)}`; dur = ymTxt(r.m, r.d); }
+    return `<div class="periodo"><span class="p-fe">${txt}</span><span class="p-du">${dur}</span><button type="button" class="quitar" data-quitarp="${c}:${i}" aria-label="Quitar periodo ${i + 1}">×</button><span class="p-sol" id="ps-${c}-${i}" hidden></span></div>`;
+  }).join('');
+  return `${lineas}
+    <div class="p-nuevo">
+      <div class="campo"><label for="${c}-d">${lista.length ? 'Otro periodo: desde' : 'Desde'}</label><input type="date" id="${c}-d" max="${FIN_PLAZO}"></div>
+      <div class="campo"><label for="${c}-h">Hasta</label><input type="date" id="${c}-h" value="${FIN_PLAZO}" max="${FIN_PLAZO}"></div>
+      <button type="button" class="btn" data-addp="${c}">Añadir periodo</button>
+      <button type="button" class="btn-link" data-sinf="${c}">No sé las fechas</button>
+    </div>
+    <div class="p-nuevo" id="${c}-sf" hidden>
+      <div class="tiempo"><label>Años <input type="number" inputmode="numeric" min="0" id="${c}-sa" value="0"></label><label>Meses <input type="number" inputmode="numeric" min="0" max="11" id="${c}-sm" value="0"></label></div>
+      <button type="button" class="btn sec" data-addsf="${c}">Añadir sin fechas</button>
+      <span class="letra">Sin fechas la web no puede comprobar si coincide con otros periodos.</span>
+    </div>
+    <p class="p-err" id="${c}-err" role="alert" hidden></p>`;
 }
-function diffMeses(d, h){
-  const a = new Date(d + 'T00:00:00'), b = new Date(h + 'T00:00:00');
-  if (isNaN(a) || isNaN(b) || b < a) return null;
-  b.setDate(b.getDate() + 1);
-  let mm = (b.getFullYear() - a.getFullYear()) * 12 + (b.getMonth() - a.getMonth());
-  if (b.getDate() < a.getDate()) mm--;
-  return Math.max(0, mm);
-}
-function sumarPeriodo(c){
+function pintarPeriodos(c){ document.getElementById('pl-' + c).innerHTML = htmlPeriodos(c); }
+function errorP(c, txt){ const e = document.getElementById(c + '-err'); e.textContent = txt; e.hidden = !txt; }
+function anadirPeriodo(c){
   const d = document.getElementById(c + '-d').value, h = document.getElementById(c + '-h').value;
-  const res = document.getElementById(c + '-res');
-  const mm = diffMeses(d, h);
-  if (mm == null){ res.textContent = 'Pon una fecha de inicio anterior a la de fin.'; return; }
-  const tot = meses(S[c]) + mm;
-  S[c] = { a:Math.floor(tot / 12), m:tot % 12 };
-  document.getElementById(c + '-a').value = S[c].a;
-  document.getElementById(c + '-m').value = S[c].m;
-  res.textContent = `Sumados ${Math.floor(mm / 12)} años y ${mm % 12} meses. Ahora llevas ${S[c].a} años y ${S[c].m} meses.`;
-  document.getElementById(c + '-d').value = '';
-  actualizar();
+  const a = dnum(d), b = dnum(h);
+  if (isNaN(a)) return errorP(c, 'Pon la fecha de inicio del periodo.');
+  if (isNaN(b)) return errorP(c, 'Pon la fecha de fin del periodo.');
+  if (a > FIN) return errorP(c, 'Ese periodo empieza después del 26/11/2026, fin del plazo: no cuenta.');
+  if (b < a) return errorP(c, 'La fecha de fin es anterior a la de inicio.');
+  const hh = b > FIN ? FIN_PLAZO : h;
+  const choca = (S[c] || []).find(p => !p.sin && dnum(p.d) <= Math.min(b, FIN) && Math.min(dnum(p.h), FIN) >= a);
+  if (choca) return errorP(c, `Coincide con el periodo del ${fecha(choca.d)} al ${fecha(choca.h)}. Un mismo día no puede contar dos veces: mete solo las fechas que faltan.`);
+  S[c].push({ d, h: hh });
+  S[c].sort((x, y) => (x.sin ? 1 : 0) - (y.sin ? 1 : 0) || String(x.d).localeCompare(String(y.d)));
+  pintarPeriodos(c); actualizar();
+  document.getElementById(c + '-d').focus();
+}
+function anadirSinFechas(c){
+  const a = ent(document.getElementById(c + '-sa').value), m = ent(document.getElementById(c + '-sm').value);
+  if (!a && !m) return errorP(c, 'Pon los años o los meses.');
+  const tot = a * 12 + m;
+  S[c].push({ sin:true, a: Math.floor(tot / 12), m: tot % 12 });
+  pintarPeriodos(c); actualizar();
+}
+function pintarTiempos(r){
+  Object.keys(r.T).forEach(c => {
+    const tt = document.getElementById('tt-' + c);
+    if (!tt) return;
+    const x = r.T[c];
+    tt.textContent = ymTxt(x.meses, 0) + (x.solapes.length ? ', quitados los días que coinciden' : '');
+    (S[c] || []).forEach((p, i) => {
+      const el = document.getElementById(`ps-${c}-${i}`);
+      if (!el) return;
+      const sol = x.solapes.filter(s => s.i === i);
+      el.hidden = !sol.length;
+      el.textContent = sol.map(s => `Del ${fecha(dstr(s.a))} al ${fecha(dstr(s.b))} coincide con el ${s.cod}: esos ${s.dias} días solo cuentan allí.`).join(' ');
+    });
+  });
 }
 
 function ejemplo(){
-  return Object.assign(VACIO(), {
+  return normalizar(Object.assign(VACIO(), {
     cuerpo:'A1', situacion:'definitivo', primerDestino:false,
-    t111:{ a:7, m:2 }, t121:{ a:15, m:4 }, t43:{ a:9, m:0 }, t42:{ a:2, m:0 },
+    t111:[{ d:'2019-09-01', h:FIN_PLAZO }], t121:[{ d:'2011-09-01', h:FIN_PLAZO }],
+    t43:[{ d:'2015-09-01', h:'2024-06-30' }], t42:[{ d:'2022-09-01', h:'2024-08-31' }],
     n312:1, n322:0, idiomas:[{ idioma:'Inglés', nivel:'C1', origen:'eoi' }, { idioma:'Francés', nivel:'B2', origen:'otro' }],
     h51:640, c51:0, cdd:'B1', n65:2, n66a:3, pub:{ rAutor:2 },
-  });
+  }));
 }
 
 function copiar(){
