@@ -125,6 +125,15 @@ select:hover, input:hover{border-color:var(--medio);}
 .fila-txt .lab{font-weight:700;}
 .fila-txt .val{display:block; font-size:.84rem; font-weight:700; color:var(--verde-texto); margin-top:3px; letter-spacing:.01em;}
 .fila-txt .hint{font-style:italic;}
+details.doc{margin-top:6px; font-size:.84rem;}
+details.doc summary{cursor:pointer; width:fit-content; font-weight:700; color:var(--accent); list-style:none; display:inline-flex; align-items:center; gap:6px; padding:2px 0;}
+details.doc summary::-webkit-details-marker{display:none;}
+details.doc summary::before{content:""; width:7px; height:7px; border-right:2px solid currentColor; border-bottom:2px solid currentColor; transform:rotate(-45deg); transition:transform .15s; margin-right:2px;}
+details.doc[open] summary::before{transform:rotate(45deg);}
+details.doc summary:hover{text-decoration:underline; text-underline-offset:3px;}
+details.doc ul{margin:6px 0 0; padding:10px 14px 10px 28px; background:var(--accent-soft); border-radius:12px; color:var(--ink-2); display:grid; gap:4px; max-width:70ch;}
+details.doc-general{font-size:.88rem;}
+details.doc-general .nota-ref{margin-top:6px;}
 .fila-txt .hint{display:block; font-size:.82rem; color:var(--ink-2); margin-top:4px;}
 .fila-in{display:flex; gap:8px; align-items:center; justify-content:flex-end; flex-wrap:wrap;}
 .fila-pts{text-align:right; font-weight:800; font-size:1.02rem; color:var(--ink);}
@@ -262,6 +271,17 @@ footer.pie .contacto{font-weight:700; color:var(--ink-2); user-select:all;}
           </div>
         </div>
         <p class="nota-ref">Los méritos se cuentan hasta el <strong>26 de noviembre de 2026</strong>, último día del plazo de solicitudes. Solo cuentan los meses completos.</p>
+        <details class="doc doc-general">
+          <summary>Qué hay que presentar</summary>
+          <ul>
+            <li>La hoja de alegación, grabada en la aplicación de educarioja.org. Salvo los apartados 1 y 2, lo que no esté citado en ella no se valora.</li>
+            <li>La documentación de cada mérito, entre el 5 y el 26 de noviembre de 2026. Después no se admite.</li>
+            <li>No hace falta presentar la hoja de servicios de La Rioja ni la credencial de catedrático/a: las aporta la Administración.</li>
+            <li>Valen copias. Los documentos en otra lengua, con traducción jurada al castellano.</li>
+            <li>Si ya presentaste méritos en un concurso de La Rioja desde 2011 y no retiraste la documentación, solo aportas lo nuevo. Las publicaciones electrónicas de 2011 hay que volver a presentarlas.</li>
+          </ul>
+          <p class="nota-ref">En cada mérito tienes su propio «Cómo se justifica».</p>
+        </details>
       </section>
       <div id="apartados" class="form-col"></div>
     </main>
@@ -556,6 +576,41 @@ const APARTADOS = [
     { id:'6n', tipo:'nota', txt:'El 6.7 (hasta 5 puntos por lenguas cooficiales) solo se aplica a plazas de Navarra, País Vasco, Comunitat Valenciana, Illes Balears y Cataluña.' },
   ]},
 ];
+/* Cómo se justifica cada mérito: columna «Documentos justificativos» del Anexo XI y base decimoquinta de la convocatoria. */
+const DE_OFICIO = 'No tienes que alegarlo ni justificarlo: lo valora de oficio la Administración con tu hoja de servicios. Revisa que esté completa, sobre todo si tienes servicios en otra comunidad.';
+const TITULOS = 'Copia del título o del resguardo de haber pagado los derechos de expedición. Si es extranjero, también la homologación o la declaración de equivalencia.';
+const DOCS = {
+  '111': [DE_OFICIO],
+  '112': [DE_OFICIO],
+  '113': [DE_OFICIO, 'Si el centro está fuera de La Rioja, ten a mano el certificado de que tenía la calificación de especial dificultad cuando estuviste.'],
+  '121': [DE_OFICIO], '122': [DE_OFICIO], '123': [DE_OFICIO],
+  '2': ['De oficio: la Administración aporta tu credencial de catedrático/a.'],
+  '311': [TITULOS],
+  '312': [TITULOS, 'Si alegas también el doctorado, tienes que acreditar que este máster no lo usaste para acceder a él.'],
+  '313': ['Copia del certificado o diploma de estudios avanzados o de suficiencia investigadora.'],
+  '314': ['Copia del documento que acredita el premio extraordinario o la mención honorífica.'],
+  '321': ['Copia de todos los títulos que tengas, también el que usaste para entrar en el cuerpo, o del resguardo de pago de su expedición.', 'Si es extranjero, también la homologación.'],
+  '322': ['Copia de todos los títulos que tengas, también el de ingreso en el cuerpo.', 'Para el primer ciclo de una licenciatura, ingeniería o arquitectura: certificación académica que diga que has superado todas las asignaturas o créditos de ese ciclo. Los cursos de adaptación no cuentan como primer ciclo.'],
+  '323': ['Copia de todos los títulos que tengas, también el de ingreso en el cuerpo, o del resguardo de pago de su expedición.'],
+  '33i': ['Copia del certificado de la EOI o certificación de haber superado los estudios. El Diploma de Lengua de Signos Española se acredita igual.'],
+  '33e': ['Certificación académica en la que conste que has superado todas las asignaturas o créditos del título.'],
+  '33f': ['Copia del título o certificación de haber superado los estudios o de su expedición.'],
+  '41': ['Vale la hoja de servicios si recoge las tomas de posesión y ceses en el cargo (la de La Rioja la aporta la Administración).', 'Si no aparecen: copia del nombramiento con diligencia de toma de posesión y cese, o certificado de que sigues en el cargo el 26/11/2026.'],
+  '42': ['Igual que el 4.1: hoja de servicios con las tomas de posesión y ceses, o copia del nombramiento con diligencia de posesión y cese, o certificado de que sigues en el cargo.'],
+  '43': ['Hoja de servicios con las tomas de posesión y ceses en esas funciones, o copia del nombramiento con diligencia de posesión y cese, o certificado de que sigues desempeñándolas el 26/11/2026.'],
+  '51': ['Lo más fácil: imprimir la consulta de horas del Registro de Formación Permanente del Profesorado en educarioja.org.', 'Para cursos que no estén en el registro: certificado de la entidad organizadora con el número de horas. Si la organiza una entidad sin ánimo de lucro, además, prueba de que está homologada o reconocida por la Administración educativa o inscrita en su registro de formación.'],
+  '52': ['Impresión de la consulta del Registro de Formación Permanente del Profesorado en educarioja.org.', 'Si no figura: certificado de haber impartido la actividad con el número de horas. Para entidades sin ánimo de lucro, también la homologación o el reconocimiento de la Administración educativa.'],
+  '53': ['Copia de la credencial de adquisición de la nueva especialidad expedida por la Administración educativa.'],
+  '54': ['Copia de la acreditación de competencia digital emitida por la Administración educativa.'],
+  '55': ['Copia del certificado. Tiene que aparecer en la tabla de certificados de ACLES vigente el 26/11/2026.'],
+  '61': ['Libros: certificado de la editorial con título, autores, ISBN, depósito legal, fecha de la primera edición, número de ejemplares y que se han difundido en librerías. Si lo edita una Administración o una universidad y no se vende en librerías, también los centros de difusión.', 'Revistas: certificado con número de ejemplares, lugares de distribución y venta o asociación a la que pertenece, título, autores, ISSN o ISMN, depósito legal y fecha de edición.', 'Publicaciones solo electrónicas: informe del organismo emisor de que aparece en la base de datos bibliográfica, con la base, el título, los autores, el año y la URL.', 'Se aportan por medios electrónicos. No se valoran sin ISBN, ISSN o ISMN cuando sea obligatorio, ni si el autor es también el editor.'],
+  '62': ['Premios: acreditación expedida por la entidad que los convoca.', 'Proyectos de investigación o innovación: certificado de la Administración educativa de haber participado.'],
+  '63': ['Premios: certificado de la entidad con el nombre del premiado, el ámbito y la categoría del premio.', 'Exposiciones, actuaciones y conciertos: programas donde conste tu participación y certificado de la entidad organizadora.', 'Composiciones, coreografías, espectáculos y grabaciones: documento que acredite la autoría o la interpretación y el depósito legal.', 'Conservación y restauración: certificado de la entidad organizadora. Deportistas de alto nivel o rendimiento: certificado del Consejo Superior de Deportes.'],
+  '64': ['Copia del nombramiento con diligencia de toma de posesión y cese, o certificado de que sigues en el puesto el 26/11/2026.'],
+  '65': ['Certificado del órgano que custodia las actas de los tribunales.', 'En oposiciones de La Rioja basta con alegarlo en la hoja de alegación.'],
+  '66': ['Certificado de la Administración educativa o del director/a del centro donde hiciste la tutorización, con el curso académico y la duración de las prácticas.'],
+};
+APARTADOS.forEach(a => a.items.forEach(it => { if (it.id && DOCS[it.id]) it.doc = DOCS[it.id]; }));
 const PUBS = [
   ['lAutor','Libros · autor/a'],['lCo','Libros · coautor/a'],['l3','Libros · 3 autores'],['l4','Libros · 4 autores'],['l5','Libros · 5 autores'],['l6','Libros · más de 5'],
   ['rAutor','Revistas · autor/a'],['rCo','Revistas · coautor/a'],['r3','Revistas · 3 o más'],
@@ -617,7 +672,7 @@ function fila(it){
   if (it.tipo === 'nota') return `<p class="nota-ref" style="padding:10px 0 2px; border-top:1px dashed var(--border)">${esc(it.txt)}</p>`;
   const cod = it.cod ? `<span class="cod">${esc(it.cod)}</span>` : '';
   const enl = it.enlace ? ` <a href="${it.enlace}">Ir a los idiomas</a>` : '';
-  const txt = `<div class="fila-txt">${cod}<span class="lab" data-lab="${it.id}">${esc(val(it.lab, S))}</span>${it.val ? `<span class="val">${esc(it.val)}</span>` : ''}<span class="hint" data-hint="${it.id}">${esc(val(it.hint, S) || '')}${enl}</span></div>`;
+  const txt = `<div class="fila-txt">${cod}<span class="lab" data-lab="${it.id}">${esc(val(it.lab, S))}</span>${it.val ? `<span class="val">${esc(it.val)}</span>` : ''}<span class="hint" data-hint="${it.id}">${esc(val(it.hint, S) || '')}${enl}</span>${it.doc ? `<details class="doc"><summary>Cómo se justifica</summary><ul>${it.doc.map(d => `<li>${esc(d)}</li>`).join('')}</ul></details>` : ''}</div>`;
   const pts = (it.tipo === 'check' && !it.puntua) ? '<div></div>' : `<div class="fila-pts" id="p-${it.id}">0,0000</div>`;
   let extra = '';
   if (it.tipo === 'tiempo') extra = `<div class="periodos" id="pl-${it.campo}">${htmlPeriodos(it.campo)}</div>`;
