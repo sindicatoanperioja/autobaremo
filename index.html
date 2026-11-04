@@ -137,7 +137,7 @@ select:hover, input:hover{border-color:var(--medio);}
   .fila-in{justify-content:flex-start;}
   .perfil-grid{grid-template-columns:minmax(0,1fr);}
   .idioma{grid-template-columns:minmax(0,1fr) auto auto; grid-auto-flow:row dense;}
-  .idioma .i-nom, .idioma .i-ori{grid-column:1 / -1;}
+  .idioma .i-nom{grid-column:1 / -1;}
 }
 
 /* Controles */
@@ -181,7 +181,7 @@ select.sel-corto{width:auto; min-width:150px;}
 
 /* Idiomas */
 .idiomas{grid-column:1 / -1; display:grid; gap:8px;}
-.idioma{display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr) minmax(0,1.5fr) auto auto; gap:8px; align-items:center;}
+.idioma{display:grid; grid-template-columns:minmax(0,1fr) 110px auto auto; gap:8px; align-items:center; max-width:520px;}
 .idioma .pts{font-weight:800; min-width:56px; text-align:right;}
 .idioma .pts.no{color:var(--ink-muted); font-weight:600; text-decoration:line-through;}
 .idioma .quitar{appearance:none; border:0; background:none; color:var(--ink-muted); cursor:pointer; font-size:1.3rem; width:32px; height:32px; border-radius:50%;}
@@ -518,8 +518,8 @@ const APARTADOS = [
     { id:'323', cod:'3.2.3', tipo:'num', campo:'n323', lab:'Segundos ciclos de licenciatura, ingeniería o arquitectura', val:'3 puntos cada uno',
       hint:'Cuerpos A1: no cuentes el segundo ciclo de la primera licenciatura o grado que presentes. Maestros con una licenciatura entera: su primer ciclo va en 3.2.2 y el segundo aquí.' },
     { grupo:'3.3 Idiomas, FP y enseñanzas artísticas' },
-    { id:'33i', cod:'3.3 a-d', tipo:'idiomas', lab:'Certificados de idiomas', val:'C2: 4 · C1: 3 · B2: 2 · B1: 1',
-      hint:'Mete aquí todos tus idiomas. Los de la Escuela Oficial de Idiomas (o el diploma de lengua de signos) puntúan en 3.3; los demás certificados reconocidos por ACLES, en 5.5. De cada idioma solo cuenta uno, el de nivel más alto. No se valoran el español ni el exigido para entrar.' },
+    { id:'33i', cod:'3.3 a-d', tipo:'idiomas', origen:'eoi', lab:'Certificados de idiomas de la EOI', val:'C2: 4 · C1: 3 · B2: 2 · B1: 1',
+      hint:'Solo certificados de la Escuela Oficial de Idiomas (también lenguas cooficiales) y el Diploma de Lengua de Signos Española. Los demás certificados van en el 5.5. No se valoran el español ni el exigido para entrar.' },
     { id:'33e', cod:'3.3 e', tipo:'num', campo:'n33e', lab:'Títulos de Técnico Superior', val:'2 puntos cada uno', hint:'De FP, de Artes Plásticas y Diseño o Técnico Deportivo Superior, si no fueron requisito de ingreso.' },
     { id:'33f', cod:'3.3 f', tipo:'num', campo:'n33f', lab:'Títulos Profesionales de Música o Danza', val:'2 puntos cada uno' },
   ]},
@@ -537,8 +537,9 @@ const APARTADOS = [
     { id:'53', cod:'5.3', tipo:'num', campo:'n53', lab:'Especialidades adquiridas por el procedimiento de nuevas especialidades', val:'1 punto cada una' },
     { id:'54', cod:'5.4', tipo:'sel', campo:'cdd', lab:'Competencia Digital Docente', val:'Solo cuenta el nivel más alto · máximo 3 puntos',
       ops:[['','Sin acreditar'],['A1','A1 · 0,5'],['A2','A2 · 1'],['B1','B1 · 1,5'],['B2','B2 · 2'],['C1','C1 · 2,5'],['C2','C2 · 3']] },
-    { id:'55', cod:'5.5', tipo:'info', lab:'Idiomas con certificado reconocido por ACLES (no EOI)', val:'C2: 4 · C1: 3 · B2: 2 · B1: 1',
-      hint:'Se calcula con los idiomas que metas en el apartado 3.3 con origen «Otro certificado».', enlace:'#f-33i' },
+    { id:'55', cod:'5.5', tipo:'idiomas', origen:'otro', lab:'Otros certificados de idiomas extranjeros', val:'C2: 4 · C1: 3 · B2: 2 · B1: 1',
+      hint:'Los reconocidos por ACLES (Cambridge, Trinity, DELF, Goethe y similares). Los de la EOI no van aquí, van en el 3.3.' },
+    { id:'5n', tipo:'nota', txt:'De cada idioma solo cuenta un certificado, el de nivel más alto, esté en el 3.3 o en el 5.5.' },
   ]},
   { id:'6', titulo:'Otros méritos', tope:'Máximo 15 puntos', max:15, items:[
     { id:'61', cod:'6.1', tipo:'pubs', lab:'Publicaciones con ISBN, ISSN o ISMN', val:'Máximo 8 puntos. Se calcula con la puntuación más alta posible de cada tipo; la comisión puede dar menos.' },
@@ -618,7 +619,7 @@ function fila(it){
   const pts = (it.tipo === 'check' && !it.puntua) ? '<div></div>' : `<div class="fila-pts" id="p-${it.id}">0,0000</div>`;
   let extra = '';
   if (it.tipo === 'tiempo') extra = `<div class="periodos" id="pl-${it.campo}">${htmlPeriodos(it.campo)}</div>`;
-  if (it.tipo === 'idiomas') extra = `<div class="idiomas" id="idiomas"></div>`;
+  if (it.tipo === 'idiomas') extra = `<div class="idiomas" id="idiomas-${it.origen}"></div>`;
   if (it.tipo === 'pubs') extra = `<div class="pubs">${PUBS.map(([k, l]) => `<div class="pub"><span>${l} <small style="color:var(--ink-muted)">· ${fmtC(PUB[k])}</small></span>${stepper('pub-' + k, (S.pub || {})[k], l)}</div>`).join('')}</div>`;
   const ctl = (it.tipo === 'idiomas' || it.tipo === 'pubs' || it.tipo === 'info') ? '<div class="fila-in"></div>' : `<div class="fila-in">${controles(it)}</div>`;
   return `<div class="fila" id="f-${it.id}">${txt}${ctl}${pts}${extra}</div>`;
@@ -638,16 +639,17 @@ function render(){
     document.querySelector(`input[name="situacion"][value="${S.situacion}"]`).checked = true;
 }
 function renderIdiomas(){
-  const box = document.getElementById('idiomas');
-  const filas = S.idiomas.map((it, i) => `
+  ['eoi', 'otro'].forEach(o => {
+    const box = document.getElementById('idiomas-' + o);
+    const filas = S.idiomas.map((it, i) => ({ it, i })).filter(x => (x.it.origen === 'otro' ? 'otro' : 'eoi') === o).map(({ it, i }) => `
     <div class="idioma" data-i="${i}">
-      <input type="text" class="i-nom" list="idiomas-sug" placeholder="Idioma" value="${esc(it.idioma || '')}" data-k="idioma" aria-label="Idioma ${i + 1}">
-      <select data-k="nivel" aria-label="Nivel del idioma ${i + 1}">${['C2','C1','B2','B1'].map(l => `<option${it.nivel === l ? ' selected' : ''}>${l}</option>`).join('')}</select>
-      <select class="i-ori" data-k="origen" aria-label="Certificado del idioma ${i + 1}"><option value="eoi"${it.origen !== 'otro' ? ' selected' : ''}>Escuela Oficial de Idiomas o DLSE (3.3)</option><option value="otro"${it.origen === 'otro' ? ' selected' : ''}>Otro certificado ACLES (5.5)</option></select>
+      <input type="text" class="i-nom" list="idiomas-sug" placeholder="Idioma" value="${esc(it.idioma || '')}" data-k="idioma" aria-label="Idioma">
+      <select data-k="nivel" aria-label="Nivel">${['C2','C1','B2','B1'].map(l => `<option${it.nivel === l ? ' selected' : ''}>${l}</option>`).join('')}</select>
       <span class="pts" id="ip-${i}">0</span>
-      <button type="button" class="quitar" data-quitar="${i}" aria-label="Quitar idioma ${i + 1}">×</button>
+      <button type="button" class="quitar" data-quitar="${i}" aria-label="Quitar idioma">×</button>
     </div>`).join('');
-  box.innerHTML = `${filas}<p class="idioma-aviso" id="idioma-aviso" hidden></p><div><button type="button" class="btn sec" id="add-idioma">Añadir idioma</button></div><datalist id="idiomas-sug">${IDIOMAS_SUG.map(x => `<option value="${x}">`).join('')}</datalist>`;
+    box.innerHTML = `${filas}<p class="idioma-aviso" id="idioma-aviso-${o}" hidden></p><div><button type="button" class="btn sec" data-addidioma="${o}">Añadir idioma</button></div>${o === 'eoi' ? `<datalist id="idiomas-sug">${IDIOMAS_SUG.map(x => `<option value="${x}">`).join('')}</datalist>` : ''}`;
+  });
 }
 
 /* ===== ACTUALIZAR ===== */
@@ -683,18 +685,20 @@ function actualizar(){
   });
   pintarTiempos(r);
   // Idiomas
-  let repetido = false;
+  const repetido = { eoi:false, otro:false };
   r.idiomas.forEach((x, i) => {
     const el = document.getElementById('ip-' + i);
     if (!el) return;
     el.textContent = x.cuenta ? '+' + fmtC(x.pts) : fmtC(x.pts);
     el.className = 'pts' + (x.cuenta ? '' : ' no');
     el.title = x.cuenta ? `Cuenta en el ${x.ap}` : 'No cuenta: ya hay un certificado de este idioma con nivel igual o más alto';
-    if (!x.cuenta && x.pts) repetido = true;
+    if (!x.cuenta && x.pts) repetido[x.ap === '5.5' ? 'otro' : 'eoi'] = true;
   });
-  const ia = document.getElementById('idioma-aviso');
-  ia.hidden = !repetido;
-  if (repetido) ia.textContent = 'Has metido un idioma dos veces: solo cuenta el certificado de nivel más alto.';
+  ['eoi', 'otro'].forEach(o => {
+    const ia = document.getElementById('idioma-aviso-' + o);
+    ia.hidden = !repetido[o];
+    ia.textContent = 'Este idioma ya está metido con un nivel igual o más alto (aquí o en el otro apartado): solo cuenta ese.';
+  });
   document.getElementById('total').innerHTML = fmt(r.total) + '<small>puntos</small>';
   document.getElementById('total-movil').textContent = fmt(r.total);
   const pe = document.getElementById('perdidos');
@@ -747,8 +751,8 @@ document.addEventListener('click', e => {
     if (S.modo[c] === 'fechas') document.getElementById(c + '-d').focus(); else document.getElementById(c + '-a').focus(); return; }
   if (b.dataset.quitarp){ const [c, i] = b.dataset.quitarp.split(':'); S[c].splice(+i, 1); pintarPeriodos(c); actualizar(); return; }
   if (b.dataset.quitar != null){ S.idiomas.splice(+b.dataset.quitar, 1); renderIdiomas(); actualizar(); return; }
-  if (b.id === 'add-idioma'){ S.idiomas.push({ idioma:'', nivel:'B2', origen:'eoi' }); renderIdiomas(); actualizar();
-    const ins = document.querySelectorAll('.idioma .i-nom'); if (ins.length) ins[ins.length - 1].focus(); return; }
+  if (b.dataset.addidioma){ const o = b.dataset.addidioma; S.idiomas.push({ idioma:'', nivel:'B2', origen:o }); renderIdiomas(); actualizar();
+    const ins = document.querySelectorAll('#idiomas-' + o + ' .i-nom'); if (ins.length) ins[ins.length - 1].focus(); return; }
   if (b.id === 'btn-borrar'){ document.getElementById('confirmar').hidden = false; return; }
   if (b.id === 'btn-no'){ document.getElementById('confirmar').hidden = true; return; }
   if (b.id === 'btn-si'){ S = VACIO(); document.getElementById('confirmar').hidden = true; render(); actualizar(); return; }
