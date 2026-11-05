@@ -6,9 +6,18 @@
 <title>Autobaremo Concurso de Traslados</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="ANPE La Rioja: calcula tu puntuación en el Concurso de Traslados 2026-2027 con el baremo oficial y sus topes.">
+<link rel="canonical" href="https://traslados.cursosanperioja.es/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#1b619c">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="ANPE La Rioja">
+<meta property="og:title" content="Autobaremo del Concurso de Traslados 2026-2027">
+<meta property="og:description" content="Calcula tu puntuación con el baremo oficial y sus topes. ANPE La Rioja.">
+<meta property="og:url" content="https://traslados.cursosanperioja.es/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* Identidad de ANPE La Rioja, la misma que Retribuciones y Buscaopos: paleta del logo y del banner
    (azul #1b619c, ondas #5b9bce y #c6dbec, niebla #e4eef6, verde #6cb195), Bebas Neue para titulares
@@ -126,7 +135,6 @@ select:hover, input:hover{border-color:var(--medio);}
 .fila-txt .cod{font-weight:800; color:var(--accent); margin-right:6px;}
 .fila-txt .lab{font-weight:700;}
 .fila-txt .val{display:block; font-size:.84rem; font-weight:700; color:var(--verde-texto); margin-top:3px; letter-spacing:.01em;}
-.fila-txt .hint{font-style:italic;}
 details.doc{margin-top:6px; font-size:.84rem;}
 details.doc summary{cursor:pointer; width:fit-content; font-weight:700; color:var(--ink-2); list-style:none; display:inline-flex; align-items:center; gap:6px; padding:2px 0;}
 details.doc summary::-webkit-details-marker{display:none;}
@@ -142,7 +150,7 @@ details.doc-fila summary::before{display:none;}
 details.doc-fila summary:hover{text-decoration:none; border-color:var(--ink-muted);}
 details.doc-fila[open] summary{background:var(--ink-2); color:var(--surface); border-color:var(--ink-2);}
 details.doc-general .nota-ref{margin-top:6px;}
-.fila-txt .hint{display:block; font-size:.82rem; color:var(--ink-2); margin-top:4px;}
+.fila-txt .hint{display:block; font-size:.82rem; font-style:italic; color:var(--ink-2); margin-top:4px;}
 .fila-in{display:flex; gap:8px; align-items:center; justify-content:flex-end; flex-wrap:wrap;}
 .fila-pts{text-align:right; font-weight:800; font-size:1.02rem; color:var(--ink);}
 .fila-pts.cero{color:var(--ink-muted); font-weight:600;}
@@ -173,6 +181,8 @@ details.doc-general .nota-ref{margin-top:6px;}
 .switch input::after{content:""; position:absolute; top:2px; left:2px; width:18px; height:18px; border-radius:50%; background:var(--surface); box-shadow:0 1px 2px rgba(0,0,0,.25); transition:transform .15s;}
 .switch input:checked{background:var(--accent); border-color:var(--accent);}
 .switch input:checked::after{transform:translateX(18px);}
+.grupo-ctl{display:inline-flex; align-items:center; gap:6px; font-weight:600; font-size:.9rem;}
+.aviso-js{margin:0; padding:14px 18px; border-radius:14px; background:var(--accent-soft); font-weight:600;}
 select.sel-corto{width:auto; min-width:150px;}
 
 .btn-link{appearance:none; border:0; background:none; padding:2px 0; color:var(--accent); font-weight:700; font-size:.82rem; cursor:pointer; text-decoration:underline; text-underline-offset:3px;}
@@ -192,9 +202,6 @@ select.sel-corto{width:auto; min-width:150px;}
 .periodos:empty{display:none;}
 .t-total{font-weight:700; font-size:.88rem; color:var(--ink-2);}
 @container (max-width:620px){ .periodo{grid-template-columns:minmax(0,1fr) auto;} .periodo .p-du{grid-column:1; text-align:left;} .periodo .quitar{grid-column:2; grid-row:1 / span 2;} }
-.fechas{grid-column:1 / -1; background:var(--accent-soft); border-radius:14px; padding:12px 14px; display:flex; flex-wrap:wrap; gap:10px 14px; align-items:end;}
-.fechas .campo{flex:1 1 150px;}
-.fechas .res{flex:1 1 100%; font-size:.85rem; color:var(--ink-2); margin:0;}
 .btn{appearance:none; text-decoration:none; display:inline-flex; align-items:center; border:1.5px solid var(--accent); background:var(--accent); color:var(--accent-ink); font-weight:700; border-radius:999px; padding:8px 18px; cursor:pointer; min-height:40px;}
 .btn:hover{filter:brightness(1.08);}
 .btn.sec{background:var(--surface); color:var(--accent);}
@@ -283,7 +290,7 @@ footer.pie .contacto{font-weight:700; color:var(--ink-2); user-select:all;}
         </div>
         <p class="nota-ref">Los méritos se cuentan hasta el <strong>26 de noviembre de 2026</strong>, último día del plazo de solicitudes. Solo cuentan los meses completos.</p>
       </section>
-      <div id="apartados" class="form-col"></div>
+      <div id="apartados" class="form-col"><noscript><p class="aviso-js">Esta calculadora necesita JavaScript. Actívalo en el navegador para usarla.</p></noscript></div>
     </main>
 
     <aside class="card resumen" id="resumen" aria-label="Tu puntuación">
@@ -301,10 +308,15 @@ footer.pie .contacto{font-weight:700; color:var(--ink-2); user-select:all;}
         <button type="button" class="btn sec" id="btn-no">Cancelar</button>
       </div>
       <p class="letra" id="copiado" hidden></p>
-      <p class="letra">Los datos se guardan solo en este navegador.</p>
+      <p class="letra">Los datos se guardan solo en este navegador y no se envían a ningún sitio. En un ordenador compartido, pulsa «Borrar todo» al terminar.</p>
       <div class="ejemplo">
         <button type="button" class="btn sec" id="btn-ejemplo">Cargar el ejemplo</button>
         <p class="letra">Un profesor de Secundaria inventado: 7 años en su centro, dos cargos que coincidieron un tiempo, un máster y 640 horas de formación. Sustituye lo que tengas metido.</p>
+        <div class="confirmar" id="confirmar-ej" hidden>
+          <span>Se borrará lo que has metido. ¿Cargar el ejemplo?</span>
+          <button type="button" class="btn" id="btn-ej-si">Sí, cargar</button>
+          <button type="button" class="btn sec" id="btn-ej-no">Cancelar</button>
+        </div>
       </div>
     </aside>
   </div>
@@ -315,7 +327,7 @@ footer.pie .contacto{font-weight:700; color:var(--ink-2); user-select:all;}
   </footer>
 </div>
 
-<div class="barra-movil" aria-hidden="true">
+<div class="barra-movil" role="region" aria-label="Total">
   <div><div class="l">Total</div><div class="t" id="total-movil">0,0000</div></div>
   <a class="btn sec" href="#resumen">Ver desglose</a>
 </div>
@@ -623,26 +635,42 @@ const IDIOMAS_SUG = ['Inglés','Francés','Alemán','Italiano','Portugués','Chi
 const CLAVE = 'anpe-autobaremo-ct-2026';
 const CAMPOS_T = ['t111','t112','t113','t121','t122','t123','t41','t42','t43','t64'];
 // Adapta datos guardados con versiones anteriores: años y meses sueltos van a s.am y los periodos con fecha activan el modo fechas.
+const FECHA_OK = s => typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s) && !isNaN(dnum(s));
+const NUMEROS = ['n311','n312','n313','n314','n321','n321c','n322','n323','n33e','n33f','h51','c51','h52','c52','n53','e62','e63','n65','n66a','n66b'];
 function normalizar(x){
-  x.am = x.am || {}; x.modo = x.modo || {};
+  if (!x || typeof x !== 'object') x = {};
+  const obj = v => (v && typeof v === 'object' && !Array.isArray(v)) ? v : {};
+  x.am = obj(x.am); x.modo = obj(x.modo); x.pub = obj(x.pub);
+  x.situacion = (x.situacion === 'expectativa' || x.situacion === 'provisional') ? 'expectativa' : 'definitivo';
+  x.primerDestino = !!x.primerDestino;
+  NUMEROS.forEach(k => { x[k] = n(x[k]); });
+  Object.keys(x.pub).forEach(k => { if (PUB[k] == null) delete x.pub[k]; else x.pub[k] = ent(x.pub[k]); });
+  if (!(x.cdd in NIVEL_CDD)) x.cdd = '';
+  if (!['', 'nivel', 'rend'].includes(x.deporte || '')) x.deporte = '';
+  x.idiomas = (Array.isArray(x.idiomas) ? x.idiomas : []).filter(i => i && typeof i === 'object').map(i => ({
+    idioma: String(i.idioma || '').slice(0, 60), nivel: NIVEL_IDIOMA[i.nivel] ? i.nivel : 'B2', origen: i.origen === 'otro' ? 'otro' : 'eoi' }));
   if (x.cuerpo === 'CAT') x.catedratico = true;
   delete x.cuerpo;
-  if (x.situacion === 'provisional') x.situacion = 'expectativa';
   CAMPOS_T.forEach(k => {
     let v = x[k];
     if (v && !Array.isArray(v)){ if (ent(v.a) || ent(v.m)) x.am[k] = { a:ent(v.a), m:ent(v.m) }; v = []; }
-    v = Array.isArray(v) ? v : [];
+    v = (Array.isArray(v) ? v : []).filter(q => q && typeof q === 'object');
+    if (x.am[k]) x.am[k] = { a: ent(x.am[k].a), m: ent(x.am[k].m) };
+    if (x.modo[k] !== 'fechas') x.modo[k] = '';
     const sin = v.filter(q => q.sin);
     if (sin.length && !x.am[k]){ const mm = sin.reduce((a, q) => a + ent(q.a) * 12 + ent(q.m), 0); x.am[k] = { a:Math.floor(mm / 12), m:mm % 12 }; }
-    x[k] = v.filter(q => !q.sin);
+    x[k] = v.filter(q => !q.sin && FECHA_OK(q.d) && FECHA_OK(q.h) && dnum(q.d) <= dnum(q.h)).map(q => ({ d: q.d, h: q.h }));
     if (x[k].length && !x.modo[k]) x.modo[k] = 'fechas';
   });
   return x;
 }
 const VACIO = () => normalizar({ situacion:'definitivo', primerDestino:false, catedratico:false, idiomas:[], pub:{} });
 let S = VACIO();
-try { const g = JSON.parse(localStorage.getItem(CLAVE) || 'null'); if (g && typeof g === 'object') S = Object.assign(VACIO(), g); } catch(e) {}
-S = normalizar(S);
+function cargarGuardado(){
+  try { const g = JSON.parse(localStorage.getItem(CLAVE) || 'null'); if (g && typeof g === 'object') return normalizar(Object.assign(VACIO(), g)); } catch(e) {}
+  return VACIO();
+}
+S = cargarGuardado();
 const guardar = () => { try { localStorage.setItem(CLAVE, JSON.stringify(S)); } catch(e) {} };
 
 const fmt = x => (+x).toLocaleString('es-ES', { minimumFractionDigits:4, maximumFractionDigits:4 });
@@ -652,21 +680,21 @@ const val = (v, s) => typeof v === 'function' ? v(s) : v;
 
 /* ===== RENDER ===== */
 function stepper(id, valor, etiqueta){
-  return `<span class="stepper"><button type="button" data-step="-1" data-for="${id}" aria-label="Quitar uno: ${esc(etiqueta)}">−</button><input type="number" inputmode="numeric" min="0" step="1" id="${id}" value="${valor || 0}" aria-label="${esc(etiqueta)}"><button type="button" data-step="1" data-for="${id}" aria-label="Añadir uno: ${esc(etiqueta)}">+</button></span>`;
+  return `<span class="stepper"><button type="button" data-step="-1" data-for="${id}" aria-label="Quitar uno: ${esc(etiqueta)}">−</button><input type="number" inputmode="numeric" min="0" step="1" id="${id}" value="${esc(ent(valor))}" aria-label="${esc(etiqueta)}"><button type="button" data-step="1" data-for="${id}" aria-label="Añadir uno: ${esc(etiqueta)}">+</button></span>`;
 }
 function controles(it){
   const t = it.tipo, c = it.campo;
   if (t === 'tiempo'){
     const v = (S.am || {})[c] || {};
-    return `<div class="t-manual" id="tm-${c}"><div class="tiempo"><label>Años <input type="number" inputmode="numeric" min="0" id="${c}-a" value="${v.a || 0}"></label><label>Meses <input type="number" inputmode="numeric" min="0" max="11" id="${c}-m" value="${v.m || 0}"></label></div><button type="button" class="btn-link" data-modo="${c}">Prefiero meter los periodos con fechas</button></div><span class="t-total" id="tt-${c}" hidden>0 años y 0 meses</span>`;
+    return `<div class="t-manual" id="tm-${c}"><div class="tiempo"><label>Años <input type="number" inputmode="numeric" min="0" id="${c}-a" value="${ent(v.a)}"></label><label>Meses <input type="number" inputmode="numeric" min="0" max="11" id="${c}-m" value="${ent(v.m)}"></label></div><button type="button" class="btn-link" data-modo="${c}">Prefiero meter los periodos con fechas</button></div><span class="t-total" id="tt-${c}" hidden>0 años y 0 meses</span>`;
   }
   if (t === 'num') return stepper(c, S[c], it.lab);
-  if (t === 'num2') return `<label class="switch" style="gap:6px">${esc(it.l1)} ${stepper(c, S[c], it.lab + ', ' + it.l1)}</label><label class="switch" style="gap:6px">${esc(it.l2)} ${stepper(it.campo2, S[it.campo2], it.lab + ', ' + it.l2)}</label>`;
-  if (t === 'horas') return `<div class="tiempo"><label>Horas <input type="number" inputmode="numeric" min="0" id="${c}" value="${S[c] || 0}" style="width:84px"></label><label>Créditos <input type="number" inputmode="decimal" min="0" step="0.1" id="${it.campo2}" value="${S[it.campo2] || 0}"></label></div>`;
+  if (t === 'num2') return `<span class="grupo-ctl">${esc(it.l1)} ${stepper(c, S[c], it.lab + ', ' + it.l1)}</span><span class="grupo-ctl">${esc(it.l2)} ${stepper(it.campo2, S[it.campo2], it.lab + ', ' + it.l2)}</span>`;
+  if (t === 'horas') return `<div class="tiempo"><label>Horas <input type="number" inputmode="numeric" min="0" id="${c}" value="${n(S[c])}" style="width:84px"></label><label>Créditos <input type="number" inputmode="decimal" min="0" step="0.1" id="${it.campo2}" value="${n(S[it.campo2])}"></label></div>`;
   if (t === 'sel') return `<select id="${c}" class="sel-corto" aria-label="${esc(it.lab)}">${it.ops.map(o => `<option value="${o[0]}"${(S[c] || '') === o[0] ? ' selected' : ''}>${o[1]}</option>`).join('')}</select>`;
-  if (t === 'pts') return `<label class="tiempo">Puntos <input type="number" inputmode="decimal" min="0" max="${it.max}" step="0.1" id="${c}" value="${S[c] || 0}" class="num-corto"></label>`;
-  if (t === 'deporte') return `<select id="${c}" class="sel-corto" aria-label="Deportista"><option value="">Sin condición de deportista</option><option value="nivel"${S[c] === 'nivel' ? ' selected' : ''}>Alto nivel · 1</option><option value="rend"${S[c] === 'rend' ? ' selected' : ''}>Alto rendimiento · 0,5</option></select><label class="tiempo">Otros <input type="number" inputmode="decimal" min="0" max="2.5" step="0.1" id="${it.campo2}" value="${S[it.campo2] || 0}" style="width:76px" aria-label="Puntos por otros méritos artísticos"></label>`;
-  if (t === 'check') return `<label class="switch"><input type="checkbox" id="${c}"${S[c] ? ' checked' : ''}> Sí</label>`;
+  if (t === 'pts') return `<label class="tiempo">Puntos <input type="number" inputmode="decimal" min="0" max="${it.max}" step="0.1" id="${c}" value="${n(S[c])}" class="num-corto"></label>`;
+  if (t === 'deporte') return `<select id="${c}" class="sel-corto" aria-label="Deportista"><option value="">Sin condición de deportista</option><option value="nivel"${S[c] === 'nivel' ? ' selected' : ''}>Alto nivel · 1</option><option value="rend"${S[c] === 'rend' ? ' selected' : ''}>Alto rendimiento · 0,5</option></select><label class="tiempo">Otros <input type="number" inputmode="decimal" min="0" max="2.5" step="0.1" id="${it.campo2}" value="${n(S[it.campo2])}" style="width:76px" aria-label="Puntos por otros méritos artísticos"></label>`;
+  if (t === 'check') return `<label class="switch"><input type="checkbox" id="${c}"${S[c] ? ' checked' : ''} aria-label="${esc(val(it.lab, S))}"> Sí</label>`;
   return '';
 }
 const ICONO_DOC = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>';
@@ -674,14 +702,13 @@ function fila(it){
   if (it.grupo) return `<p class="grupo-tit">${esc(it.grupo)}</p>`;
   if (it.tipo === 'nota') return `<p class="nota-ref" style="padding:10px 0 2px; border-top:2px dashed var(--cielo)">${esc(it.txt)}</p>`;
   const cod = it.cod ? `<span class="cod">${esc(it.cod)}</span>` : '';
-  const enl = it.enlace ? ` <a href="${it.enlace}">Ir a los idiomas</a>` : '';
-  const txt = `<div class="fila-txt">${cod}<span class="lab" data-lab="${it.id}">${esc(val(it.lab, S))}</span>${it.val ? `<span class="val">${esc(it.val)}</span>` : ''}<span class="hint" data-hint="${it.id}">${esc(val(it.hint, S) || '')}${enl}</span></div>`;
+  const txt = `<div class="fila-txt">${cod}<span class="lab" data-lab="${it.id}">${esc(val(it.lab, S))}</span>${it.val ? `<span class="val">${esc(it.val)}</span>` : ''}<span class="hint" data-hint="${it.id}">${esc(val(it.hint, S) || '')}</span></div>`;
   const pts = (it.tipo === 'check' && !it.puntua) ? '<div></div>' : `<div class="fila-pts" id="p-${it.id}">0,0000</div>`;
   let extra = '';
   if (it.tipo === 'tiempo') extra = `<div class="periodos" id="pl-${it.campo}">${htmlPeriodos(it.campo)}</div>`;
   if (it.tipo === 'idiomas') extra = `<div class="idiomas" id="idiomas-${it.origen}"></div>`;
   if (it.tipo === 'pubs') extra = `<div class="pubs">${PUBS.map(([k, l]) => `<div class="pub"><span>${l} <small style="color:var(--ink-muted)">· ${fmtC(PUB[k])}</small></span>${stepper('pub-' + k, (S.pub || {})[k], l)}</div>`).join('')}</div>`;
-  const ctl = (it.tipo === 'idiomas' || it.tipo === 'pubs' || it.tipo === 'info') ? '<div class="fila-in"></div>' : `<div class="fila-in">${controles(it)}</div>`;
+  const ctl = (it.tipo === 'idiomas' || it.tipo === 'pubs') ? '<div class="fila-in"></div>' : `<div class="fila-in">${controles(it)}</div>`;
   const doc = it.doc ? `<details class="doc doc-fila"><summary>${ICONO_DOC}Cómo se justifica</summary><ul>${it.doc.map(d => `<li>${conEnlaces(d)}</li>`).join('')}</ul></details>` : '';
   return `<div class="fila" id="f-${it.id}">${txt}${ctl}${pts}${extra}${doc}</div>`;
 }
@@ -697,7 +724,7 @@ function render(){
   document.getElementById('res-list').innerHTML = APARTADOS.map(a => `
     <li><div class="res-row"><a href="#ap-${a.id}">${a.id}. ${esc(a.titulo)}</a><b id="r-${a.id}">0${a.max ? ` <span>/ ${a.max}</span>` : ''}</b></div>${a.max ? `<div class="barra" id="rb-${a.id}"><i></i></div>` : ''}</li>`).join('');
   renderIdiomas();
-    document.querySelector(`input[name="situacion"][value="${S.situacion}"]`).checked = true;
+  document.getElementById(S.situacion === 'expectativa' ? 'sit-prov' : 'sit-def').checked = true;
 }
 function renderIdiomas(){
   ['eoi', 'otro'].forEach(o => {
@@ -819,7 +846,9 @@ document.addEventListener('click', e => {
   if (b.id === 'btn-borrar'){ document.getElementById('confirmar').hidden = false; return; }
   if (b.id === 'btn-no'){ document.getElementById('confirmar').hidden = true; return; }
   if (b.id === 'btn-si'){ S = VACIO(); document.getElementById('confirmar').hidden = true; render(); actualizar(); return; }
-  if (b.id === 'btn-ejemplo'){ S = ejemplo(); render(); actualizar(); document.getElementById('resumen').scrollIntoView({ behavior:'smooth', block:'start' }); return; }
+  if (b.id === 'btn-ejemplo'){ if (calcular(S).total > 0 || S.idiomas.length){ document.getElementById('confirmar-ej').hidden = false; return; } cargarEjemplo(); return; }
+  if (b.id === 'btn-ej-si'){ document.getElementById('confirmar-ej').hidden = true; cargarEjemplo(); return; }
+  if (b.id === 'btn-ej-no'){ document.getElementById('confirmar-ej').hidden = true; return; }
   if (b.id === 'btn-copiar'){ copiar(); return; }
 });
 
@@ -877,6 +906,9 @@ function pintarTiempos(r){
   });
 }
 
+function cargarEjemplo(){ S = ejemplo(); render(); actualizar(); document.getElementById('resumen').scrollIntoView({ behavior:'smooth', block:'start' }); }
+// Si la web está abierta en dos pestañas, la que no se está usando se pone al día con lo que guarda la otra.
+window.addEventListener('storage', e => { if (e.key === CLAVE){ S = cargarGuardado(); render(); actualizar(); } });
 function ejemplo(){
   return normalizar(Object.assign(VACIO(), {
     situacion:'definitivo', primerDestino:false,
@@ -909,6 +941,6 @@ render();
 actualizar();
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "e8d044321f164a0faa2fb5bf37d81736"}'></script><!-- End Cloudflare Web Analytics -->
-<script data-goatcounter="https://anperioja.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://anperioja.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
