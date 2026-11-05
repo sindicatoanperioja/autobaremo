@@ -579,6 +579,8 @@ const APARTADOS = [
 /* Cómo se justifica cada mérito: columna «Documentos justificativos» del Anexo XI y base decimoquinta de la convocatoria. */
 const DE_OFICIO = 'Los servicios en La Rioja no hay que justificarlos: la Administración aporta de oficio tu hoja de servicios. Si tienes servicios en otra comunidad o en el Ministerio, tienes que presentar la hoja de servicios expedida por esa Administración.';
 const TITULOS = 'Copia del título o del resguardo de haber pagado los derechos de expedición. Si es extranjero, también la homologación o la declaración de equivalencia.';
+const ENLACES = { ACLES: ['https://www.acles.es/acreditaciones/216-tablas-de-certificados-reconocidos-por-acles', 'tabla de certificados reconocidos por ACLES'] };
+const conEnlaces = s => esc(s).replace(/\[\[(\w+)\]\]/g, (m, k) => ENLACES[k] ? `<a href="${ENLACES[k][0]}" target="_blank" rel="noopener">${ENLACES[k][1]}</a>` : m);
 const DOCS = {
   '111': [DE_OFICIO],
   '112': [DE_OFICIO],
@@ -602,7 +604,7 @@ const DOCS = {
   '52': ['Impresión de la consulta del Registro de Formación Permanente del Profesorado en educarioja.org.', 'Si no figura: certificado de haber impartido la actividad con el número de horas. Para entidades sin ánimo de lucro, también la homologación o el reconocimiento de la Administración educativa.'],
   '53': ['Copia de la credencial de adquisición de la nueva especialidad expedida por la Administración educativa.'],
   '54': ['Copia de la acreditación de competencia digital emitida por la Administración educativa.'],
-  '55': ['Copia del certificado. Tiene que aparecer en la tabla de certificados de ACLES vigente el 26/11/2026.'],
+  '55': ['Copia del certificado. Tiene que aparecer en la [[ACLES]] vigente el 26/11/2026.'],
   '61': ['Libros: certificado de la editorial con título, autores, ISBN, depósito legal, fecha de la primera edición, número de ejemplares y que se han difundido en librerías. Si lo edita una Administración o una universidad y no se vende en librerías, también los centros de difusión.', 'Revistas: certificado con número de ejemplares, lugares de distribución y venta o asociación a la que pertenece, título, autores, ISSN o ISMN, depósito legal y fecha de edición.', 'Publicaciones solo electrónicas: informe del organismo emisor de que aparece en la base de datos bibliográfica, con la base, el título, los autores, el año y la URL.', 'Se aportan por medios electrónicos. No se valoran sin ISBN, ISSN o ISMN cuando sea obligatorio, ni si el autor es también el editor.'],
   '62': ['Premios: acreditación expedida por la entidad que los convoca.', 'Proyectos de investigación o innovación: certificado de la Administración educativa de haber participado.'],
   '63': ['Premios: certificado de la entidad con el nombre del premiado, el ámbito y la categoría del premio.', 'Exposiciones, actuaciones y conciertos: programas donde conste tu participación y certificado de la entidad organizadora.', 'Composiciones, coreografías, espectáculos y grabaciones: documento que acredite la autoría o la interpretación y el depósito legal.', 'Conservación y restauración: certificado de la entidad organizadora. Deportistas de alto nivel o rendimiento: certificado del Consejo Superior de Deportes.'],
@@ -680,7 +682,7 @@ function fila(it){
   if (it.tipo === 'idiomas') extra = `<div class="idiomas" id="idiomas-${it.origen}"></div>`;
   if (it.tipo === 'pubs') extra = `<div class="pubs">${PUBS.map(([k, l]) => `<div class="pub"><span>${l} <small style="color:var(--ink-muted)">· ${fmtC(PUB[k])}</small></span>${stepper('pub-' + k, (S.pub || {})[k], l)}</div>`).join('')}</div>`;
   const ctl = (it.tipo === 'idiomas' || it.tipo === 'pubs' || it.tipo === 'info') ? '<div class="fila-in"></div>' : `<div class="fila-in">${controles(it)}</div>`;
-  const doc = it.doc ? `<details class="doc doc-fila"><summary>${ICONO_DOC}Cómo se justifica</summary><ul>${it.doc.map(d => `<li>${esc(d)}</li>`).join('')}</ul></details>` : '';
+  const doc = it.doc ? `<details class="doc doc-fila"><summary>${ICONO_DOC}Cómo se justifica</summary><ul>${it.doc.map(d => `<li>${conEnlaces(d)}</li>`).join('')}</ul></details>` : '';
   return `<div class="fila" id="f-${it.id}">${txt}${ctl}${pts}${extra}${doc}</div>`;
 }
 function render(){
