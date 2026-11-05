@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Autobaremo Concurso de Traslados</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="ANPE La Rioja: calcula tu puntuación en el Concurso de Traslados 2026-2027 con el baremo oficial y sus topes.">
+<meta name="description" content="ANPE La Rioja: calcula tu puntuación en el Concurso de Traslados 2026-2027 con el baremo oficial y los máximos de cada apartado.">
 <link rel="canonical" href="https://traslados.cursosanperioja.es/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#1b619c">
@@ -13,7 +13,7 @@
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="ANPE La Rioja">
 <meta property="og:title" content="Autobaremo del Concurso de Traslados 2026-2027">
-<meta property="og:description" content="Calcula tu puntuación con el baremo oficial y sus topes. ANPE La Rioja.">
+<meta property="og:description" content="Calcula tu puntuación con el baremo oficial y los máximos de cada apartado. ANPE La Rioja.">
 <meta property="og:url" content="https://traslados.cursosanperioja.es/">
 <meta property="og:image" content="https://traslados.cursosanperioja.es/og.png">
 <meta property="og:image:secure_url" content="https://traslados.cursosanperioja.es/og.png">
@@ -776,7 +776,7 @@ function actualizar(){
       if (!el) return;
       const excede = s.tope != null && s.bruto > s.tope;
       el.className = 'fila-pts' + (s.valor ? '' : ' cero');
-      el.innerHTML = fmt(s.valor) + (excede ? `<span class="excede">tope ${fmtC(s.tope)} · tenías ${fmtC(s.bruto)}</span>` : '');
+      el.innerHTML = fmt(s.valor) + (excede ? `<span class="excede">máximo ${fmtC(s.tope)} · tenías ${fmtC(s.bruto)}</span>` : '');
     });
     const v = document.getElementById('v-' + a.id);
     v.textContent = fmtC(a.total);
@@ -788,7 +788,7 @@ function actualizar(){
       const av = document.getElementById('av-' + a.id);
       const sobra = R4(a.bruto - a.max);
       av.hidden = sobra <= 0;
-      if (sobra > 0) av.textContent = `Tope alcanzado. Sumas ${fmtC(a.bruto)} y solo cuentan ${a.max}: ${fmtC(sobra)} puntos no suman.`;
+      if (sobra > 0) av.textContent = `Máximo alcanzado. Sumas ${fmtC(a.bruto)} y solo cuentan ${a.max}: ${fmtC(sobra)} puntos no suman.`;
     }
   });
   pintarTiempos(r);
@@ -811,7 +811,7 @@ function actualizar(){
   document.getElementById('total-movil').textContent = fmt(r.total);
   const pe = document.getElementById('perdidos');
   pe.hidden = r.perdidos <= 0;
-  if (r.perdidos > 0) pe.textContent = `Por los topes se quedan fuera ${fmtC(r.perdidos)} puntos. Aunque metas más en esos apartados, ya no suman.`;
+  if (r.perdidos > 0) pe.textContent = `Por los máximos de los apartados se quedan fuera ${fmtC(r.perdidos)} puntos. Aunque metas más en ellos, ya no suman.`;
   guardar();
   return r;
 }
@@ -947,7 +947,7 @@ function copiar(){
     a.subs.filter(s => s.valor > 0).forEach(s => lineas.push(`   ${nom[s.id] || s.id}: ${fmt(s.valor)}`));
   });
   lineas.push('', `TOTAL: ${fmt(r.total)} puntos`);
-  if (r.perdidos > 0) lineas.push(`(Por los topes se quedan fuera ${fmtC(r.perdidos)} puntos)`);
+  if (r.perdidos > 0) lineas.push(`(Por los máximos de los apartados se quedan fuera ${fmtC(r.perdidos)} puntos)`);
   const txt = lineas.join('\n');
   const aviso = document.getElementById('copiado');
   const ok = () => { aviso.hidden = false; aviso.textContent = 'Desglose copiado. Puedes pegarlo en un correo o en WhatsApp.'; };
