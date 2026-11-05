@@ -119,6 +119,7 @@ input:hover{border-color:var(--medio);}
 .pills input:focus-visible + span{outline:2px solid var(--focus); outline-offset:2px;}
 
 .leyenda{display:flex; flex-wrap:wrap; gap:6px 18px; font-size:.82rem; color:var(--ink-2); font-weight:600; margin:0 0 14px; align-items:center;}
+.leyenda .ley-txt{display:block; flex:1 1 100%; font-weight:600; color:var(--ink-2);}
 .leyenda span{display:inline-flex; align-items:center; gap:6px;}
 .pto{width:10px; height:10px; border-radius:50%; display:inline-block; flex:0 0 auto;}
 .pto.l{background:var(--accent);}
@@ -192,7 +193,7 @@ footer.pie .contacto{font-weight:700; color:var(--ink-2); user-select:all;}
     <section class="card bloque" aria-labelledby="leer-h">
       <h2 id="leer-h">Cómo leer los datos</h2>
       <ul>
-        <li>Cada cifra es la puntuación más baja con la que alguien de carrera consiguió plaza en esa especialidad. Debajo, cuántas plazas se dieron.</li>
+        <li>Cada cifra es la puntuación más baja con la que alguien de carrera consiguió plaza en esa especialidad. Debajo, cuántas plazas se dieron. En la tira de puntos están todas esas personas, cada una con su puntuación.</li>
         <li>Solo cuentan los destinos en La Rioja. No incluimos a quien obtuvo plaza por derecho preferente.</li>
         <li>El personal en prácticas concursa sin puntos y elige después que el de carrera. Si hubo plazas para prácticas, es que sobraron: quien de carrera pidió esos centros los consiguió.</li>
         <li>La más baja depende de lo que pidió cada persona. Un centro que casi nadie pide puede salir con pocos puntos. En Logroño el dato es más fiable.</li>
@@ -228,6 +229,7 @@ footer.pie .contacto{font-weight:700; color:var(--ink-2); user-select:all;}
     </div>
   </div>
   <p class="leyenda" aria-hidden="true">
+    <span class="ley-txt">En la tira de cada especialidad, cada punto es una persona de carrera que consiguió plaza, colocada según su puntuación:</span>
     <span><i class="pto l"></i> Plaza en Logroño</span>
     <span><i class="pto r"></i> Plaza en el resto de La Rioja</span>
     <span><i class="raya"></i> Tu puntuación</span>
