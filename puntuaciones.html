@@ -193,7 +193,7 @@ footer.pie .contacto{font-weight:700; color:var(--ink-2); user-select:all;}
     <section class="card bloque" aria-labelledby="leer-h">
       <h2 id="leer-h">Cómo leer los datos</h2>
       <ul>
-        <li>Cada cifra es la puntuación más baja con la que alguien de carrera consiguió plaza en esa especialidad. Debajo, cuántas plazas se dieron. En la tira de puntos están todas esas personas, cada una con su puntuación.</li>
+        <li>Cada cifra es la puntuación más baja con la que alguien de carrera consiguió plaza en esa especialidad. Debajo, cuántas plazas fueron a personal de carrera y cuántas a personal en prácticas. En la tira de puntos están todas esas personas, cada una con su puntuación. «Sin destino» son quienes pidieron plaza y no la consiguieron.</li>
         <li>Solo cuentan los destinos en La Rioja. No incluimos a quien obtuvo plaza por derecho preferente.</li>
         <li>El personal en prácticas concursa sin puntos y elige después que el de carrera. Si hubo plazas para prácticas, es que sobraron: quien de carrera pidió esos centros los consiguió.</li>
         <li>La más baja depende de lo que pidió cada persona. Un centro que casi nadie pide puede salir con pocos puntos. En Logroño el dato es más fiable.</li>
@@ -255,7 +255,6 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '
 const sinTildes = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 const MAX = Math.ceil(Math.max(...DATOS.flatMap(f => Object.values(f.a).flatMap(a => a.p.map(p => p[0]))), 50) / 50) * 50;
 const pos = v => Math.min(100, Math.max(0, v / MAX * 100));
-const plazas = n => n === 1 ? '1 plaza' : `${n} plazas`;
 
 let mi = 0;
 try { const g = parseFloat(localStorage.getItem(CLAVE_TOTAL)); if (g > 0) { mi = g; document.getElementById('mi').value = String(Math.round(g * 10000) / 10000); document.getElementById('mi-origen').textContent = 'Viene de lo que tienes metido en el autobaremo. Puedes cambiarla.'; } } catch(e) {}
@@ -265,14 +264,14 @@ function celda(a, soloLogr){
   if (!a) return '<td><b class="txt">—</b><small>Sin datos</small></td>';
   const pts = a.p.filter(p => !soloLogr || p[1]).map(p => p[0]);
   const pr = soloLogr ? a.prl : a.pr;
-  const extra = pr ? `<small>y ${pr} para personal en prácticas</small>` : '';
+  const extra = pr ? `<small>${pr} en prácticas</small>` : '';
   if (!pts.length){
-    if (pr) return `<td class="${mi > 0 ? 'llega' : ''}"><b class="txt">Sobraron plazas</b><small>${pr === 1 ? 'La plaza fue' : `Las ${pr} plazas fueron`} para personal en prácticas</small>${mi > 0 ? '<span class="tu">Llegas</span>' : ''}</td>`;
+    if (pr) return `<td class="${mi > 0 ? 'llega' : ''}"><b class="txt">Sobraron plazas</b><small>${pr} en prácticas</small>${mi > 0 ? '<span class="tu">Llegas</span>' : ''}</td>`;
     return '<td><b class="txt">—</b><small>Ninguna plaza</small></td>';
   }
   const min = Math.min(...pts);
   const llega = mi > 0 && (mi >= min || pr > 0);
-  return `<td class="${llega ? 'llega' : ''}"><b>${fmt(min)}</b><small>${plazas(pts.length)} para personal de carrera</small>${extra}${llega ? '<span class="tu">Llegas</span>' : ''}</td>`;
+  return `<td class="${llega ? 'llega' : ''}"><b>${fmt(min)}</b><small>${pts.length} de carrera</small>${extra}${llega ? '<span class="tu">Llegas</span>' : ''}</td>`;
 }
 
 function tira(an, a){
@@ -285,7 +284,7 @@ function tira(an, a){
 
 function tarjeta(f){
   const den = ANIOS.map(an => f.a[an] && f.a[an].den != null ? [an, f.a[an].den] : null).filter(x => x && x[1] > 0);
-  const notaDen = den.length ? `<p class="nota">Pidieron destino y no lo consiguieron: ${den.map(([an, n]) => `${n} en ${corto(an)}`).join(' y ')}.</p>` : '';
+  const notaDen = den.length ? `<p class="nota">Sin destino: ${den.map(([an, n]) => `${n} (${corto(an)})`).join(' · ')}</p>` : '';
   const eje = [0, MAX / 4, MAX / 2, MAX * 3 / 4, MAX].map(v => `<span style="left:${pos(v)}%">${v}</span>`).join('');
   return `<article class="card esp">
     <div class="esp-cab"><h3>${esc(f.n)}</h3><span class="cu">${esc(f.cu)}</span></div>
