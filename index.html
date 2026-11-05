@@ -228,7 +228,13 @@ select.sel-corto{width:auto; min-width:150px;}
 .pub .stepper button{width:30px; height:32px;} .pub .stepper input{width:36px; min-height:32px;}
 
 /* Marcador */
-.resumen{position:sticky; top:16px; padding:20px 22px; display:grid; gap:14px;}
+.lateral{position:sticky; top:16px; display:grid; gap:16px; min-width:0; max-height:calc(100vh - 32px); overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; border-radius:20px;}
+.resumen{padding:20px 22px; display:grid; gap:14px;}
+.herramientas{padding:18px 22px; display:grid; gap:16px;}
+.herr{display:grid; gap:6px;}
+.herr + .herr{border-top:2px dashed var(--cielo); padding-top:14px;}
+.herr > .btn{justify-content:center; width:100%;}
+.aviso-ok{color:var(--verde-texto); font-weight:600;}
 .res-tit{font-size:.8rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--verde-texto); margin:0;}
 .total{font-family:var(--display); font-size:4.2rem; line-height:.9; color:var(--accent); letter-spacing:.01em;}
 .total small{font-family:var(--text); font-size:.95rem; font-weight:700; color:var(--ink-muted); letter-spacing:0; margin-left:4px;}
@@ -241,15 +247,13 @@ select.sel-corto{width:auto; min-width:150px;}
 .res-row b span{color:var(--ink-muted); font-weight:600; font-size:.8rem;}
 .res-list .barra{margin:0; height:5px;}
 .perdidos{font-size:.85rem; color:var(--verde-texto); background:var(--verde-niebla); border-radius:12px; padding:8px 12px; margin:0; font-weight:600;}
-.acciones{display:flex; flex-wrap:wrap; gap:8px;}
 .letra{font-size:.8rem; color:var(--ink-muted); margin:0;}
-.ejemplo{display:grid; gap:8px; justify-items:start; border-top:2px dashed var(--cielo); padding-top:14px;}
 .confirmar{display:flex; flex-wrap:wrap; gap:8px; align-items:center; font-size:.85rem; font-weight:600; background:var(--accent-soft); border-radius:12px; padding:8px 12px;}
 
 /* Barra inferior móvil */
 .barra-movil{display:none;}
 @media (max-width:960px){
-  .resumen{position:static;}
+  .lateral{position:static; max-height:none; overflow:visible;}
   .barra-movil{display:flex; position:fixed; left:0; right:0; bottom:0; z-index:20; align-items:center; justify-content:space-between; gap:12px;
     background:var(--surface); border-top:1px solid var(--border); box-shadow:0 -4px 14px rgba(27,79,125,.08);
     padding-block:10px calc(10px + env(safe-area-inset-bottom, 0px));
@@ -261,7 +265,7 @@ select.sel-corto{width:auto; min-width:150px;}
 footer.pie{border-top:1px solid var(--border); margin-top:28px; padding-top:18px; font-size:.85rem; color:var(--ink-muted); display:grid; gap:6px;}
 footer.pie p{margin:0;}
 footer.pie .contacto{font-weight:700; color:var(--ink-2); user-select:all;}
-@media print{ .barra-movil, .acciones, .btn-link, header .onda{display:none !important;} .layout{grid-template-columns:1fr;} .card{box-shadow:none;} }
+@media print{ .barra-movil, .herramientas, .btn-link, header .onda{display:none !important;} .layout{grid-template-columns:1fr;} .card{box-shadow:none;} }
 </style>
 </head>
 <body>
@@ -300,32 +304,39 @@ footer.pie .contacto{font-weight:700; color:var(--ink-2); user-select:all;}
       <div id="apartados" class="form-col"><noscript><p class="aviso-js">Esta calculadora necesita JavaScript. Actívalo en el navegador para usarla.</p></noscript></div>
     </main>
 
+    <div class="lateral">
     <aside class="card resumen" id="resumen" aria-label="Tu puntuación">
       <p class="res-tit">Tu puntuación</p>
       <div class="total" id="total" aria-live="polite">0,0000<small>puntos</small></div>
       <ul class="res-list" id="res-list"></ul>
       <p class="perdidos" id="perdidos" hidden></p>
-      <div class="acciones">
-        <button type="button" class="btn" id="btn-copiar">Copiar el desglose</button>
+    </aside>
+    <section class="card herramientas" aria-label="Herramientas">
+      <div class="herr">
+        <button type="button" class="btn sec" id="btn-copiar">Copiar el desglose</button>
+        <p class="letra">Copia tu puntuación apartado por apartado para pegarla en un correo o en WhatsApp.</p>
+        <p class="letra aviso-ok" id="copiado" hidden></p>
+      </div>
+      <div class="herr">
         <button type="button" class="btn sec" id="btn-borrar">Borrar todo</button>
+        <p class="letra">Deja la calculadora vacía. Tus datos se guardan solo en este navegador; en un ordenador compartido, bórralos al terminar.</p>
+        <div class="confirmar" id="confirmar" hidden>
+          <span>¿Borrar todos los datos?</span>
+          <button type="button" class="btn" id="btn-si">Sí, borrar</button>
+          <button type="button" class="btn sec" id="btn-no">Cancelar</button>
+        </div>
       </div>
-      <div class="confirmar" id="confirmar" hidden>
-        <span>¿Borrar todos los datos?</span>
-        <button type="button" class="btn" id="btn-si">Sí, borrar</button>
-        <button type="button" class="btn sec" id="btn-no">Cancelar</button>
-      </div>
-      <p class="letra" id="copiado" hidden></p>
-      <p class="letra">Los datos se guardan solo en este navegador y no se envían a ningún sitio. En un ordenador compartido, pulsa «Borrar todo» al terminar.</p>
-      <div class="ejemplo">
+      <div class="herr">
         <button type="button" class="btn sec" id="btn-ejemplo">Cargar el ejemplo</button>
-        <p class="letra">Un profesor de Secundaria inventado: 7 años en su centro, dos cargos que coincidieron un tiempo, un máster y 640 horas de formación. Sustituye lo que tengas metido.</p>
+        <p class="letra">Rellena la calculadora con un profesor de Secundaria inventado: 7 años en su centro, dos cargos que coincidieron un tiempo, un máster y 640 horas de formación.</p>
         <div class="confirmar" id="confirmar-ej" hidden>
           <span>Se borrará lo que has metido. ¿Cargar el ejemplo?</span>
           <button type="button" class="btn" id="btn-ej-si">Sí, cargar</button>
           <button type="button" class="btn sec" id="btn-ej-no">Cancelar</button>
         </div>
       </div>
-    </aside>
+    </section>
+    </div>
   </div>
 
   <footer class="pie">
