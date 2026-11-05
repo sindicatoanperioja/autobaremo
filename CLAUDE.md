@@ -12,3 +12,4 @@ Calculadora para que cada docente se autobaremara el Concurso de Traslados 2026-
 - Tiempo: por defecto años y meses (`S.am`); quien quiera mete periodos con fechas (`S.modo[campo] = "fechas"`, lista en `S[campo]`). Solo con fechas se detectan solapes: en un mismo campo se rechazan; entre 4.1, 4.2 y 4.3 y entre 1.1, 1.2.2 y 1.2.3 se quitan los días del que menos puntúa.
 - Sin selector de cuerpo: Catedrático es un interruptor en el apartado 2. "Expectativa" = funcionario de carrera sin destino definitivo (1.1.2).
 - «Cómo se justifica» de cada mérito: objeto `DOCS` (columna de documentos del Anexo XI y base 15 de la convocatoria). El resumen general va en «Qué hay que presentar».
+- Visitas: Cloudflare Web Analytics (sin cookies), script al final del body; el panel está en la cuenta de Cloudflare del sindicato.
