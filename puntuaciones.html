@@ -264,14 +264,14 @@ function celda(a, soloLogr){
   if (!a) return '<td><b class="txt">—</b><small>Sin datos</small></td>';
   const pts = a.p.filter(p => !soloLogr || p[1]).map(p => p[0]);
   const pr = soloLogr ? a.prl : a.pr;
-  const extra = pr ? `${pts.length ? ' · ' : ''}${pr} a prácticas` : '';
+  const extra = pr ? `<small>y ${pr} para personal en prácticas</small>` : '';
   if (!pts.length){
-    if (pr) return `<td class="${mi > 0 ? 'llega' : ''}"><b class="txt">Sobraron plazas</b><small>${plazas(pr)} a prácticas</small>${mi > 0 ? '<span class="tu">Llegas</span>' : ''}</td>`;
+    if (pr) return `<td class="${mi > 0 ? 'llega' : ''}"><b class="txt">Sobraron plazas</b><small>${pr === 1 ? 'La plaza fue' : `Las ${pr} plazas fueron`} para personal en prácticas</small>${mi > 0 ? '<span class="tu">Llegas</span>' : ''}</td>`;
     return '<td><b class="txt">—</b><small>Ninguna plaza</small></td>';
   }
   const min = Math.min(...pts);
   const llega = mi > 0 && (mi >= min || pr > 0);
-  return `<td class="${llega ? 'llega' : ''}"><b>${fmt(min)}</b><small>${plazas(pts.length)}${extra}</small>${llega ? '<span class="tu">Llegas</span>' : ''}</td>`;
+  return `<td class="${llega ? 'llega' : ''}"><b>${fmt(min)}</b><small>${plazas(pts.length)} para personal de carrera</small>${extra}${llega ? '<span class="tu">Llegas</span>' : ''}</td>`;
 }
 
 function tira(an, a){
