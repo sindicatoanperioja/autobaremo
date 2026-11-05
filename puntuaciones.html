@@ -301,12 +301,11 @@ function tarjeta(f){
 function pintar(){
   const g = document.querySelector('#cuerpos input:checked').value;
   const q = sinTildes(document.getElementById('buscar').value.trim());
-  const filas = DATOS.filter(f => q ? sinTildes(f.n).includes(q) : f.g === g);
-  document.getElementById('lista').innerHTML = filas.length ? filas.map(tarjeta).join('') : '<p class="card vacio">No hay ninguna especialidad con ese nombre en los dos concursos.</p>';
+  const filas = DATOS.filter(f => f.g === g && (!q || sinTildes(f.n).includes(q)));
+  document.getElementById('lista').innerHTML = filas.length ? filas.map(tarjeta).join('') : '<p class="card vacio">No hay ninguna especialidad con ese nombre en este cuerpo.</p>';
 }
 
 document.getElementById('cuerpos').addEventListener('change', e => {
-  document.getElementById('buscar').value = '';
   try { localStorage.setItem(CLAVE_CUERPO, e.target.value); } catch(err) {}
   pintar();
 });
