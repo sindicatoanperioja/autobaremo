@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Puntuaciones del Concurso de Traslados</title>
+<meta name="description" content="ANPE La Rioja: con cuántos puntos se consiguió destino en los concursos de traslados de 2024-25 y 2025-26, por especialidad, en La Rioja y en Logroño.">
+<link rel="canonical" href="https://traslados.cursosanperioja.es/puntuaciones">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#1b619c">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="ANPE La Rioja">
+<meta property="og:title" content="Puntuaciones del Concurso de Traslados en La Rioja">
+<meta property="og:description" content="Con cuántos puntos se consiguió destino en los dos últimos concursos, por especialidad y en Logroño. ANPE La Rioja.">
+<meta property="og:url" content="https://traslados.cursosanperioja.es/puntuaciones">
+<meta property="og:image" content="https://traslados.cursosanperioja.es/og-puntuaciones.png">
+<meta property="og:image:secure_url" content="https://traslados.cursosanperioja.es/og-puntuaciones.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Puntuaciones del Concurso de Traslados, ANPE La Rioja">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Misma identidad que el autobaremo (index.html). */
+:root{
+  --bg:#f5f8fb; --surface:#ffffff; --surface-2:#eaf1f7; --border:#d9e4ee;
+  --cielo:#c6dbec; --medio:#5b9bce;
+  --ink:#334155; --ink-2:#475569; --ink-muted:#5a6b80; --head:#1b4f7d;
+  --accent:#1b619c; --accent-ink:#ffffff; --accent-soft:#e4eef6;
+  --verde:#6cb195; --verde-texto:#3d7a62; --verde-niebla:#e6f2ec;
+  --focus:#1b619c;
+  --shadow:0 1px 2px rgba(27,79,125,.06), 0 4px 14px rgba(27,79,125,.06);
+  --display:'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+  --text:Raleway, Arial, sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f161c; --surface:#16202a; --surface-2:#1e2a36; --border:#2b3a4a;
+    --cielo:#2a4560; --medio:#5b9bce;
+    --ink:#e2e8f0; --ink-2:#b7c2cb; --ink-muted:#9aa9bb; --head:#c6dbec;
+    --accent:#8dbbe4; --accent-ink:#0f161c; --accent-soft:#1a2a3a;
+    --verde:#6cb195; --verde-texto:#8fd0b3; --verde-niebla:#1d3a30;
+    --focus:#8dbbe4;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f161c; --surface:#16202a; --surface-2:#1e2a36; --border:#2b3a4a;
+  --cielo:#2a4560; --medio:#5b9bce;
+  --ink:#e2e8f0; --ink-2:#b7c2cb; --ink-muted:#9aa9bb; --head:#c6dbec;
+  --accent:#8dbbe4; --accent-ink:#0f161c; --accent-soft:#1a2a3a;
+  --verde:#6cb195; --verde-texto:#8fd0b3; --verde-niebla:#1d3a30;
+  --focus:#8dbbe4;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;}
+[hidden]{display:none !important;}
+@media (prefers-reduced-motion: reduce){ *,*::before,*::after{transition-duration:.01ms !important;} }
+html{-webkit-text-size-adjust:100%; font-size:15px;}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--text); line-height:1.45; font-variant-numeric:lining-nums tabular-nums;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+a{color:var(--accent);}
+button, input{font:inherit; color:inherit;}
+:focus-visible{outline:2px solid var(--focus); outline-offset:2px;}
+
+header.top{background:var(--surface); position:relative; padding-block:18px 46px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px));}
+.brand-row{display:flex; align-items:center; gap:18px; max-width:1240px; margin:0 auto;}
+.anpe-logo{height:96px; width:auto; flex:0 0 auto; display:block;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .anpe-logo{background:#fff; border-radius:12px; padding:6px 8px;}}
+:root[data-theme="dark"] .anpe-logo{background:#fff; border-radius:12px; padding:6px 8px;}
+.brand-txt{border-left:2px solid var(--cielo); padding-left:18px; min-width:0;}
+.antetitulo{margin:0; font-size:.82rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--verde-texto);}
+h1{font-family:var(--display); font-weight:400; letter-spacing:.02em; font-size:clamp(2.5rem, 1.9rem + 3vw, 3.8rem); line-height:.95; color:var(--accent);}
+.brand-txt .sub{color:var(--ink-muted); margin:6px 0 0; max-width:62ch; font-size:.95rem;}
+.onda{position:absolute; left:0; right:0; bottom:0; width:100%; height:40px; display:block;}
+@media (max-width:600px){ .anpe-logo{height:64px;} .brand-row{gap:12px;} .brand-txt{padding-left:12px;} }
+
+.wrap{max-width:1240px; margin:0 auto; padding-block:18px 60px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px));}
+.card{background:var(--surface); border:1px solid var(--border); border-radius:20px; box-shadow:var(--shadow);}
+
+/* Navegación entre las dos páginas */
+.secciones{display:flex; flex-wrap:wrap; gap:3px; padding:3px; border:1.5px solid var(--cielo); border-radius:999px; width:fit-content; max-width:100%; background:var(--surface); margin-bottom:18px;}
+.secciones a{display:block; padding:7px 16px; border-radius:999px; font-weight:700; font-size:.88rem; color:var(--ink-muted); text-decoration:none;}
+.secciones a:hover{color:var(--accent); background:var(--accent-soft);}
+.secciones a[aria-current="page"]{background:var(--accent); color:var(--accent-ink);}
+
+.intro{display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); gap:18px; margin-bottom:18px;}
+@media (max-width:900px){ .intro{grid-template-columns:minmax(0,1fr);} }
+.bloque{padding:18px 22px; display:grid; gap:12px; align-content:start;}
+.bloque h2{font-family:var(--display); font-weight:400; font-size:1.7rem; letter-spacing:.02em; color:var(--head); line-height:1;}
+.bloque ul{margin:0; padding-left:20px; display:grid; gap:6px; font-size:.9rem; color:var(--ink-2);}
+.bloque p{margin:0;}
+.letra{font-size:.82rem; color:var(--ink-muted);}
+
+.campo{display:grid; gap:6px; min-width:0;}
+.campo > label, .campo > .lbl{font-size:.8rem; font-weight:700; color:var(--ink-muted); letter-spacing:.04em; text-transform:uppercase;}
+input[type="number"], input[type="search"]{background:var(--surface); border:1.5px solid var(--border); border-radius:12px; padding:8px 12px; min-height:40px; width:100%;}
+input:hover{border-color:var(--medio);}
+.mi-pts{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+.mi-pts input{width:130px; font-weight:800; font-size:1.1rem;}
+
+.filtros{display:flex; flex-wrap:wrap; gap:12px 18px; align-items:end; margin-bottom:12px;}
+.filtros .buscar{flex:1 1 240px; max-width:380px;}
+.pills{display:flex; flex-wrap:wrap; gap:3px; padding:3px; border:1.5px solid var(--cielo); border-radius:999px; width:fit-content; max-width:100%; background:var(--surface);}
+.pills label{position:relative; cursor:pointer;}
+.pills input{position:absolute; opacity:0; inset:0; margin:0; cursor:pointer;}
+.pills span{display:block; padding:7px 16px; border-radius:999px; font-weight:700; font-size:.88rem; color:var(--ink-muted);}
+.pills label:hover span{color:var(--accent); background:var(--accent-soft);}
+.pills input:checked + span{background:var(--accent); color:var(--accent-ink);}
+.pills input:focus-visible + span{outline:2px solid var(--focus); outline-offset:2px;}
+
+.leyenda{display:flex; flex-wrap:wrap; gap:6px 18px; font-size:.82rem; color:var(--ink-2); font-weight:600; margin:0 0 14px; align-items:center;}
+.leyenda span{display:inline-flex; align-items:center; gap:6px;}
+.pto{width:10px; height:10px; border-radius:50%; display:inline-block; flex:0 0 auto;}
+.pto.l{background:var(--accent);}
+.pto.r{background:var(--surface); border:2px solid var(--medio);}
+.raya{width:3px; height:14px; background:var(--verde-texto); border-radius:2px; display:inline-block;}
+
+.lista{display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap:16px;}
+.esp{padding:16px 18px 14px; display:grid; gap:10px; align-content:start;}
+.esp-cab{display:flex; justify-content:space-between; gap:10px; align-items:baseline;}
+.esp h3{font-size:1.08rem; font-weight:800; color:var(--head); line-height:1.2;}
+.esp .cu{font-size:.75rem; font-weight:700; color:var(--ink-muted); text-transform:uppercase; letter-spacing:.04em; text-align:right;}
+table.cortes{width:100%; border-collapse:collapse; font-size:.85rem;}
+.cortes th{font-size:.72rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--verde-texto); text-align:left; padding:0 6px 4px;}
+.cortes thead th:first-child{width:30%;}
+.cortes tbody th{font-size:.85rem; text-transform:none; letter-spacing:0; color:var(--ink-2); font-weight:700; padding:6px; vertical-align:top;}
+.cortes td{padding:6px; vertical-align:top; border-top:1px solid var(--border);}
+.cortes tbody th{border-top:1px solid var(--border);}
+.cortes td b{display:block; font-family:var(--display); font-weight:400; font-size:1.6rem; line-height:1; color:var(--accent); letter-spacing:.01em;}
+.cortes td b.txt{font-family:var(--text); font-size:.9rem; font-weight:800; line-height:1.3; color:var(--ink-2);}
+.cortes td small{display:block; font-size:.75rem; color:var(--ink-muted); font-weight:600; margin-top:2px;}
+.cortes td.llega{background:var(--verde-niebla); border-radius:10px;}
+.cortes td .tu{display:inline-block; margin-top:3px; font-size:.7rem; font-weight:800; letter-spacing:.04em; text-transform:uppercase; color:var(--verde-texto);}
+
+.tiras{display:grid; gap:4px; margin-top:2px;}
+.tira{display:grid; grid-template-columns:52px minmax(0,1fr); gap:8px; align-items:center;}
+.tira .an{white-space:nowrap; font-size:.72rem; font-weight:700; color:var(--ink-muted);}
+.pista{position:relative; height:18px; border-radius:999px; background:var(--surface-2);}
+.pista i{position:absolute; top:50%; width:10px; height:10px; margin:-5px 0 0 -5px; border-radius:50%;}
+.pista i.l{background:var(--accent); box-shadow:0 0 0 1.5px var(--surface);}
+.pista i.r{background:var(--surface); border:2px solid var(--medio);}
+.pista .yo{position:absolute; top:-3px; bottom:-3px; width:3px; margin-left:-1.5px; background:var(--verde-texto); border-radius:2px; z-index:1;}
+.eje{position:relative; height:14px; margin-left:60px; font-size:.68rem; color:var(--ink-muted);}
+.eje span{position:absolute; transform:translateX(-50%);}
+.eje span:first-child{transform:none;}
+.eje span:last-child{transform:translateX(-100%);}
+.esp .nota{font-size:.8rem; color:var(--ink-2); margin:0;}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;}
+.vacio{padding:24px; text-align:center; color:var(--ink-muted); font-weight:600;}
+.aviso-js{margin:0; padding:14px 18px; border-radius:14px; background:var(--accent-soft); font-weight:600;}
+
+footer.pie{border-top:1px solid var(--border); margin-top:28px; padding-top:18px; font-size:.85rem; color:var(--ink-muted); display:grid; gap:6px;}
+footer.pie p{margin:0;}
+footer.pie .contacto{font-weight:700; color:var(--ink-2); user-select:all;}
+@media print{ header .onda, .filtros, .secciones{display:none !important;} .card{box-shadow:none;} }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand-row">
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIxNTcuMiIgaGVpZ2h0PSIxNjYuNiIgdmlld0JveD0iNjMuMCAxNS42IDE1Ny4yIDE2Ni42Ij4KPGRlZnM+CjxjbGlwUGF0aCBpZD0iY2xpcF8xIj4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMCwxOTguNDI1KSIgZD0iTTAgMTk4LjQyNUgyODMuNDY1VjBIMFoiPjwvcGF0aD4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8Zz4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXBfMSkiPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSw2NS4wOTI4LDE1OS4yODUpIiBkPSJNMCAwSDIuNDNDMi40OTUtLjI0MiAyLjYxOC0uNDE3IDIuNzk0LS41MjIgMi45Ny0uNjI4IDMuMjMyLS42ODIgMy41ODEtLjY4MiAzLjg3NC0uNjgyIDQuMTAzLS42MzggNC4yNzEtLjU1MiA0LjQzNy0uNDY2IDQuNTIxLS4zNDggNC41MjEtLjE5NSA0LjUyMSAuMDQ4IDQuMTcxIC4yNDQgMy40NyAuMzk1IDMuMzI4IC40MjYgMy4yMjEgLjQ0OCAzLjE0NyAuNDYzIDIuNTc0IC41OSAyLjExNyAuNzA1IDEuNzc3IC44MSAxLjQzNyAuOTE0IDEuMTkgMS4wMTMgMS4wMzQgMS4xMDIgLjczNSAxLjI4NyAuNTExIDEuNTA4IC4zNjEgMS43NjYgLjIxMSAyLjAyMiAuMTM3IDIuMzE2IC4xMzcgMi42NDYgLjEzNyAzLjMwOSAuNDI3IDMuODI4IDEuMDA4IDQuMjA3IDEuNTg4IDQuNTg2IDIuMzg5IDQuNzc0IDMuNDA4IDQuNzc0IDQuNDA2IDQuNzc0IDUuMTkzIDQuNTk0IDUuNzY4IDQuMjMxIDYuMzQyIDMuODcxIDYuNjY2IDMuMzUyIDYuNzM5IDIuNjc3SDQuMzY5QzQuMzI4IDIuODc1IDQuMjI3IDMuMDIxIDQuMDYzIDMuMTE3IDMuOSAzLjIxNSAzLjY2NyAzLjI2NCAzLjM2NCAzLjI2NCAzLjA5NiAzLjI2NCAyLjg5NyAzLjIyNiAyLjc2OCAzLjE0OSAyLjYzNyAzLjA3NCAyLjU3MSAyLjk1OSAyLjU3MSAyLjgwNSAyLjU3MSAyLjU4NCAyLjkxNCAyLjM5OSAzLjU5NiAyLjI1MSAzLjY1NSAyLjIzNiAzLjcwMiAyLjIyNSAzLjczNSAyLjIyIDMuODMzIDIuMTk4IDMuOTgyIDIuMTY3IDQuMTg0IDIuMTI0IDUuMDg4IDEuOTI4IDUuNjggMS43NDggNS45NTggMS41ODggNi4zMDMgMS4zOTIgNi41NTYgMS4xNjggNi43MTMgLjkxNyA2Ljg3MiAuNjY1IDYuOTUxIC4zNjkgNi45NTEgLjAyNiA2Ljk1MS0uNzEyIDYuNjUxLTEuMjc4IDYuMDUxLTEuNjc1IDUuNDUtMi4wNzIgNC41OS0yLjI3IDMuNDctMi4yNyAyLjQzOC0yLjI3IDEuNjItMi4wNzIgMS4wMTctMS42NzUgLjQxMy0xLjI3OCAuMDczLS43MjEgMCAwIiBmaWxsPSIjMWI2MTljIj48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDAsMTk4LjQyNSkiIGQ9Ik03Mi42NyA0My43NDJINzUuMjE1VjM3LjA1Nkg3Mi42N1oiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsNzYuMTk2MywxNjEuMzY4OSkiIGQ9Ik0wIDBWNi42ODZIMi4zNzNMNC41NTUgMy41NzhDNC42MjIgMy40ODkgNC42OTEgMy4zNjYgNC43NjggMy4yMDUgNC44NDQgMy4wNDUgNC45MjQgMi44NTEgNS4wMDggMi42MjUgNC45ODcgMi43NDEgNC45NyAyLjg3MSA0Ljk2MSAzLjAxNCA0Ljk1IDMuMTU2IDQuOTQ1IDMuMzI4IDQuOTQ1IDMuNTMxVjYuNjg2SDcuMzI3VjBINC45NDVMMi43NjMgMy4wODZDMi42OTYgMy4xNzggMi42MjMgMy4zMDYgMi41NDMgMy40NzQgMi40NjYgMy42MzkgMi4zODUgMy44MjkgMi4zMDQgNC4wNDQgMi4zMjkgMy45MjcgMi4zNDYgMy44MDQgMi4zNTcgMy42NzUgMi4zNjggMy41NDYgMi4zNzMgMy4zNjYgMi4zNzMgMy4xMzJWMFoiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsODYuOTYwOSwxNTkuNjc0NikiIGQ9Ik0wIDBILjY2OUMxLjI5NCAwIDEuNzI2IC4xMTggMS45NjcgLjM1NyAyLjIwOCAuNTk3IDIuMzMgMS4wMjUgMi4zMyAxLjY0MiAyLjMzIDIuMjQ0IDIuMjA2IDIuNjcxIDEuOTU5IDIuOTIyIDEuNzEzIDMuMTc0IDEuMjk0IDMuMjk5IC43MDIgMy4yOTlIMFpNLTIuNDk5LTEuNjk0VjQuOTkxSC41MjFDMS4yOTEgNC45OTEgMS44NjMgNC45NjMgMi4yMzYgNC45MDIgMi42MTIgNC44NDQgMi45MzkgNC43NDcgMy4yMTYgNC42MSAzLjc1NSA0LjMzOCA0LjE2IDMuOTU2IDQuNDMxIDMuNDYzIDQuNzA0IDIuOTY5IDQuODM5IDIuMzYyIDQuODM5IDEuNjQyIDQuODM5IC44ODYgNC42NjkgLjI1IDQuMzM0LS4yNjYgMy45OTctLjc4MiAzLjUwMy0xLjE2NSAyLjg0Ny0xLjQxNiAyLjU5My0xLjUxNyAyLjI3NS0xLjU4OCAxLjg5NC0xLjYzMSAxLjUxMS0xLjY3MyAuODk4LTEuNjk0IC4wNTgtMS42OTRaIiBmaWxsPSIjMWI2MTljIj48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDAsMTk4LjQyNSkiIGQ9Ik05Mi40NDcgNDMuNzQySDk0Ljk5M1YzNy4wNTZIOTIuNDQ3WiIgZmlsbD0iIzFiNjE5YyI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxMDEuMDE5NSwxNTguNzc2MikiIGQ9Ik0wIDBIMi4zNjZDMi4yOTYtLjg4MSAxLjkzNS0xLjU2NCAxLjI4My0yLjA1IC42MzItMi41MzYtLjI1MS0yLjc3OC0xLjM2NS0yLjc3OC0yLjYxMS0yLjc3OC0zLjU5LTIuNDY1LTQuMzA1LTEuODM2LTUuMDIyLTEuMjA5LTUuMzc4LS4zNDktNS4zNzggLjc0NC01LjM3OCAxLjgzMy01LjAyNSAyLjY5Mi00LjMxOCAzLjMyMS0zLjYwOSAzLjk1MS0yLjY0NCA0LjI2Ni0xLjQyMiA0LjI2Ni0uMjk0IDQuMjY2IC41OTIgNC4wMzIgMS4yMzYgMy41NjQgMS44ODQgMy4wOTcgMi4yNDYgMi40MjkgMi4zMjQgMS41NjFILS4wNjlDLS4xMDQgMS45MDItLjIzNCAyLjE2MS0uNDU1IDIuMzM1LS42NzggMi41MDktLjk4OSAyLjU5Ni0xLjM5MSAyLjU5Ni0xLjg4IDIuNTk2LTIuMjQ2IDIuNDQxLTIuNDkxIDIuMTM1LTIuNzM3IDEuODI4LTIuODU4IDEuMzYzLTIuODU4IC43NDQtMi44NTggLjEzNi0yLjcyOS0uMzIzLTIuNDY3LS42MzYtMi4yMDctLjk0OC0xLjgyNi0xLjEwNC0xLjMyMS0xLjEwNC0uOTM1LTEuMTA0LS42MjgtMS4wMDktLjM5OS0uODE4LS4xNzMtLjYyNy0uMDM5LS4zNTQgMCAwIiBmaWxsPSIjMWI2MTljIj48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDEwNi4zMzk4LDE1OS4wODA5KSIgZD0iTTAgMEgxLjU3TC43OTMgMi4zMTRaTS0zLjIxMS0yLjI4Ny0uNDc1IDQuMzk3SDIuMDU2TDQuNzkzLTIuMjg3SDIuMzE1TDIuMDI1LTEuNDAxSC0uNDUzTC0uNzUzLTIuMjg3WiIgZmlsbD0iIzFiNjE5YyI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxMTIuNTU2MiwxNjEuMzY4OSkiIGQ9Ik0wIDBWNC45MjVILTIuMjRWNi42ODZINC43MzhWNC45MjVIMi40OTlWMFoiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTE5Ljc0OSwxNTguMDMyKSIgZD0iTTAgMEMwLS42MzMgLjEyMy0xLjA5NyAuMzY5LTEuMzk1IC42MTctMS42OSAxLjAwMy0xLjgzOSAxLjUyOC0xLjgzOSAyLjA0OC0xLjgzOSAyLjQzLTEuNjkxIDIuNjczLTEuMzk2IDIuOTE2LTEuMTAxIDMuMDM5LS42MzYgMy4wMzkgMCAzLjAzOSAuNjM4IDIuOTE2IDEuMTA0IDIuNjczIDEuMzk4IDIuNDMgMS42OTUgMi4wNDggMS44NDMgMS41MjggMS44NDMgMS4wMDMgMS44NDMgLjYxNyAxLjY5NCAuMzY5IDEuMzk4IC4xMjMgMS4xMDEgMCAuNjM1IDAgME0tMi41MiAwQy0yLjUyIDEuMDg5LTIuMTU3IDEuOTQ4LTEuNDMzIDIuNTc3LS43MSAzLjIwNyAuMjc3IDMuNTIxIDEuNTI4IDMuNTIxIDIuNzc0IDMuNTIxIDMuNzU4IDMuMjA3IDQuNDc5IDIuNTc3IDUuMjAyIDEuOTQ4IDUuNTYzIDEuMDg5IDUuNTYzIDAgNS41NjMtMS4wODcgNS4yMDItMS45NDUgNC40NzktMi41NzcgMy43NTgtMy4yMDggMi43NzQtMy41MjIgMS41MjgtMy41MjIgLjI3Ny0zLjUyMi0uNzEtMy4yMDgtMS40MzMtMi41NzctMi4xNTctMS45NDUtMi41Mi0xLjA4Ny0yLjUyIDAiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMCwxOTguNDI1KSIgZD0iTTEyOC45NzMgNDMuNzQySDEzMS41MTkwMlYzNy4wNTZIMTI4Ljk3M1oiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTMyLjUwMSwxNjEuMzY4OSkiIGQ9Ik0wIDBWNi42ODZIMi4zNzJMNC41NTQgMy41NzhDNC42MiAzLjQ4OSA0LjY5MSAzLjM2NiA0Ljc2NiAzLjIwNSA0Ljg0MiAzLjA0NSA0LjkyMiAyLjg1MSA1LjAwNyAyLjYyNSA0Ljk4NiAyLjc0MSA0Ljk3IDIuODcxIDQuOTYxIDMuMDE0IDQuOTQ4IDMuMTU2IDQuOTQ0IDMuMzI4IDQuOTQ0IDMuNTMxVjYuNjg2SDcuMzI1VjBINC45NDRMMi43NjEgMy4wODZDMi42OTYgMy4xNzggMi42MjMgMy4zMDYgMi41NDIgMy40NzQgMi40NjQgMy42MzkgMi4zODMgMy44MjkgMi4zMDQgNC4wNDQgMi4zMjcgMy45MjcgMi4zNDQgMy44MDQgMi4zNTUgMy42NzUgMi4zNjcgMy41NDYgMi4zNzIgMy4zNjYgMi4zNzIgMy4xMzJWMFoiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTQzLjI2MzcsMTU5LjY3NDYpIiBkPSJNMCAwSC42NzFDMS4yOTQgMCAxLjcyOCAuMTE4IDEuOTY5IC4zNTcgMi4yMDkgLjU5NyAyLjMzIDEuMDI1IDIuMzMgMS42NDIgMi4zMyAyLjI0NCAyLjIwNSAyLjY3MSAxLjk2MSAyLjkyMiAxLjcxNSAzLjE3NCAxLjI5NCAzLjI5OSAuNzAyIDMuMjk5SDBaTS0yLjQ5OS0xLjY5NFY0Ljk5MUguNTIzQzEuMjkxIDQuOTkxIDEuODYzIDQuOTYzIDIuMjM4IDQuOTAyIDIuNjEyIDQuODQ0IDIuOTM5IDQuNzQ3IDMuMjE3IDQuNjEgMy43NTUgNC4zMzggNC4xNiAzLjk1NiA0LjQzMiAzLjQ2MyA0LjcwNCAyLjk2OSA0LjgzOSAyLjM2MiA0LjgzOSAxLjY0MiA0LjgzOSAuODg2IDQuNjcxIC4yNSA0LjMzNS0uMjY2IDMuOTk4LS43ODIgMy41MDMtMS4xNjUgMi44NDgtMS40MTYgMi41OTQtMS41MTcgMi4yNzUtMS41ODggMS44OTQtMS42MzEgMS41MTMtMS42NzMgLjktMS42OTQgLjA2LTEuNjk0WiIgZmlsbD0iIzFiNjE5YyI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxNDguNzA5LDE2MS4zNjg5KSIgZD0iTTAgMFY2LjY4Nkg2LjIxNlY1LjA4NEgyLjQ5OFY0LjE5M0g1LjY0MlYyLjY1OUgyLjQ5OFYxLjYyNUg2LjM3VjBaIiBmaWxsPSIjMWI2MTljIj48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDE1OC4yMDQxLDE1Ny42ODczKSIgZD0iTTAgMEguODA0QzEuMzIzIDAgMS42NzMgLjA1IDEuODQ5IC4xNSAyLjAyNCAuMjQ5IDIuMTEzIC40MjcgMi4xMTMgLjY4MSAyLjExMyAuOTM3IDIuMDI3IDEuMTE2IDEuODU5IDEuMjE2IDEuNjg5IDEuMzE1IDEuMzM4IDEuMzY1IC44MDQgMS4zNjVIMFpNLTIuNDk5LTMuNjgyVjMuMDA0SC43MDJDMS40MTEgMy4wMDQgMS45NyAyLjk2OSAyLjM4NSAyLjg5NyAyLjc5OSAyLjgyNiAzLjE0NSAyLjcxMiAzLjQyMiAyLjU1NSAzLjc4MyAyLjM0NiA0LjA1IDIuMDg4IDQuMjI2IDEuNzc5IDQuNDAxIDEuNDcgNC40OSAxLjEwNCA0LjQ5IC42ODEgNC40OS0uMDY2IDQuMjMzLS42NCAzLjcxOS0xLjAzOCAzLjIwNS0xLjQzNSAyLjQ2NC0xLjYzNCAxLjQ5NS0xLjYzNEgwVi0zLjY4MloiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTYzLjE0NzUsMTYxLjM2ODkpIiBkPSJNMCAwVjYuNjg2SDYuMjE2VjUuMDg0SDIuNDk4VjQuMTkzSDUuNjQyVjIuNjU5SDIuNDk4VjEuNjI1SDYuMzdWMFoiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTcwLjE0NDUsMTYxLjM2ODkpIiBkPSJNMCAwVjYuNjg2SDIuMzcyTDQuNTUzIDMuNTc4QzQuNjE5IDMuNDg5IDQuNjkxIDMuMzY2IDQuNzY2IDMuMjA1IDQuODQyIDMuMDQ1IDQuOTIzIDIuODUxIDUuMDA3IDIuNjI1IDQuOTg1IDIuNzQxIDQuOTcgMi44NzEgNC45NTkgMy4wMTQgNC45NDkgMy4xNTYgNC45NDMgMy4zMjggNC45NDMgMy41MzFWNi42ODZINy4zMjZWMEg0Ljk0M0wyLjc2MyAzLjA4NkMyLjY5NSAzLjE3OCAyLjYyMSAzLjMwNiAyLjU0MSAzLjQ3NCAyLjQ2NCAzLjYzOSAyLjM4MyAzLjgyOSAyLjMwMyA0LjA0NCAyLjMyNiAzLjkyNyAyLjM0NCAzLjgwNCAyLjM1NCAzLjY3NSAyLjM2NSAzLjU0NiAyLjM3MiAzLjM2NiAyLjM3MiAzLjEzMlYwWiIgZmlsbD0iIzFiNjE5YyI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxODAuOTA3MiwxNTkuNjc0NikiIGQ9Ik0wIDBILjY3MUMxLjI5NCAwIDEuNzI3IC4xMTggMS45NjkgLjM1NyAyLjIwOCAuNTk3IDIuMzMgMS4wMjUgMi4zMyAxLjY0MiAyLjMzIDIuMjQ0IDIuMjA3IDIuNjcxIDEuOTU5IDIuOTIyIDEuNzEzIDMuMTc0IDEuMjk0IDMuMjk5IC43MDIgMy4yOTlIMFpNLTIuNDk5LTEuNjk0VjQuOTkxSC41MjJDMS4yOTEgNC45OTEgMS44NjIgNC45NjMgMi4yMzggNC45MDIgMi42MTEgNC44NDQgMi45MzggNC43NDcgMy4yMTYgNC42MSAzLjc1NSA0LjMzOCA0LjE2IDMuOTU2IDQuNDMxIDMuNDYzIDQuNzAzIDIuOTY5IDQuODM5IDIuMzYyIDQuODM5IDEuNjQyIDQuODM5IC44ODYgNC42NzEgLjI1IDQuMzM0LS4yNjYgMy45OTgtLjc4MiAzLjUwMy0xLjE2NSAyLjg0Ny0xLjQxNiAyLjU5My0xLjUxNyAyLjI3NS0xLjU4OCAxLjg5NC0xLjYzMSAxLjUxMi0xLjY3MyAuODk5LTEuNjk0IC4wNTgtMS42OTRaIiBmaWxsPSIjMWI2MTljIj48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDAsMTk4LjQyNSkiIGQ9Ik0xODYuMzk1IDQzLjc0MkgxODguOTRWMzcuMDU2SDE4Ni4zOTVaIiBmaWxsPSIjMWI2MTljIj48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDE4OS45MjA5LDE2MS4zNjg5KSIgZD0iTTAgMFY2LjY4Nkg2LjIxNlY1LjA4NEgyLjQ5OFY0LjE5M0g1LjY0M1YyLjY1OUgyLjQ5OFYxLjYyNUg2LjM3VjBaIiBmaWxsPSIjMWI2MTljIj48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDE5Ni45MTcsMTYxLjM2ODkpIiBkPSJNMCAwVjYuNjg2SDIuMzcyTDQuNTU1IDMuNTc4QzQuNjIxIDMuNDg5IDQuNjkxIDMuMzY2IDQuNzY4IDMuMjA1IDQuODQzIDMuMDQ1IDQuOTI0IDIuODUxIDUuMDA5IDIuNjI1IDQuOTg3IDIuNzQxIDQuOTcxIDIuODcxIDQuOTYxIDMuMDE0IDQuOTUgMy4xNTYgNC45NDUgMy4zMjggNC45NDUgMy41MzFWNi42ODZINy4zMjdWMEg0Ljk0NUwyLjc2MyAzLjA4NkMyLjY5NiAzLjE3OCAyLjYyMyAzLjMwNiAyLjU0NCAzLjQ3NCAyLjQ2NCAzLjYzOSAyLjM4NSAzLjgyOSAyLjMwNCA0LjA0NCAyLjMyOSAzLjkyNyAyLjM0NiAzLjgwNCAyLjM1NiAzLjY3NSAyLjM2NyAzLjU0NiAyLjM3MiAzLjM2NiAyLjM3MiAzLjEzMlYwWiIgZmlsbD0iIzFiNjE5YyI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwyMDYuODIwMywxNjEuMzY4OSkiIGQ9Ik0wIDBWNC45MjVILTIuMjRWNi42ODZINC43MzhWNC45MjVIMi41VjBaIiBmaWxsPSIjMWI2MTljIj48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDIxMS44MjYyLDE2MS4zNjg5KSIgZD0iTTAgMFY2LjY4Nkg2LjIxOFY1LjA4NEgyLjVWNC4xOTNINS42NDNWMi42NTlIMi41VjEuNjI1SDYuMzdWMFoiIGZpbGw9IiMxYjYxOWMiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsODEuNzg5NiwxMzguNDU4OCkiIGQ9Ik0wIDAgNC4xMzEgMTMuMzA1IDguMTc5IDBaTTQ4LjgzIDcuMTQ3QzQ4LjgzIDUuOTgyIDQ4Ljg1NiA0Ljk5MiA0OC45MTIgNC4xNzUgNDguOTY3IDMuMzU1IDQ5LjA0OSAyLjYwOCA0OS4xNiAxLjkzMSA0OC43MTkgMy4yMzUgNDguMyA0LjM0OCA0Ny45MDYgNS4yNzEgNDcuNTExIDYuMTkxIDQ3LjE0IDYuOTA0IDQ2Ljc5MSA3LjQwOUwzNS40MTkgMjUuMjhIMjMuMDU0Vi03Ljk3MkwxMC43MTEgMjUuMjhILTIuNDc4TC0xNi43NDItMTMuMTQ4SC0zLjkzOEwtMi4zNjctOC4wNjJIMTAuNTQ2TDEyLjA2Mi0xMy4xNDhIMjMuMDU0IDI0Ljk3NiAzNS40MTlWNC44NTNDMzUuNDE5IDYuMTkxIDM1LjM5MSA3LjIzIDM1LjMzNiA3Ljk3IDM1LjI4IDguNzA5IDM1LjE4OCA5LjQxOCAzNS4wNjEgMTAuMDk3IDM1LjQ4MSA4Ljg2MSAzNS45IDcuNzY3IDM2LjMxMyA2LjgwOSAzNi43MjYgNS44NTMgMzcuMTA3IDUuMTEyIDM3LjQ1NyA0LjU5Mkw0OC44My0xMy4xNDhINjEuMjQ5VjI1LjI4SDQ4LjgzWiIgZmlsbD0iIzFiNjE5YyI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxNjkuMTY2LDEyOS41ODg3KSIgZD0iTTAgMEMtLjk2OC0uNTc0LTIuODgtLjg2MS01LjczOS0uODYxSC0xMC4xNDZWNi45OTJILTUuNzM5Qy0yLjgwMiA2Ljk5Mi0uODcxIDYuNzA1IC4wNTggNi4xMzEgLjk4NSA1LjU1NyAxLjQ0OCA0LjUzIDEuNDQ4IDMuMDUzIDEuNDQ4IDEuNTkyIC45NjYgLjU3NCAwIDBNMjcuNzE1LTEyLjY3OVYtNi43MzFINDQuOTY5VjIuMDg4SDI3LjcxNVY3LjIwMUg0OC4xMjRWMTYuNDFIMTQuMDA2VjYuOTMyQzEzLjc2OSA3LjgwMSAxMy40NTIgOC42MTUgMTMuMDQzIDkuMzY2IDEyLjA3NiAxMS4xNDEgMTAuNjA4IDEyLjYyOCA4LjYzOSAxMy44MjcgNy4xMTEgMTQuNzMxIDUuMjEyIDE1LjM4OSAyLjk0MiAxNS43OTggLjY3IDE2LjIwNS0yLjQwNiAxNi40MS02LjI5MSAxNi40MUgtMjMuODU3Vi0yMi4wMTlILTEwLjE0NlYtMTAuMjUzSC0xLjk0NEMzLjM3LTEwLjI1MyA3LjQzOC05LjEwOSAxMC4yNjEtNi44MjIgMTIuMTQtNS4zIDEzLjM3OC0zLjMyMSAxNC4wMDYtLjkwN1YtMjIuMDE5SDQ4Ljk2NFYtMTIuNjc5WiIgZmlsbD0iIzFiNjE5YyI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxMTQuOTk4NSwyNy44OTM0MDMpIiBkPSJNMCAwQy0yLjY0LTEuOTA1LTguMTEzLTcuNDQxLTQuNzMtMTkuMDk4LTQuNzMtMTkuMDk4LTQuNTctMTkuNDE1LTQuNTExLTE5LjkyLTExLjIxMS0yOC4wMjMtMTYuODAzLTM5LjAxNy0xOC4yNzEtNTMuNy0xOC4yNzEtNTMuNy0yNS41NjktNDguNTYtMzAuMTA4LTMzLjk4NS0yNC42MDktMTkuMjkyLTEzLjc4OC03LjE3NyAwIDBNMTAuNDQgNC4yOTJDMTUuMjI1IDMuMzM0IDIzLjE1NSAxLjYyNyAyNS4wNjQgLjQ3OCAyNS4wNjQgLjQ3OCAxMC43MjItMy43NTMtMS41MzEtMTYuNTczLTEuNjE0LTE2LjQ2Ni0xLjY5Ni0xNi4zMzUtMS43NzctMTYuMTY3LTIuNTExLTE0LjYwOS01LjQ3Mi03LjQ3MiAxLjEgLjU1OCA0LjA4OCAyLjAzOSA3LjIwOCAzLjI5MyAxMC40NCA0LjI5Mk0yOC41NjMgNy4wODdDMjguNTYzIDcuMDg3IDI4LjEzMSAzLjgyNyAyOC4wNjMgMi45NSAyOC4wNjMgMi45NSAyOC4wNDIgMS43NDYgMjYuNDY5IDIuMjEzIDI1LjQxOSAyLjUyNiAxOC43NDIgNC4zNjUgMTMuMjQyIDUuMDg4IDE4LjE0NCA2LjM1NyAyMy4yNzggNy4wNDYgMjguNTYzIDcuMDg3TTI1LjcyOS0yOC45NjRWLTI4Ljk2NEwyNS43MTItMjkuMzExQzI1LjcxMi0yOS4zMTEgMjUuNjY3LTI5Ljg3NSAyNS41NTctMzAuMzQzIDI1LjMyNC0zMS4yMDYgMjQuNzg2LTMyLjEzNyAyMy41NC0zMi4wNDIgMjMuNTM2LTMyLjA0MiAyMy41MjctMzIuMDQgMjMuNTI3LTMyLjA0IDE4LjAwNC0zMS42MjcgMTMuNzQ3LTMwLjM2MiAxMC41ODUtMjlWLTI5LjAwMkMxMC41NC0yOC45ODIgMTAuNDk4LTI4Ljk2MiAxMC40NTMtMjguOTQzIDkuNzc0LTI4LjY0NiA5LjE0Ni0yOC4zNDcgOC41NjgtMjguMDUxIDcuOTg3LTI3Ljc2MiA3LjQ4MS0yNy41IDcuMDc0LTI3LjI4MiA2LjcwMS0yNy4xMDQgNi4zMjQtMjYuODkyIDUuOTYxLTI2LjY2NiA1Ljk1OC0yNi42NjUgNS45NTItMjYuNjYgNS45NTItMjYuNjZINS45NTNDNC41ODEtMjUuODA2IDMuNDExLTI0Ljc3MiAzLjQxMS0yNC43NzIgMi44OTgtMjQuMjggMi4zMjItMjMuMzIyIDMuMzE5LTIxLjkxNiAzLjk0NS0yMS4xMDMgNC44NTQtMjAuMjE2IDQuODU0LTIwLjIxNkg0Ljg1OEMxMC4yNzMtMTQuMjY3IDE3LjQzNy04LjQ5NCAyNi45NDQtMy41NzFaTTIzLjI3MS03MC44OTlDMjIuMjg3LTcwLjk2NiAxMi40MTgtNzAuMTk3IDMuOTU5LTY3LjgwOS0zLjAxMi02NS44MzktOC41MTctNjIuNDA0LTExLjc0Ny02MC42MDEtMTEuNzU1LTYwLjU5Ni0xMS44NzktNjAuNTE2LTExLjg4Ni02MC41MTEtMTEuOTItNTguNTc2LTExLjY3NC00OC4yMTEtNS43NDgtMzUuODc1LTQuNjIzLTMzLjY2Ni0zLjMxLTMxLjM0Ny0xLjc4NS0yOC45NTItMS41NTMtMjguNjI0LS45MDctMjcuODY3LS4xNzYtMjguMzA3IC4wNDEtMjguNDU5IC4yODgtMjguNjc2IC41Ny0yOC45ODYgMi4zNzctMzAuOTY0IDkuMTIxLTM2LjI1NiAyMi4zNS0zNy42ODJWLTM3LjY4NUMyMi4zNS0zNy42ODUgMjUuMjU5LTM3Ljg2NyAyNS4yNDQtMzkuOTA2Vi0zOS45MDVDMjUuMjA2LTQzLjIxMyAyNS4xMTMtNjkuMzMzIDI1LjExMy02OS4zMzMgMjUuMTEzLTY5LjMzMyAyNS4zOTItNzAuNzU1IDIzLjI3MS03MC44OTlNNDUuODUzIDUuMDg4QzQwLjM1MiA0LjM2NSAzMy42NzQgMi41MjYgMzIuNjI1IDIuMjEzIDMxLjA1MSAxLjc0NiAzMS4wMzIgMi45NSAzMS4wMzIgMi45NSAzMC45NjIgMy44MjcgMzAuNTMzIDcuMDg3IDMwLjUzMyA3LjA4NyAzNS44MTYgNy4wNDYgNDAuOTUgNi4zNTcgNDUuODUzIDUuMDg4TTU3Ljk5NSAuNTU4QzY0LjU2Ni03LjQ3MiA2MS42MDUtMTQuNjA5IDYwLjg3Mi0xNi4xNjcgNjAuNzkyLTE2LjMzNSA2MC43MDktMTYuNDY2IDYwLjYyNS0xNi41NzMgNDguMzcyLTMuNzUzIDM0LjAzMSAuNDc4IDM0LjAzMSAuNDc4IDM1LjkzOSAxLjYyNyA0My44NjkgMy4zMzQgNDguNjU0IDQuMjkyIDUxLjg4NSAzLjI5MyA1NS4wMDUgMi4wMzkgNTcuOTk1IC41NThNODkuMjAyLTMzLjk4NUM4NC42NjMtNDguNTYgNzcuMzY0LTUzLjcgNzcuMzY0LTUzLjcgNzUuODk3LTM5LjAxNyA3MC4zMDctMjguMDIzIDYzLjYwNS0xOS45MiA2My42NjYtMTkuNDE1IDYzLjgyNS0xOS4wOTggNjMuODI1LTE5LjA5OCA2Ny4yMDgtNy40NDEgNjEuNzM0LTEuOTA1IDU5LjA5NCAwIDcyLjg4MS03LjE3NyA4My43MDQtMTkuMjkyIDg5LjIwMi0zMy45ODVNNzAuOTgxLTYwLjUxMUM3MC45NzMtNjAuNTE2IDcwLjg1LTYwLjU5NiA3MC44NDItNjAuNjAxIDY3LjYxMS02Mi40MDQgNjIuMTA2LTY1LjgzOSA1NS4xMzYtNjcuODA5IDQ2LjY3Ny03MC4xOTcgMzYuODA3LTcwLjk2NiAzNS44MjQtNzAuODk5IDMzLjcwNS03MC43NTUgMzMuOTgxLTY5LjMzMyAzMy45ODEtNjkuMzMzIDMzLjk4MS02OS4zMzMgMzMuODg4LTQzLjIxMyAzMy44NS0zOS45MDVWLTM5LjkwNkMzMy44MzQtMzcuODY3IDM2Ljc0NS0zNy42ODUgMzYuNzQ1LTM3LjY4NVYtMzcuNjgyQzQ5Ljk3My0zNi4yNTYgNTYuNzE4LTMwLjk2NCA1OC41MjQtMjguOTg2IDU4LjgwNy0yOC42NzYgNTkuMDUzLTI4LjQ1OSA1OS4yNzItMjguMzA3IDYwLTI3Ljg2NyA2MC42NDctMjguNjI0IDYwLjg3OC0yOC45NTIgNjIuNDA0LTMxLjM0NyA2My43MTgtMzMuNjY2IDY0Ljg0My0zNS44NzUgNzAuNzY4LTQ4LjIxMSA3MS4wMTQtNTguNTc2IDcwLjk4MS02MC41MTFNMzMuNTM4LTMwLjM0M0MzMy40MjctMjkuODc1IDMzLjM4MS0yOS4zMTEgMzMuMzgxLTI5LjMxMUwzMy4zNjUtMjguOTY0IDMyLjE1LTMuNTcxQzQxLjY1OS04LjQ5NCA0OC44Mi0xNC4yNjcgNTQuMjM2LTIwLjIxNkg1NC4yNDFDNTQuMjQxLTIwLjIxNiA1NS4xNDktMjEuMTAzIDU1Ljc3NS0yMS45MTYgNTYuNzcyLTIzLjMyMiA1Ni4xOTctMjQuMjggNTUuNjg0LTI0Ljc3MiA1NS42ODQtMjQuNzcyIDU0LjUxMy0yNS44MDYgNTMuMTQyLTI2LjY2IDUzLjE0Mi0yNi42NiA1My4xMzYtMjYuNjY1IDUzLjEzMy0yNi42NjYgNTIuNzctMjYuODkyIDUyLjM5My0yNy4xMDQgNTIuMDIxLTI3LjI4MiA1MS42MTMtMjcuNSA1MS4xMDgtMjcuNzYyIDUwLjUyNi0yOC4wNTEgNDkuOTUtMjguMzQ3IDQ5LjMyLTI4LjY0NiA0OC42NDMtMjguOTQzIDQ4LjU5Ny0yOC45NjIgNDguNTU0LTI4Ljk4MiA0OC41MS0yOS4wMDJWLTI5QzQ1LjM0Ny0zMC4zNjIgNDEuMDktMzEuNjI3IDM1LjU2Ny0zMi4wNCAzNS41NjctMzIuMDQgMzUuNTU4LTMyLjA0MiAzNS41NTYtMzIuMDQyIDM0LjMwOC0zMi4xMzcgMzMuNzY5LTMxLjIwNiAzMy41MzgtMzAuMzQzTS0zNC4wODctNTYuMDQ5Qy0zNC4wODctNDkuNjI5LTMzLjEyMi00My40My0zMS4zMzMtMzcuNTg5LTMwLjQzMy00Mi45NC0yNy40NTQtNTAuODMzLTE4Ljk0Ni02MC40NjktMTguODczLTYwLjU1LTE4LjgwOS02MC42MzEtMTguNzM2LTYwLjcxMi0xOC43MzYtNjAuNzEyLTE4Ljg3My03Mi4xMDktMTQuMDU0LTgzLjY0NkgtMTAuMDUxQy0xMy40MjYtNzIuMTY4LTEyLjUwNy02NS42MTMtMTIuNTA3LTY1LjYxMy05Ljk2LTY3LjMyNiA0LjQ5NS03Ni40NDkgMjMuNTgyLTc2LjU2MyAyMy41ODItNzYuNTYzIDI1LjQyNC03Ni40NzkgMjUuNTExLTc4LjM5NiAyNS41MzMtNzguODg4IDI1LjY1MS04MC45MDcgMjUuODQ1LTgzLjY0NkgzMy4yNUMzMy40NDQtODAuOTA3IDMzLjU2Mi03OC44ODggMzMuNTg0LTc4LjM5NiAzMy42NjktNzYuNDc5IDM1LjUxMi03Ni41NjMgMzUuNTEyLTc2LjU2MyA1NC41OTktNzYuNDQ5IDY5LjA1Ni02Ny4zMjYgNzEuNjAxLTY1LjYxMyA3MS42MDEtNjUuNjEzIDcyLjUyLTcyLjE2OCA2OS4xNDUtODMuNjQ2SDczLjE0OEM3Ny45NjctNzIuMTA5IDc3LjgzMi02MC43MTIgNzcuODMyLTYwLjcxMiA3Ny45MDMtNjAuNjMxIDc3Ljk2OC02MC41NSA3OC4wNDEtNjAuNDY5IDg2LjU0Ny01MC44MzMgODkuNTI3LTQyLjk0IDkwLjQyNy0zNy41ODkgOTIuMjE1LTQzLjQzIDkzLjE4My00OS42MjkgOTMuMTgzLTU2LjA0OSA5My4xODMtNjUuOTM5IDkwLjg5My03NS4zMDUgODYuODI0LTgzLjY0Nkg5MC4zMjJDOTQuMTg2LTc1LjIzOCA5Ni4zNDQtNjUuODkyIDk2LjM0NC01Ni4wNDkgOTYuMzQ0LTE5LjQ4OCA2Ni42MDEgMTAuMjU2IDMwLjA0MSAxMC4yNTYgMjkuODc1IDEwLjI1NiAyOS43MTIgMTAuMjUyIDI5LjU0NyAxMC4yNSAyOS4zODMgMTAuMjUyIDI5LjIxOCAxMC4yNTYgMjkuMDU1IDEwLjI1Ni03LjUwNiAxMC4yNTYtMzcuMjUtMTkuNDg4LTM3LjI1LTU2LjA0OS0zNy4yNS02NS44OTItMzUuMDktNzUuMjM4LTMxLjIyNi04My42NDZILTI3LjcyOEMtMzEuNzk5LTc1LjMwNS0zNC4wODctNjUuOTM5LTM0LjA4Ny01Ni4wNDkiIGZpbGw9IiM2Y2IxOTUiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTA3LjkzOSwxNzEuMzY2KSIgZD0iTTAgMEgzLjA5OFYtNi4zNThINy41NDZWLTguNTVIMFoiIGZpbGw9IiM2Y2IxOTUiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTIyLjAzNTYsMTc2Ljg2MjEpIiBkPSJNMCAwLS45MDEgMi42MzRILS45MjlMLTEuOSAwWk0tMi40MzYgNS40OTZILjU5Mkw0LjI1Mi0zLjA1NEgxLjA0MkwuNjItMS44MzJILTIuNTc2TC0zLjAyNi0zLjA1NEgtNi4xMzlaIiBmaWxsPSIjNmNiMTk1Ij48L3BhdGg+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDEzNC43ODM3LDE3NS4xMDIzKSIgZD0iTTAgMEgxLjYxOUMyLjE5NiAwIDIuOTg0IC4wODQgMi45ODQgLjg1IDIuOTg0IDEuMzg5IDIuNjMyIDEuNyAxLjQ1IDEuN0gwWk0tMy4wOTggMy43MzZIMi44MDFDNC41NjEgMy43MzYgNi4wODEgMi45MSA2LjA4MSAxLjI5MyA2LjA4MSAuNDA3IDUuNjAzLS41MjYgNC41NzUtLjg1IDUuNDItMS4xMjUgNS45NDEtMS45MTUgNi4wNTMtMi45ODEgNi4wOTUtMy40IDYuMTEtNC40MTggNi4zOTEtNC44MTNIMy4yOTRDMy4xMzktNC4zODIgMy4wODMtMy45MzkgMy4wNDEtMy40OTYgMi45NTYtMi42ODIgMi44NzItMS44MzIgMS42NDctMS44MzJIMFYtNC44MTNILTMuMDk4WiIgZmlsbD0iIzZjYjE5NSI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwwLDE5OC40MjUpIiBkPSJNMTQyLjEyMiAyNy4wNTlIMTQ1LjIyVjE4LjUwODk5OUgxNDIuMTIyWiIgZmlsbD0iIzZjYjE5NSI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxNTEuNjEzMywxNzcuOTg4MSkiIGQ9Ik0wIDBDLjc4OCAwIDEuOTk5IC40NDMgMS45OTkgMi4zNDggMS45OTkgNC4yNTEgLjc4OCA0LjY5MyAwIDQuNjkzLS43ODggNC42OTMtMS45OTkgNC4yNTEtMS45OTkgMi4zNDgtMS45OTkgLjQ0My0uNzg4IDAgMCAwTTAgNi44MjVDMy4wNTUgNi44MjUgNS4wOTYgNC45NTggNS4wOTYgMi4zNDggNS4wOTYtLjI2NCAzLjA1NS0yLjEzMSAwLTIuMTMxLTMuMDU2LTIuMTMxLTUuMDk3LS4yNjQtNS4wOTcgMi4zNDgtNS4wOTcgNC45NTgtMy4wNTYgNi44MjUgMCA2LjgyNSIgZmlsbD0iIzZjYjE5NSI+PC9wYXRoPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxNjUuMDM0MiwxNzYuODM4NykiIGQ9Ik0wIDBDMC0yLjM1OS0xLjI1My0zLjI4LTMuNzcyLTMuMjgtNi4zMjEtMy4yOC03LjQ2MS0yLjA3LTcuNDYxLS4yMDNWLjUxNUgtNC42NzRWLjAyNEMtNC42NzQtLjYzNS00LjY3NC0xLjI0NS0zLjg0My0xLjI0NS0zLjA0MS0xLjI0NS0zLjA5Ny0uNDE5LTMuMDk3LS4wMzZWNS40NzNIMFoiIGZpbGw9IiM2Y2IxOTUiPjwvcGF0aD4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTcxLjg1MTYsMTc2Ljg2MjEpIiBkPSJNMCAwLS45IDIuNjM0SC0uOTI5TC0xLjg5OSAwWk0tMi40MzUgNS40OTZILjU5Mkw0LjI1My0zLjA1NEgxLjA0MkwuNjItMS44MzJILTIuNTc2TC0zLjAyNi0zLjA1NEgtNi4xMzhaIiBmaWxsPSIjNmNiMTk1Ij48L3BhdGg+CjwvZz4KPC9nPgo8L3N2Zz4=" alt="ANPE La Rioja" class="anpe-logo" width="90" height="96">
+    <div class="brand-txt">
+      <p class="antetitulo">Concurso de Traslados · La Rioja</p>
+      <h1>Puntuaciones</h1>
+      <p class="sub">Con cuántos puntos se consiguió destino en los concursos de 2024-25 y 2025-26, por especialidad, en toda La Rioja y en Logroño. Sale de las resoluciones definitivas, sin nombres.</p>
+    </div>
+  </div>
+  <svg class="onda" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 22 C 260 4, 520 4, 760 18 S 1220 36, 1440 12 L1440 40 L0 40Z" fill="var(--cielo)"/>
+    <path d="M0 30 C 300 16, 560 18, 820 28 S 1240 38, 1440 22 L1440 40 L0 40Z" fill="var(--verde)" opacity=".55"/>
+    <path d="M0 35 C 320 26, 620 28, 900 34 S 1260 40, 1440 30 L1440 40 L0 40Z" fill="var(--bg)"/>
+  </svg>
+</header>
+
+<div class="wrap">
+  <nav class="secciones" aria-label="Secciones">
+    <a href="./">Autobaremo</a>
+    <a href="puntuaciones" aria-current="page">Puntuaciones de otros años</a>
+  </nav>
+
+  <div class="intro">
+    <section class="card bloque" aria-labelledby="leer-h">
+      <h2 id="leer-h">Cómo leer los datos</h2>
+      <ul>
+        <li>Cada cifra es la puntuación más baja con la que alguien de carrera consiguió plaza en esa especialidad. Debajo, cuántas plazas se dieron.</li>
+        <li>Solo cuentan los destinos en La Rioja. No incluimos a quien obtuvo plaza por derecho preferente.</li>
+        <li>El personal en prácticas concursa sin puntos y elige después que el de carrera. Si hubo plazas para prácticas, es que sobraron: quien de carrera pidió esos centros los consiguió.</li>
+        <li>La más baja depende de lo que pidió cada persona. Un centro que casi nadie pide puede salir con pocos puntos. En Logroño el dato es más fiable.</li>
+        <li>Cada año salen plazas distintas. Úsalo como referencia, no como garantía.</li>
+      </ul>
+    </section>
+    <section class="card bloque" aria-labelledby="tu-h">
+      <h2 id="tu-h">Compárate</h2>
+      <div class="campo">
+        <label for="mi">Tu puntuación</label>
+        <div class="mi-pts">
+          <input type="number" id="mi" min="0" max="400" step="0.0001" inputmode="decimal" placeholder="0">
+          <a href="./">Calcúlala en el autobaremo</a>
+        </div>
+      </div>
+      <p class="letra" id="mi-origen">Si ya la has calculado en el autobaremo en este navegador, aparece aquí sola.</p>
+    </section>
+  </div>
+
+  <div class="filtros">
+    <div class="campo">
+      <span class="lbl" id="cuerpo-lbl">Cuerpo</span>
+      <div class="pills" role="radiogroup" aria-labelledby="cuerpo-lbl" id="cuerpos">
+        <label><input type="radio" name="cuerpo" value="mae" checked><span>Maestros</span></label>
+        <label><input type="radio" name="cuerpo" value="sec"><span>Secundaria</span></label>
+        <label><input type="radio" name="cuerpo" value="fp"><span>Especialistas de FP</span></label>
+        <label><input type="radio" name="cuerpo" value="otr"><span>EOI, Música y Artes</span></label>
+      </div>
+    </div>
+    <div class="campo buscar">
+      <label for="buscar">Buscar especialidad</label>
+      <input type="search" id="buscar" placeholder="Por ejemplo, inglés" autocomplete="off">
+    </div>
+  </div>
+  <p class="leyenda" aria-hidden="true">
+    <span><i class="pto l"></i> Plaza en Logroño</span>
+    <span><i class="pto r"></i> Plaza en el resto de La Rioja</span>
+    <span><i class="raya"></i> Tu puntuación</span>
+  </p>
+  <div class="lista" id="lista" aria-live="polite"><noscript><p class="aviso-js">Esta página necesita JavaScript. Actívalo en el navegador para verla.</p></noscript></div>
+
+  <footer class="pie">
+    <p>Datos de las resoluciones definitivas de los concursos de traslados convocados en noviembre de 2024 y de 2025 por la Consejería de Educación de La Rioja. Del concurso 2024-25 de Secundaria y del resto de cuerpos solo tenemos la lista de quienes obtuvieron plaza, así que no sabemos cuántos se quedaron sin ella.</p>
+    <p>¿Dudas? Escríbenos o llámanos: <span class="contacto">rioja@anpe.es · 941 26 26 87 · WhatsApp 601 10 02 93</span> · <a href="https://www.anperioja.es" target="_blank" rel="noopener">www.anperioja.es</a></p>
+  </footer>
+</div>
+
+<script>
+/* Una fila por especialidad: g grupo, cu cuerpo, n nombre, a por concurso → p [puntos, 1 si es Logroño] de quien
+   obtuvo plaza siendo de carrera, pr y prl plazas para prácticas (total y en Logroño), den sin destino (null si no consta). */
+const DATOS = [{"g":"mae","cu":"Maestros","n":"Primaria","a":{"2025-26":{"p":[[34.5,0],[35.43,0],[35.53,1],[36.65,1],[39.88,0],[40.44,0],[41.04,0],[50.0,0],[61.97,0],[76.21,0],[76.86,1],[77.67,1],[78.27,1],[79.17,0],[86.67,1],[90.66,1],[149.3,0],[163.65,1],[205.75,1],[239.43,1],[249.1,1]],"pr":0,"prl":0,"den":31},"2024-25":{"p":[[33.25,0],[36.26,0],[37.38,0],[40.9,0],[41.67,0],[42.81,0],[54.0,0],[54.14,0],[56.17,0],[57.32,0],[71.42,1],[74.93,0],[89.33,1],[95.28,1],[100.77,1],[107.67,0],[118.67,1],[118.7,1],[124.67,1],[129.37,0],[135.04,1],[142.6,0],[142.88,1],[143.87,0],[162.5,1],[167.87,1],[180.0,1],[190.1,0],[213.87,1]],"pr":43,"prl":0,"den":38}}},{"g":"mae","cu":"Maestros","n":"Educación Infantil","a":{"2025-26":{"p":[[51.8,0],[189.1,0]],"pr":1,"prl":0,"den":5},"2024-25":{"p":[[26.05,0],[27.05,0],[32.37,1],[33.91,0],[34.96,0],[41.91,0],[42.67,0],[50.06,1],[55.22,1],[58.0,1],[63.5,1],[67.54,1],[83.96,1],[134.37,1],[233.74,0]],"pr":36,"prl":0,"den":16}}},{"g":"mae","cu":"Maestros","n":"Inglés","a":{"2025-26":{"p":[[49.62,0],[61.6,0],[83.97,1],[128.42,0]],"pr":0,"prl":0,"den":12},"2024-25":{"p":[[42.24,0],[42.7,0],[44.48,0],[44.53,0],[46.74,0],[48.37,0],[64.73,0],[73.02,1],[79.07,0],[128.23,0],[136.54,1],[149.21,1]],"pr":10,"prl":0,"den":10}}},{"g":"mae","cu":"Maestros","n":"Pedagogía Terapéutica","a":{"2025-26":{"p":[[59.47,0],[60.52,1],[61.43,0],[92.12,1],[148.59,1],[161.5,1],[174.5,0]],"pr":0,"prl":0,"den":5},"2024-25":{"p":[[47.08,0],[51.52,0],[59.18,1],[64.53,1],[68.98,1],[73.88,1],[205.68,0]],"pr":11,"prl":5,"den":7}}},{"g":"mae","cu":"Maestros","n":"Educación Física","a":{"2025-26":{"p":[[24.17,0],[186.0,0],[218.45,1]],"pr":0,"prl":0,"den":9},"2024-25":{"p":[[59.97,0],[74.08,0],[81.11,1],[132.57,1],[154.1,1],[173.54,0]],"pr":9,"prl":0,"den":13}}},{"g":"mae","cu":"Maestros","n":"Audición y Lenguaje","a":{"2025-26":{"p":[],"pr":0,"prl":0,"den":6},"2024-25":{"p":[[38.23,1],[46.07,0],[73.93,0],[126.48,1]],"pr":12,"prl":2,"den":6}}},{"g":"mae","cu":"Maestros","n":"Pedagogía Terapéutica en IES","a":{"2025-26":{"p":[[70.37,1],[113.7,1],[157.32,1],[218.9,1]],"pr":0,"prl":0,"den":1},"2024-25":{"p":[[42.92,1],[62.83,0],[78.29,1],[121.47,0],[193.62,0]],"pr":5,"prl":3,"den":4}}},{"g":"mae","cu":"Maestros","n":"Música","a":{"2025-26":{"p":[[96.62,1],[154.96,1]],"pr":0,"prl":0,"den":4},"2024-25":{"p":[[72.25,1],[74.21,1]],"pr":4,"prl":1,"den":4}}},{"g":"mae","cu":"Maestros","n":"Educación de Adultos","a":{"2025-26":{"p":[],"pr":0,"prl":0,"den":3},"2024-25":{"p":[[225.5,0]],"pr":0,"prl":0,"den":2}}},{"g":"mae","cu":"Maestros","n":"Adultos (otras especialidades)","a":{"2025-26":{"p":[],"pr":0,"prl":0,"den":2}}},{"g":"mae","cu":"Maestros","n":"Audición y Lenguaje en IES","a":{"2025-26":{"p":[],"pr":0,"prl":0,"den":1}}},{"g":"sec","cu":"Secundaria","n":"Inglés","a":{"2025-26":{"p":[[41.27,1],[45.75,1],[113.87,1],[118.13,1]],"pr":28,"prl":9,"den":2},"2024-25":{"p":[[27.1,1],[31.99,0],[32.77,0],[34.1,1],[44.09,0],[53.92,0],[57.63,1],[67.33,1],[75.18,1],[131.38,0],[258.35,1]],"pr":0,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Lengua Castellana y Literatura","a":{"2025-26":{"p":[[67.84,1],[154.1,1]],"pr":20,"prl":0,"den":2},"2024-25":{"p":[[28.75,0],[32.43,1],[50.42,0],[67.43,1],[152.57,1]],"pr":2,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Orientación Educativa","a":{"2025-26":{"p":[[43.27,1],[43.51,1],[121.93,1]],"pr":20,"prl":12,"den":1},"2024-25":{"p":[[26.6,0],[29.33,1],[35.92,0],[41.83,0],[54.91,1],[97.54,1]],"pr":0,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Matemáticas","a":{"2025-26":{"p":[[17.7,0],[19.15,1],[26.21,1],[27.84,0],[31.23,0],[58.87,1],[74.5,1],[107.23,1]],"pr":8,"prl":2,"den":8},"2024-25":{"p":[[44.17,0],[47.65,0],[48.68,1],[49.5,1],[59.99,1],[102.18,1]],"pr":0,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Servicios a la Comunidad","a":{"2025-26":{"p":[[18.0,0],[32.0,0],[40.92,1]],"pr":15,"prl":9,"den":0},"2024-25":{"p":[],"pr":4,"prl":2,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Biología y Geología","a":{"2025-26":{"p":[[45.78,0]],"pr":15,"prl":3,"den":1},"2024-25":{"p":[[33.13,1]],"pr":0,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Geografía e Historia","a":{"2025-26":{"p":[[30.08,0],[33.53,0],[56.19,1]],"pr":10,"prl":0,"den":8},"2024-25":{"p":[[50.68,1],[70.4,1],[89.42,1]],"pr":1,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Apoyo de Ciencias y Tecnología","a":{"2025-26":{"p":[[10.5,1],[16.93,0]],"pr":12,"prl":5,"den":0},"2024-25":{"p":[[46.97,1]],"pr":1,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Administración de Empresas","a":{"2025-26":{"p":[[31.9,1],[49.73,1]],"pr":10,"prl":3,"den":0},"2024-25":{"p":[[45.28,1]],"pr":1,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Física y Química","a":{"2025-26":{"p":[[45.65,0],[50.22,1]],"pr":1,"prl":0,"den":9},"2024-25":{"p":[[4.0,0],[16.17,0],[20.58,0],[34.02,0],[35.0,1],[36.94,1],[39.88,1],[40.37,1],[46.43,1],[132.47,1]],"pr":0,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Apoyo de Lengua y Ciencias Sociales","a":{"2025-26":{"p":[],"pr":11,"prl":6,"den":0},"2024-25":{"p":[],"pr":1,"prl":1,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Filosofía","a":{"2025-26":{"p":[[18.1,0]],"pr":9,"prl":6,"den":0},"2024-25":{"p":[[62.34,1],[121.07,1]],"pr":0,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Formación y Orientación Laboral","a":{"2025-26":{"p":[[79.1,1],[184.02,0],[201.27,1]],"pr":7,"prl":3,"den":0},"2024-25":{"p":[[29.23,1],[29.52,0]],"pr":0,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Tecnología","a":{"2025-26":{"p":[[27.72,0],[34.65,0],[35.28,0],[50.47,0],[66.03,1],[69.38,0],[70.71,0],[91.32,1]],"pr":0,"prl":0,"den":13},"2024-25":{"p":[[97.7,0],[130.96,1],[178.5,1]],"pr":0,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Francés","a":{"2025-26":{"p":[[46.82,1]],"pr":5,"prl":2,"den":0},"2024-25":{"p":[[71.94,1],[83.1,1]],"pr":0,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Instalaciones Electrotécnicas","a":{"2025-26":{"p":[],"pr":3,"prl":1,"den":0},"2024-25":{"p":[[22.31,0],[22.81,1],[151.67,0]],"pr":1,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Informática","a":{"2025-26":{"p":[[54.87,0]],"pr":4,"prl":3,"den":3}}},{"g":"sec","cu":"Secundaria","n":"Música","a":{"2025-26":{"p":[[41.56,0],[48.43,0],[50.06,0],[52.69,0]],"pr":0,"prl":0,"den":4},"2024-25":{"p":[[62.42,0]],"pr":0,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Procesos Comerciales","a":{"2025-26":{"p":[[68.43,1]],"pr":4,"prl":3,"den":0}}},{"g":"sec","cu":"Secundaria","n":"Cultura Clásica","a":{"2025-26":{"p":[],"pr":3,"prl":1,"den":0},"2024-25":{"p":[[53.82,0]],"pr":0,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Dibujo","a":{"2025-26":{"p":[[34.33,1]],"pr":0,"prl":0,"den":6},"2024-25":{"p":[[15.8,1],[41.2,0],[122.39,1]],"pr":0,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Economía","a":{"2025-26":{"p":[],"pr":0,"prl":0,"den":3},"2024-25":{"p":[[54.57,0],[93.67,1]],"pr":2,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Educación Física","a":{"2025-26":{"p":[[36.37,1]],"pr":0,"prl":0,"den":10},"2024-25":{"p":[[29.77,0],[44.17,0],[78.1,0]],"pr":0,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Operaciones y Equipos de Producción Agraria","a":{"2025-26":{"p":[[51.2,1]],"pr":0,"prl":0,"den":0},"2024-25":{"p":[],"pr":1,"prl":1,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Procedimientos Sanitarios y Asistenciales","a":{"2024-25":{"p":[],"pr":2,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Procesos de Gestión Administrativa","a":{"2024-25":{"p":[[22.75,1],[50.6,0]],"pr":0,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Análisis y Química Industrial","a":{"2024-25":{"p":[[44.37,0]],"pr":0,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Hostelería y Turismo","a":{"2025-26":{"p":[],"pr":0,"prl":0,"den":8},"2024-25":{"p":[[44.45,1]],"pr":0,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Operaciones y Equipos de Elaboración de Productos Alimentarios","a":{"2024-25":{"p":[],"pr":1,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Organización y Gestión Comercial","a":{"2024-25":{"p":[],"pr":1,"prl":1,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Procedimientos de Diagnóstico Clínico y Ortoprotésico","a":{"2024-25":{"p":[],"pr":1,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Procesos Sanitarios","a":{"2025-26":{"p":[],"pr":1,"prl":1,"den":0}}},{"g":"sec","cu":"Secundaria","n":"Sistemas Electrónicos","a":{"2024-25":{"p":[],"pr":1,"prl":0,"den":null}}},{"g":"sec","cu":"Secundaria","n":"Sistemas Electrotécnicos y Automáticos","a":{"2025-26":{"p":[],"pr":0,"prl":0,"den":1}}},{"g":"sec","cu":"Secundaria","n":"Sistemas y Aplicaciones Informáticas","a":{"2025-26":{"p":[],"pr":0,"prl":0,"den":7}}},{"g":"fp","cu":"Profesorado especialista de FP","n":"Cocina y Pastelería","a":{"2025-26":{"p":[[17.68,0],[152.85,1]],"pr":0,"prl":0,"den":1},"2024-25":{"p":[[50.73,0],[51.0,0]],"pr":0,"prl":0,"den":null}}},{"g":"fp","cu":"Profesorado especialista de FP","n":"Patronaje y Confección","a":{"2024-25":{"p":[[47.33,0]],"pr":1,"prl":0,"den":null}}},{"g":"fp","cu":"Profesorado especialista de FP","n":"Mantenimiento de Vehículos","a":{"2025-26":{"p":[],"pr":1,"prl":0,"den":0}}},{"g":"fp","cu":"Profesorado especialista de FP","n":"Mecanizado y Mantenimiento de Máquinas","a":{"2025-26":{"p":[[42.77,1]],"pr":0,"prl":0,"den":0}}},{"g":"fp","cu":"Profesorado especialista de FP","n":"Peluquería","a":{"2025-26":{"p":[[15.45,1]],"pr":0,"prl":0,"den":0}}},{"g":"fp","cu":"Profesorado especialista de FP","n":"Servicios de Restauración","a":{"2025-26":{"p":[[167.07,1]],"pr":0,"prl":0,"den":1}}},{"g":"otr","cu":"Escuelas Oficiales de Idiomas","n":"Francés","a":{"2025-26":{"p":[[78.98,1]],"pr":0,"prl":0,"den":0},"2024-25":{"p":[],"pr":1,"prl":0,"den":null}}},{"g":"otr","cu":"Música y Artes Escénicas","n":"Historia de la Música","a":{"2025-26":{"p":[[60.73,1],[62.2,0]],"pr":0,"prl":0,"den":0}}},{"g":"otr","cu":"Artes Plásticas y Diseño","n":"Medios Informáticos","a":{"2025-26":{"p":[[14.4,1],[44.92,1]],"pr":0,"prl":0,"den":0}}},{"g":"otr","cu":"Música y Artes Escénicas","n":"Piano","a":{"2025-26":{"p":[[57.47,1]],"pr":0,"prl":0,"den":0},"2024-25":{"p":[[40.76,0]],"pr":0,"prl":0,"den":null}}},{"g":"otr","cu":"Escuelas Oficiales de Idiomas","n":"Alemán","a":{"2024-25":{"p":[[80.46,1]],"pr":0,"prl":0,"den":null}}},{"g":"otr","cu":"Música y Artes Escénicas","n":"Clarinete","a":{"2025-26":{"p":[[67.2,1]],"pr":0,"prl":0,"den":0}}},{"g":"otr","cu":"Música y Artes Escénicas","n":"Contrabajo","a":{"2025-26":{"p":[[70.98,0]],"pr":0,"prl":0,"den":0}}},{"g":"otr","cu":"Artes Plásticas y Diseño","n":"Dibujo Artístico y Color","a":{"2024-25":{"p":[],"pr":1,"prl":1,"den":null}}},{"g":"otr","cu":"Artes Plásticas y Diseño","n":"Diseño Gráfico","a":{"2024-25":{"p":[[32.07,1]],"pr":0,"prl":0,"den":null}}},{"g":"otr","cu":"Música y Artes Escénicas","n":"Fagot","a":{"2024-25":{"p":[],"pr":1,"prl":0,"den":null}}},{"g":"otr","cu":"Escuelas Oficiales de Idiomas","n":"Inglés","a":{"2024-25":{"p":[[43.0,1]],"pr":0,"prl":0,"den":null}}},{"g":"otr","cu":"Música y Artes Escénicas","n":"Instrumentos de Púa","a":{"2025-26":{"p":[[71.14,1]],"pr":0,"prl":0,"den":0}}},{"g":"otr","cu":"Escuelas Oficiales de Idiomas","n":"Italiano","a":{"2024-25":{"p":[],"pr":1,"prl":1,"den":null}}},{"g":"otr","cu":"Artes Plásticas y Diseño","n":"Organización Industrial y Legislación","a":{"2024-25":{"p":[[46.04,1]],"pr":0,"prl":0,"den":null}}},{"g":"otr","cu":"Música y Artes Escénicas","n":"Violín","a":{"2024-25":{"p":[],"pr":1,"prl":0,"den":null}}},{"g":"otr","cu":"Música y Artes Escénicas","n":"Orquesta","a":{"2025-26":{"p":[],"pr":0,"prl":0,"den":1}}},{"g":"otr","cu":"Música y Artes Escénicas","n":"Violonchelo","a":{"2025-26":{"p":[],"pr":0,"prl":0,"den":1}}}];
+const ANIOS = ['2025-26', '2024-25'];
+const CLAVE_TOTAL = 'anpe-autobaremo-ct-2026-total';
+const CLAVE_CUERPO = 'anpe-puntuaciones-cuerpo';
+const fmt = x => (+x).toLocaleString('es-ES', { minimumFractionDigits:2, maximumFractionDigits:2 });
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+const sinTildes = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const MAX = Math.ceil(Math.max(...DATOS.flatMap(f => Object.values(f.a).flatMap(a => a.p.map(p => p[0]))), 50) / 50) * 50;
+const pos = v => Math.min(100, Math.max(0, v / MAX * 100));
+const plazas = n => n === 1 ? '1 plaza' : `${n} plazas`;
+
+let mi = 0;
+try { const g = parseFloat(localStorage.getItem(CLAVE_TOTAL)); if (g > 0) { mi = g; document.getElementById('mi').value = String(Math.round(g * 10000) / 10000); document.getElementById('mi-origen').textContent = 'Viene de lo que tienes metido en el autobaremo. Puedes cambiarla.'; } } catch(e) {}
+try { const c = localStorage.getItem(CLAVE_CUERPO); const r = c && document.querySelector(`#cuerpos input[value="${c}"]`); if (r) r.checked = true; } catch(e) {}
+
+function celda(a, soloLogr){
+  if (!a) return '<td><b class="txt">—</b><small>Sin datos</small></td>';
+  const pts = a.p.filter(p => !soloLogr || p[1]).map(p => p[0]);
+  const pr = soloLogr ? a.prl : a.pr;
+  const extra = pr ? `${pts.length ? ' · ' : ''}${pr} a prácticas` : '';
+  if (!pts.length){
+    if (pr) return `<td class="${mi > 0 ? 'llega' : ''}"><b class="txt">Sobraron plazas</b><small>${plazas(pr)} a prácticas</small>${mi > 0 ? '<span class="tu">Llegas</span>' : ''}</td>`;
+    return '<td><b class="txt">—</b><small>Ninguna plaza</small></td>';
+  }
+  const min = Math.min(...pts);
+  const llega = mi > 0 && (mi >= min || pr > 0);
+  return `<td class="${llega ? 'llega' : ''}"><b>${fmt(min)}</b><small>${plazas(pts.length)}${extra}</small>${llega ? '<span class="tu">Llegas</span>' : ''}</td>`;
+}
+
+function tira(an, a){
+  const puntos = a ? a.p : [];
+  const dots = puntos.slice().sort((x, y) => x[1] - y[1]).map(([v, l]) =>
+    `<i class="${l ? 'l' : 'r'}" style="left:${pos(v).toFixed(2)}%" title="${fmt(v)} puntos · ${l ? 'Logroño' : 'resto de La Rioja'}"></i>`).join('');
+  const yo = mi > 0 ? `<span class="yo" style="left:${pos(mi).toFixed(2)}%" title="Tu puntuación: ${fmt(mi)}"></span>` : '';
+  return `<div class="tira"><span class="an">${an}</span><div class="pista">${dots}${yo}</div></div>`;
+}
+
+function tarjeta(f){
+  const den = ANIOS.map(an => f.a[an] && f.a[an].den != null ? [an, f.a[an].den] : null).filter(x => x && x[1] > 0);
+  const notaDen = den.length ? `<p class="nota">Pidieron destino y no lo consiguieron: ${den.map(([an, n]) => `${n} en ${an}`).join(' y ')}.</p>` : '';
+  const eje = [0, MAX / 4, MAX / 2, MAX * 3 / 4, MAX].map(v => `<span style="left:${pos(v)}%">${v}</span>`).join('');
+  return `<article class="card esp">
+    <div class="esp-cab"><h3>${esc(f.n)}</h3><span class="cu">${esc(f.cu)}</span></div>
+    <table class="cortes">
+      <thead><tr><th scope="col"><span class="sr">Destino</span></th>${ANIOS.map(an => `<th scope="col">Concurso ${an}</th>`).join('')}</tr></thead>
+      <tbody>
+        <tr><th scope="row">Logroño</th>${ANIOS.map(an => celda(f.a[an], true)).join('')}</tr>
+        <tr><th scope="row">Toda La Rioja</th>${ANIOS.map(an => celda(f.a[an], false)).join('')}</tr>
+      </tbody>
+    </table>
+    <div class="tiras" aria-hidden="true">${ANIOS.map(an => tira(an, f.a[an])).join('')}<div class="eje">${eje}</div></div>
+    ${notaDen}
+  </article>`;
+}
+
+function pintar(){
+  const g = document.querySelector('#cuerpos input:checked').value;
+  const q = sinTildes(document.getElementById('buscar').value.trim());
+  const filas = DATOS.filter(f => q ? sinTildes(f.n).includes(q) : f.g === g);
+  document.getElementById('lista').innerHTML = filas.length ? filas.map(tarjeta).join('') : '<p class="card vacio">No hay ninguna especialidad con ese nombre en los dos concursos.</p>';
+}
+
+document.getElementById('cuerpos').addEventListener('change', e => {
+  document.getElementById('buscar').value = '';
+  try { localStorage.setItem(CLAVE_CUERPO, e.target.value); } catch(err) {}
+  pintar();
+});
+document.getElementById('buscar').addEventListener('input', pintar);
+document.getElementById('mi').addEventListener('input', e => { const v = parseFloat(e.target.value); mi = v > 0 ? v : 0; pintar(); });
+window.addEventListener('storage', e => { if (e.key === CLAVE_TOTAL){ const v = parseFloat(e.newValue); mi = v > 0 ? v : 0; document.getElementById('mi').value = mi ? String(Math.round(mi * 10000) / 10000) : ''; pintar(); } });
+pintar();
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "e8d044321f164a0faa2fb5bf37d81736"}'></script><!-- End Cloudflare Web Analytics -->
+<script data-goatcounter="https://anperioja.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -13,3 +13,10 @@ Calculadora para que cada docente se autobaremara el Concurso de Traslados 2026-
 - Sin selector de cuerpo: Catedrático es un interruptor en el apartado 2. "Expectativa" = funcionario de carrera sin destino definitivo (1.1.2).
 - «Cómo se justifica» de cada mérito: objeto `DOCS` (columna de documentos del Anexo XI y base 15 de la convocatoria). El resumen general va en «Qué hay que presentar».
 - Visitas: Cloudflare Web Analytics y GoatCounter (anperioja.goatcounter.com), los dos sin cookies, scripts al final del body.
+
+## Puntuaciones de otros años (`puntuaciones.html`)
+
+- Página hermana: puntuación más baja con la que alguien de carrera obtuvo destino, por especialidad, en Logroño y en toda La Rioja, concursos 2024-25 y 2025-26. Tarjeta por especialidad con tabla y tira de puntos; "Compárate" lee el total del autobaremo (`anpe-autobaremo-ct-2026-total`, lo escribe `guardar()` de index.html).
+- Se genera, no se edita a mano: `_datos/agrega.py` lee las sesiones del módulo Concurso de APPWEB y saca `puntuaciones.json` sin nombres, DNI ni centros; `_datos/genera.py` mete esos datos y el logo en `_datos/plantilla.html`. `_datos/` está en .gitignore (rutas locales).
+- Criterios: solo destinos con código de centro 26…; prácticas (apdo K) aparte, porque concursan sin puntos y eligen las últimas; fuera derechos preferentes y casos raros (apdo distinto de A y J). En 2024-25 de EEMM solo hay lista de concedidos, así que no consta cuántos se quedaron sin plaza.
+- Imagen para compartir: `og-puntuaciones.png` (plantilla en `_datos/og-puntuaciones.html`).
